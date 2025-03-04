@@ -32,9 +32,7 @@
   "parserOptions": {
     "project": "tsconfig.json",
     "tsconfigRootDir": ".",
-    "extraFileExtensions": [
-      ".mjs"
-    ]
+    "extraFileExtensions": [".mjs"]
   },
   "rules": {
     "import/no-named-as-default": "off",
@@ -62,9 +60,7 @@
     "no-console": [
       "warn",
       {
-        "allow": [
-          "error"
-        ]
+        "allow": ["error"]
       }
     ],
     "no-unused-expressions": "off",
@@ -96,34 +92,17 @@
             "^(assert|buffer|child_process|cluster|console|crypto|dgram|dns|domain|events|fs|http|https|module|net|os|path|punycode|querystring|readline|repl|stream|string_decoder|sys|timers|tls|tty|url|util|vm|zlib|freelist|v8|process|async_hooks|http2|perf_hooks)(/.*|$)"
           ],
           // Packages. `react` related packages come first.
-          [
-            "^react",
-            "^@?\\w"
-          ],
+          ["^react", "^@?\\w"],
           // Internal packages.
-          [
-            "^(@|@company|@ui|components|utils|config|vendored-lib)(/.*|$)"
-          ],
+          ["^(@|@company|@ui|components|utils|config|vendored-lib)(/.*|$)"],
           // Side effect imports.
-          [
-            "^\\u0000"
-          ],
+          ["^\\u0000"],
           // Parent imports. Put `..` last.
-          [
-            "^\\.\\.(?!/?$)",
-            "^\\.\\./?$"
-          ],
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
           // Other relative imports. Put same-folder imports and `.` last.
-          [
-            "^\\./(?=.*/)(?!/?$)",
-            "^\\.(?!/?$)",
-            "^\\./?$"
-          ],
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
           // Style imports.
-          [
-            "^.+\\.s?css$",
-            "^.+\\.styled"
-          ]
+          ["^.+\\.s?css$", "^.+\\.styled"]
         ]
       }
     ]
@@ -135,9 +114,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/*.stories.*"
-      ],
+      "files": ["**/*.stories.*"],
       "rules": {
         "import/no-anonymous-default-export": "off"
       }
