@@ -9,6 +9,7 @@ export const enum EColors {
   Green3 = '#27C19180',
 
   White1 = '#D0E0E3',
+  White2 = '#D0E0E394',
 
   Black1 = '#535363',
   Black2 = '#21212B',

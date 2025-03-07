@@ -1,4 +1,4 @@
-import { keyframes } from 'styled-components'
+import { keyframes } from 'styled-components';
 
 export const fadeInBackground = keyframes`
   0% {
@@ -8,7 +8,6 @@ export const fadeInBackground = keyframes`
     opacity: 1;
   }
 `;
-
 
 export const scaleInPopup = keyframes`
   0% {

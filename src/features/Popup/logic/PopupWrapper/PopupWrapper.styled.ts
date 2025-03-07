@@ -1,6 +1,7 @@
-import { Animations } from 'shared/styles/animations/animations';
+import { scaleInPopup } from 'shared/styles/keyframes/keyframes';
 import { BreakPoint } from 'shared/styles/style-variables/breakpoints';
 import { EColors } from 'shared/styles/style-variables/colors';
+import { Durations } from 'shared/styles/style-variables/durations';
 import styled from 'styled-components';
 
 export const Overlay = styled.div`
@@ -13,7 +14,6 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background: ${EColors.Back4};
-  animation: ${Animations.fadeIn};
 `;
 
 export const Popup = styled.div`
@@ -21,7 +21,7 @@ export const Popup = styled.div`
   padding: 48px 24px;
   border-radius: 4px;
   background: ${EColors.Back2};
-  animation: ${Animations.scaleIn};
+  animation: ${scaleInPopup} ${Durations.Fast} ease-out forwards;
   box-sizing: border-box;
 
   @media (min-width: ${BreakPoint.MobileTop}) {
@@ -48,4 +48,13 @@ export const CloseButton = styled.button`
   border: none;
   background: transparent;
   cursor: pointer;
+
+  & > svg path {
+    fill: ${EColors.Black1};
+    transition: fill ${Durations.Fast} ease-in-out;
+  }
+
+  &:hover svg path {
+    fill: ${EColors.White2};
+  }
 `;

@@ -1,4 +1,4 @@
-import { createConfig,http } from 'wagmi';
+import { createConfig, http } from 'wagmi';
 import { base, mainnet } from 'wagmi/chains';
 import { metaMask, walletConnect } from 'wagmi/connectors';
 

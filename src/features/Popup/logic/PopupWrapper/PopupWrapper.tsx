@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { usePopup } from 'features/Popup/logic/PopupProvider/PopupProvider';
-import { ReactComponent as CloseIcon } from 'shared/assets/icons/close/close-dark-l.svg';
+import CloseIcon from 'shared/assets/icons/close/close-x.svg?react';
 
 import * as S from './PopupWrapper.styled';
 
@@ -16,7 +16,7 @@ export const PopupWrapper: FC<PopupProps> = ({ renderContent }) => {
     <S.Overlay onClick={closePopup}>
       <S.Popup onClick={(e) => e.stopPropagation()}>
         <S.CloseButton onClick={closePopup}>
-          <CloseIcon />
+          <CloseIcon width={24} height={24} />
         </S.CloseButton>
         {renderContent}
       </S.Popup>
