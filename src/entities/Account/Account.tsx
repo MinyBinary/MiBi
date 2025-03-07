@@ -1,5 +1,4 @@
 import { FC } from 'react';
-
 import { useAccount, useDisconnect, useEnsAvatar, useEnsName } from 'wagmi';
 
 export const Account: FC = () => {

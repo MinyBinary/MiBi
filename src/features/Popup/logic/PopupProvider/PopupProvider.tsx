@@ -1,5 +1,4 @@
 import { createContext, FC, ReactNode, useContext, useState } from 'react';
-
 import { EPopupVariant } from 'features/Popup/types/popup-variants';
 
 interface PopupContextType {
@@ -11,7 +10,7 @@ interface PopupContextType {
 
 const PopupContext = createContext<PopupContextType | undefined>(undefined);
 
-export const usePopup = () => {
+export const usePopup = (): PopupContextType => {
   const context = useContext(PopupContext);
   if (!context) {
     throw new Error('usePopup must be used within a PopupProvider');

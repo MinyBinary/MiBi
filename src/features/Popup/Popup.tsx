@@ -1,5 +1,4 @@
 import { FC, JSX } from 'react';
-
 import { ConnectWallet } from 'features/ConnectWallet';
 import { PopupWrapper } from 'features/Popup/logic/PopupWrapper';
 import { EPopupVariant } from 'features/Popup/types/popup-variants';

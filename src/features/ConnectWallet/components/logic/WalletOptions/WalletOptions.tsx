@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from 'react';
-
 import { Connector, useConnect } from 'wagmi';
 
 export const WalletOptions: FC = () => {

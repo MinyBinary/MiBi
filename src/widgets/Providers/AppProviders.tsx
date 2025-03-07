@@ -1,5 +1,4 @@
 import type { FC, JSX } from 'react';
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PopupProvider } from 'features/Popup';
 import { config } from 'shared/configs/wagmi/wagmi.config';

@@ -1,5 +1,4 @@
 import type { FC, JSX } from 'react';
-
 import { ConnectWallet } from 'features/ConnectWallet';
 
 import * as S from './App.styled';
