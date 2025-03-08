@@ -2,8 +2,10 @@ import { Durations, EColors, EFontFamily } from 'shared/styles/style-variables';
 import { styled } from 'styled-components';
 
 export const Button = styled.button`
+  position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   padding: 12px 24px;
   border: none;
@@ -14,7 +16,6 @@ export const Button = styled.button`
   font-weight: 400;
   line-height: 24px;
   letter-spacing: -0.02em;
-  text-transform: uppercase;
   color: ${EColors.White1};
   transition: all ${Durations.Fast} ease-in-out;
   cursor: pointer;
@@ -22,10 +23,6 @@ export const Button = styled.button`
   & svg {
     max-width: 24px;
     max-height: 24px;
-  }
-
-  &:hover {
-    background: ${EColors.Gray1};
   }
 `;
 
@@ -42,8 +39,10 @@ export const BorderedButton = styled(Button)`
   border: 1px solid ${EColors.White1};
   background: transparent;
   box-sizing: border-box;
+`;
 
-  &:hover {
-    background: ${EColors.Gray2};
-  }
+export const AdvancedIcon = styled.div`
+  position: absolute;
+  left: 12px;
+  display: flex;
 `;

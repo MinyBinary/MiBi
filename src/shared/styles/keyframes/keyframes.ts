@@ -9,6 +9,17 @@ export const fadeInBackground = keyframes`
   }
 `;
 
+export const fadeInStroke = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
+
 export const scaleInPopup = keyframes`
   0% {
     transform: scale(0.95);

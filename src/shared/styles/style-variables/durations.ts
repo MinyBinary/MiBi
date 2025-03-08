@@ -1,5 +1,7 @@
 export const Durations = {
   Fast: '0.2s',
-  Medium: '0.4s',
-  Slow: '0.8s',
+  Normal: '0.3s',
+  Medium: '0.5s',
+  Long: '0.7s',
+  Slow: '1s',
 };
