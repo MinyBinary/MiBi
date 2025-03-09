@@ -9,7 +9,6 @@ export const AppContainer = styled.div`
 `;
 
 export const AboveBtn = styled(Button)`
-  width: 150px;
   border-color: ${EColors.Green1};
   background: ${EColors.Green5};
   color: ${EColors.Green1};
@@ -19,7 +18,6 @@ export const AboveBtn = styled(Button)`
   }
 `;
 export const BelowBtn = styled(Button)`
-  width: 150px;
   border-color: ${EColors.Red1};
   background: ${EColors.Red2};
   color: ${EColors.Red1};
@@ -27,4 +25,11 @@ export const BelowBtn = styled(Button)`
   &:hover {
     background: ${EColors.Red3};
   }
+`;
+
+export const SelectWrapper1 = styled.div`
+  width: 85px;
+`;
+export const SelectWrapper2 = styled.div`
+  width: 150px;
 `;
