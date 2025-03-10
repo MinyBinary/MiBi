@@ -1,0 +1,66 @@
+name: Auto Release & Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master  
+
+jobs:
+  release:
+    name: Create Release & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js installing
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: installing dependencies
+        run: yarn install
+
+      - name: build project
+        run: yarn build
+
+      - name: get package.json version
+        id: package_version
+        run: echo "VERSION=$(jq -r .version package.json)" >> $GITHUB_ENV
+
+      - name: create release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ env.VERSION }}
+          name: Release ${{ env.VERSION }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js installing
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: installing dependencies
+        run: yarn install
+
+      - name: build project
+        run: yarn build
+
+      - name: Deploy на GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages 
+          folder: dist  
