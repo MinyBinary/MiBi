@@ -7,7 +7,7 @@
   "repository": "https://github.com/MinyBinary/MiBi.git",
   "author": "EDZakharov (https://github.com/EDZakharov)",
   "license": "MIT",
-  "homepage": "https://MinyBinary.github.io/MiBi/",
+  "homepage": "https://minybinary.github.io/MiBi/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
