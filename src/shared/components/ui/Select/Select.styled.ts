@@ -2,20 +2,30 @@ import { StyledText } from 'shared/styled/StyledText';
 import { Durations, EColors, EFontFamily } from 'shared/styles/style-variables';
 import { css, styled } from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{
+  $width?: number;
+  $borderRadius?: string;
+}>`
   position: relative;
+  ${({ $width }) =>
+    $width &&
+    css`
+      width: ${$width}px;
+      min-width: ${$width}px;
+    `};
+  ${({ $borderRadius }) => $borderRadius && `border-radius: ${$borderRadius};`};
 `;
 
 export const Button = styled.button`
-  position: relative;
   display: flex;
   align-items: center;
   gap: 6px;
   width: 100%;
-  padding: 12px;
+  height: 100%;
   border: none;
-  border-radius: 4px;
+  border-radius: inherit;
   background: ${EColors.Back2};
+  overflow: hidden;
   transition: all ${Durations.Fast} ease;
   cursor: pointer;
 
@@ -62,13 +72,13 @@ export const IconWrapper = styled.div`
 `;
 
 export const ArrowWrapper = styled.div<{ $isOpen: boolean }>`
-  position: absolute;
-  right: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 9px;
+  min-width: 9px;
   height: 4.5px;
+  min-height: 4.5px;
   transform: rotate(${({ $isOpen }) => ($isOpen ? '-180deg' : '0')});
   transition: transform ${Durations.Fast} ease-out;
 
@@ -88,7 +98,7 @@ export const ArrowWrapper = styled.div<{ $isOpen: boolean }>`
 
 export const Dropdown = styled.div<{ $isOpen: boolean; $dropDownHeight: number }>`
   position: absolute;
-  top: 48px;
+  top: 115%;
   z-index: 10;
   width: 100%;
   max-height: ${({ $isOpen, $dropDownHeight }) => ($isOpen ? `${$dropDownHeight}px ` : '0')};

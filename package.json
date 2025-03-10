@@ -1,12 +1,13 @@
 {
   "name": "mibi",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "main": "main.tsx",
   "repository": "https://github.com/MinyBinary/MiBi.git",
   "author": "EDZakharov (https://github.com/EDZakharov)",
   "license": "MIT",
+  "homepage": "https://MinyBinary.github.io/MiBi/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

@@ -7,7 +7,14 @@ import BinanceIcon from 'shared/assets/icons/exchanges/binance.svg?react';
 import BybitIcon from 'shared/assets/icons/exchanges/bybit.svg?react';
 import CoinbaseIcon from 'shared/assets/icons/exchanges/coinbase.svg?react';
 import UserICon from 'shared/assets/icons/users/user.svg?react';
-import { Button, Checkbox, EButtonVariant, ISelectOption, Select } from 'shared/components/ui';
+import {
+  Button,
+  Checkbox,
+  EButtonVariant,
+  Input,
+  ISelectOption,
+  Select,
+} from 'shared/components/ui';
 import { EColors } from 'shared/styles/style-variables';
 
 import * as S from './App.styled';
@@ -16,6 +23,25 @@ export const App: FC = (): JSX.Element => {
   const [isChecked, setChecked] = useState(false);
   const [currentValue1, setCurrentValue1] = useState<ISelectOption>();
   const [currentValue2, setCurrentValue2] = useState<ISelectOption>();
+  const [currentValue3, setCurrentValue3] = useState<ISelectOption>();
+
+  const [validationError, setValidationError] = useState<string>();
+  const [inputValue, setInputValue] = useState<string>('');
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setInputValue(value);
+    if (value !== '') {
+      setValidationError('');
+    } else {
+      setValidationError('Field is required');
+    }
+  };
+
+  const handleSelect = (option: ISelectOption) => {
+    setCurrentValue3(option);
+    setValidationError('');
+  };
 
   return (
     <S.AppContainer>
@@ -51,7 +77,7 @@ export const App: FC = (): JSX.Element => {
         <Select
           current={currentValue1}
           handleSelect={setCurrentValue1}
-          placeholder="Value"
+          placeholder="Coin"
           options={[
             { value: 'USDT', label: 'USDT' },
             { value: 'BNB', label: 'BNB' },
@@ -82,6 +108,25 @@ export const App: FC = (): JSX.Element => {
           ]}
         />
       </S.SelectWrapper2>
+      <Input
+        width={180}
+        validationErrorString={validationError}
+        value={inputValue}
+        onChange={handleInputChange}
+        placeholder="Amount"
+      >
+        <Select
+          width={60}
+          placeholder="Coin"
+          current={currentValue3}
+          handleSelect={handleSelect}
+          borderRadius="0 4px 4px 0"
+          options={[
+            { value: 'USDT', label: 'USDT' },
+            { value: 'BNB', label: 'BNB' },
+          ]}
+        />
+      </Input>
     </S.AppContainer>
   );
 };

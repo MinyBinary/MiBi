@@ -16,6 +16,8 @@ interface IPropsSelect {
   current?: ISelectOption;
   placeholder?: string;
   textRight?: boolean;
+  width?: number;
+  borderRadius?: string;
   handleSelect?: ({ icon, label, value }: ISelectOption) => void;
 }
 
@@ -25,13 +27,15 @@ export const Select: FC<IPropsSelect> = ({
   current,
   placeholder,
   textRight = false,
+  width,
+  borderRadius,
   handleSelect,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false));
   const PLACEHOLDER_DEFAULT_TEXT = 'Select';
   return (
-    <S.Wrapper ref={selectRef}>
+    <S.Wrapper ref={selectRef} $width={width} $borderRadius={borderRadius}>
       <S.Button onClick={() => setIsOpen(!isOpen)}>
         {current?.icon && <S.IconWrapper>{current.icon}</S.IconWrapper>}
         {current?.label && <S.LabelText $textRight={textRight}>{current?.label}</S.LabelText>}
