@@ -1,0 +1,1 @@
+export { HeaderTittle } from './HeaderTittle';

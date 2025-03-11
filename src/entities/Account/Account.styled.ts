@@ -6,4 +6,8 @@ export const AccountContainer = styled.div`
   align-items: center;
   gap: 8px;
   color: ${EColors.White1};
+
+  & > button {
+    text-transform: uppercase;
+  }
 `;
