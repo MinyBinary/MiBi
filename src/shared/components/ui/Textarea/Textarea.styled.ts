@@ -1,0 +1,41 @@
+import { EColors, EFontFamily } from 'shared/styles/style-variables';
+import styled from 'styled-components';
+
+export const Textarea = styled.textarea`
+  padding: 12px 16px;
+  border: 1px solid ${EColors.Gray3};
+  border-radius: 4px;
+  background: ${EColors.Back2};
+  font-family: ${EFontFamily.GeistMono};
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.6px;
+  letter-spacing: -0.28px;
+  color: ${EColors.White1};
+  resize: none;
+  scrollbar-width: thin;
+  scrollbar-color: ${EColors.Gray3} ${EColors.Back2};
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    background: ${EColors.Back2};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${EColors.Gray3};
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${EColors.Back2};
+  }
+
+  &::placeholder {
+    text-transform: uppercase;
+    color: ${EColors.Black1};
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
