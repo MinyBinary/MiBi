@@ -5,6 +5,7 @@ export const AppLayout = styled.div`
   display: flex;
   flex: 1 0;
   flex-direction: column;
+  gap: 32px;
   width: 100%;
   padding: 24px;
 

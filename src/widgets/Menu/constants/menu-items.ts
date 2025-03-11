@@ -1,7 +1,7 @@
 export const menuItems = [
   {
-    title: 'dashboard',
-    path: '/MiBi',
+    title: 'intro',
+    path: '/MiBi/',
   },
   {
     title: 'about',

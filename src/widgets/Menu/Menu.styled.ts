@@ -1,13 +1,17 @@
 import { StyledText } from 'shared/styled/StyledText';
 import { BreakPoint, Durations, EColors, EFontFamily } from 'shared/styles/style-variables';
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 export const Menu = styled.nav`
   display: flex;
-  gap: 16px;
+  gap: 44px;
 
   & a {
     text-decoration: none;
+  }
+
+  @media (max-width: ${BreakPoint.TabletTop}) {
+    gap: 16px;
   }
 
   @media (max-width: ${BreakPoint.MobileTop}) {
@@ -15,7 +19,7 @@ export const Menu = styled.nav`
   }
 `;
 
-export const LinkItem = styled(StyledText)<{ $active?: boolean }>`
+export const LinkItem = styled(StyledText)<{ $active?: boolean; $wordSpace?: number }>`
   ${({ $active }) => ($active ? `color: ${EColors.Green1};` : `color: ${EColors.White1};`)};
   font-family: ${EFontFamily.GeistMono};
   font-size: 14px;
@@ -23,6 +27,12 @@ export const LinkItem = styled(StyledText)<{ $active?: boolean }>`
   font-weight: 400;
   line-height: 19.6px;
   text-transform: uppercase;
+
+  ${({ $wordSpace }) =>
+    $wordSpace &&
+    css`
+      word-spacing: ${$wordSpace}px;
+    `}
 
   &:hover {
     transition: all ${Durations.Fast} ease-in-out;

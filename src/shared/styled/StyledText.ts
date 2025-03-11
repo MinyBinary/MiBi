@@ -4,7 +4,8 @@ import { styled } from 'styled-components';
 export const StyledText = styled.span`
   font-family: ${EFontFamily.GeistMono};
   font-size: 14px;
+  font-style: normal;
   font-weight: 400;
-  line-height: 18px;
+  line-height: 1px;
   letter-spacing: -0.02em;
 `;
