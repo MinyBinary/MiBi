@@ -79,7 +79,7 @@ export const ArrowWrapper = styled.div<{ $isOpen: boolean }>`
   min-width: 9px;
   height: 4.5px;
   min-height: 4.5px;
-  transform: rotate(${({ $isOpen }) => ($isOpen ? '-180deg' : '0')});
+  transform: rotate(${({ $isOpen }) => ($isOpen ? '180deg' : '0')});
   transition: transform ${Durations.Fast} ease-out;
 
   & > svg path {

@@ -1,9 +1,9 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { App } from 'app';
+import { AppProviders } from 'app/Providers/AppProviders';
 import { GlobalStyles } from 'shared/styles/GlobalStyles';
 import { ResetStyles } from 'shared/styles/ResetStyles';
-import { App } from 'widgets/App';
-import { AppProviders } from 'widgets/Providers/AppProviders';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

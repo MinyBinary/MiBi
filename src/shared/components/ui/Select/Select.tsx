@@ -1,5 +1,5 @@
 import { FC, ReactElement, useState } from 'react';
-import ArrowUpIcon from 'shared/assets/icons/arrows/arrow-up.svg?react';
+import ArrowDownIcon from 'shared/assets/icons/arrows/arrow-down.svg?react';
 import { useClickOutside } from 'shared/hooks/useClickOutside';
 
 import * as S from './Select.styled';
@@ -43,7 +43,7 @@ export const Select: FC<IPropsSelect> = ({
           <S.PlaceholderText>{placeholder || PLACEHOLDER_DEFAULT_TEXT}</S.PlaceholderText>
         )}
         <S.ArrowWrapper $isOpen={isOpen}>
-          <ArrowUpIcon />
+          <ArrowDownIcon />
         </S.ArrowWrapper>
       </S.Button>
       <S.Dropdown $isOpen={isOpen} $dropDownHeight={dropDownHeight}>

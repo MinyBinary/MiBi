@@ -3,6 +3,7 @@ export const enum EColors {
   Back2 = '#141417',
   Back3 = '#1414174D',
   Back4 = '#00000099',
+
   //+ Buttons
 
   Green1 = '#27C191',
