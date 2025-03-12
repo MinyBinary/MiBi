@@ -1,7 +1,13 @@
 import { Button, Input, Textarea } from 'shared/components/ui';
 import { StyledText } from 'shared/styled/StyledText';
-import { BreakPoint, EColors } from 'shared/styles/style-variables';
-import styled from 'styled-components';
+import { BreakPoint, Durations, EColors } from 'shared/styles/style-variables';
+import styled, { css } from 'styled-components';
+
+export const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 
 export const CreateBidForm = styled.form`
   display: flex;
@@ -42,7 +48,7 @@ export const BlockDescription = styled(StyledText)`
 export const InputsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 8px;
 `;
 
 export const Label = styled.label`
@@ -51,13 +57,19 @@ export const Label = styled.label`
   text-align: end;
 `;
 
-export const LabelText = styled(StyledText)`
+export const LabelText = styled(StyledText)<{ $isMaxSymbolsCount?: boolean }>`
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: 14px;
   text-transform: uppercase;
   color: ${EColors.Black1};
+  transition: color ${Durations.Fast} ease;
+  ${({ $isMaxSymbolsCount }) =>
+    $isMaxSymbolsCount &&
+    css`
+      color: ${EColors.Red1};
+    `};
 `;
 
 export const CommentTextArea = styled(Textarea)`
@@ -65,7 +77,9 @@ export const CommentTextArea = styled(Textarea)`
 `;
 
 export const UserNameInput = styled(Input)`
-  text-transform: uppercase;
+  &::placeholder {
+    text-transform: uppercase;
+  }
 `;
 
 export const CreateBidButton = styled(Button)`

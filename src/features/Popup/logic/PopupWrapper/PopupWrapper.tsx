@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { usePopup } from 'features/Popup/logic/PopupProvider/PopupProvider';
+import { usePopup } from 'features/Popup';
 import CloseIcon from 'shared/assets/icons/close/close-x.svg?react';
 
 import * as S from './PopupWrapper.styled';

@@ -1,11 +1,25 @@
 import { EColors, EFontFamily } from 'shared/styles/style-variables';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+export const AreaWrapper = styled.div<{ $hasValidationError?: boolean }>`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid ${EColors.Gray3};
+  background: ${EColors.Back2};
+
+  ${({ $hasValidationError }) =>
+    $hasValidationError &&
+    css`
+      border: 1px solid ${EColors.Red1};
+    `};
+`;
 
 export const Textarea = styled.textarea`
   padding: 12px 16px;
-  border: 1px solid ${EColors.Gray3};
-  border-radius: 4px;
-  background: ${EColors.Back2};
+  border: none;
+  border-radius: inherit;
+  background: transparent;
   font-family: ${EFontFamily.GeistMono};
   font-size: 14px;
   font-style: normal;

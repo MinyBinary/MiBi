@@ -1,2 +1,3 @@
 export { Popup } from './Popup';
-export { PopupProvider, usePopup } from './logic/PopupProvider/PopupProvider';
+export { PopupProvider } from './logic/PopupProvider/PopupProvider';
+export { usePopup } from './logic/hooks/usePopup';
