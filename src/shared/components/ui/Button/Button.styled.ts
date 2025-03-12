@@ -8,7 +8,7 @@ export const Button = styled.button`
   justify-content: center;
   gap: 6px;
   padding: 12px 24px;
-  border: none;
+  border: 1px solid ${EColors.Gray2};
   border-radius: 4px;
   background: ${EColors.Gray2};
   font-family: ${EFontFamily.GeistMono};

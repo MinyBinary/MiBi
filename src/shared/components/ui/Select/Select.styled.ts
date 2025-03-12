@@ -2,18 +2,10 @@ import { StyledText } from 'shared/styled/StyledText';
 import { Durations, EColors, EFontFamily } from 'shared/styles/style-variables';
 import { css, styled } from 'styled-components';
 
-export const Wrapper = styled.div<{
-  $width?: number;
-  $borderRadius?: string;
-}>`
+export const Wrapper = styled.div`
   position: relative;
-  ${({ $width }) =>
-    $width &&
-    css`
-      width: ${$width}px;
-      min-width: ${$width}px;
-    `};
-  ${({ $borderRadius }) => $borderRadius && `border-radius: ${$borderRadius};`};
+  display: flex;
+  border: 1px solid ${EColors.Black2};
 `;
 
 export const Button = styled.button`
@@ -39,6 +31,7 @@ export const LabelText = styled(StyledText)<{ $textRight: boolean }>`
   font-family: ${EFontFamily.GeistMono};
   font-size: 14px;
   font-weight: 400;
+  line-height: 16px;
   color: ${EColors.White1};
 
   ${({ $textRight }) =>
@@ -57,6 +50,7 @@ export const PlaceholderText = styled(StyledText)`
   font-family: ${EFontFamily.GeistMono};
   font-size: 14px;
   font-weight: 400;
+  line-height: 16px;
   text-align: left;
   color: ${EColors.Black1};
 `;
@@ -99,9 +93,11 @@ export const ArrowWrapper = styled.div<{ $isOpen: boolean }>`
 export const Dropdown = styled.div<{ $isOpen: boolean; $dropDownHeight: number }>`
   position: absolute;
   top: 115%;
+  right: -1px;
   z-index: 10;
-  width: 100%;
+  width: calc(100% + 2px);
   max-height: ${({ $isOpen, $dropDownHeight }) => ($isOpen ? `${$dropDownHeight}px ` : '0')};
+  border: 1px solid ${EColors.Black4};
   border-radius: 4px;
   background: ${EColors.Back2};
   opacity: ${({ $isOpen }) => ($isOpen ? '1' : '0')};
@@ -110,6 +106,7 @@ export const Dropdown = styled.div<{ $isOpen: boolean; $dropDownHeight: number }
   font-family: ${EFontFamily.GeistMono};
   font-size: 14px;
   font-weight: 400;
+  line-height: 16px;
   color: ${EColors.White1};
   transition:
     max-height ${Durations.Fast} ease,
@@ -131,7 +128,7 @@ export const Dropdown = styled.div<{ $isOpen: boolean; $dropDownHeight: number }
 `;
 
 export const Option = styled.div`
-  padding: 12px;
+  padding: 12px 16px;
   transition: all ${Durations.Fast} ease;
   cursor: pointer;
 
