@@ -1,11 +1,12 @@
 import { ChangeEvent, type FC, useActionState, useState } from 'react';
+import { IdeaBlock } from 'features/CreateBidForm/components/ui/IdeaBlock';
+import { InscriptionBlock } from 'features/CreateBidForm/components/ui/InscriptionBlock';
+import { inputLimits } from 'features/CreateBidForm/constants/input-limits';
 import { usePopup } from 'features/Popup';
 import { EPopupVariant } from 'features/Popup/types/popup-variants';
 import CreateBidButtonIcon from 'shared/assets/icons/links/create-bid.svg?react';
 import { EButtonVariant } from 'shared/components/ui';
 import { formatTextOutput } from 'shared/utils';
-
-import { inputLimits } from './constants/input-limits';
 
 import * as S from './CreateBidForm.styled';
 
@@ -110,35 +111,14 @@ export const CreateBidForm: FC = () => {
     <S.ContentWrapper>
       <S.CreateBidForm action={formAction} id="bid-form">
         <S.FormBlocksWrapper>
-          <S.Block1>
-            <S.BlockDescription>Inscription</S.BlockDescription>
-            <S.InputsWrapper>
-              <S.Label>
-                <S.UserNameInput
-                  maxLength={inputLimits.name}
-                  placeholder="name"
-                  name="name"
-                  validationErrorString={inputsErrorText.name}
-                  onChange={handleInputChange}
-                />
-                <S.LabelText $isMaxSymbolsCount={inputLengths.name >= inputLimits.name}>
-                  {inputLengths.name}/{inputLimits.name} symbols
-                </S.LabelText>
-              </S.Label>
-              <S.Label>
-                <S.CommentTextArea
-                  maxLength={inputLimits.comment}
-                  placeholder="comment"
-                  name="comment"
-                  onChange={handleInputChange}
-                  validationErrorString={inputsErrorText.comment}
-                />
-                <S.LabelText $isMaxSymbolsCount={inputLengths.comment >= inputLimits.comment}>
-                  {inputLengths.comment}/{inputLimits.comment} symbols
-                </S.LabelText>
-              </S.Label>
-            </S.InputsWrapper>
-          </S.Block1>
+          <InscriptionBlock
+            inputLimits={inputLimits}
+            {...formState}
+            handleInputChange={handleInputChange}
+            inputLengths={inputLengths}
+            inputsErrorText={inputsErrorText}
+          />
+          <IdeaBlock />
         </S.FormBlocksWrapper>
       </S.CreateBidForm>
       <S.CreateBidButton

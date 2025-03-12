@@ -1,0 +1,1 @@
+export { InscriptionBlock } from './InscriptionBlock';

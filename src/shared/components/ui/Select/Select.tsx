@@ -10,14 +10,13 @@ export interface ISelectOption {
   label: string;
 }
 
-interface IPropsSelect {
+interface IPropsSelect extends React.HTMLAttributes<HTMLDivElement> {
   options: ISelectOption[];
   dropDownHeight?: number;
   current?: ISelectOption;
   placeholder?: string;
   textRight?: boolean;
-  width?: number;
-  borderRadius?: string;
+  classNameDropDown?: string;
   handleSelect?: ({ icon, label, value }: ISelectOption) => void;
 }
 
@@ -27,15 +26,15 @@ export const Select: FC<IPropsSelect> = ({
   current,
   placeholder,
   textRight = false,
-  width,
-  borderRadius,
+  classNameDropDown,
   handleSelect,
+  ...props
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false));
   const PLACEHOLDER_DEFAULT_TEXT = 'Select';
   return (
-    <S.Wrapper ref={selectRef} $width={width} $borderRadius={borderRadius}>
+    <S.Wrapper ref={selectRef} {...props}>
       <S.Button onClick={() => setIsOpen(!isOpen)}>
         {current?.icon && <S.IconWrapper>{current.icon}</S.IconWrapper>}
         {current?.label && <S.LabelText $textRight={textRight}>{current?.label}</S.LabelText>}
@@ -46,7 +45,7 @@ export const Select: FC<IPropsSelect> = ({
           <ArrowDownIcon />
         </S.ArrowWrapper>
       </S.Button>
-      <S.Dropdown $isOpen={isOpen} $dropDownHeight={dropDownHeight}>
+      <S.Dropdown $isOpen={isOpen} $dropDownHeight={dropDownHeight} className={classNameDropDown}>
         {options.map((option) => (
           <S.Option
             key={option.value}
