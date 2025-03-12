@@ -1,22 +1,7 @@
-import { createContext, FC, ReactNode, useContext, useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import { EPopupVariant } from 'features/Popup/types/popup-variants';
 
-interface PopupContextType {
-  isPopupOpen: boolean;
-  variant: EPopupVariant | null;
-  openPopup: (variant: EPopupVariant) => void;
-  closePopup: () => void;
-}
-
-const PopupContext = createContext<PopupContextType | undefined>(undefined);
-
-export const usePopup = (): PopupContextType => {
-  const context = useContext(PopupContext);
-  if (!context) {
-    throw new Error('usePopup must be used within a PopupProvider');
-  }
-  return context;
-};
+import { PopupContext } from './PopupProviderContext';
 
 export const PopupProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
