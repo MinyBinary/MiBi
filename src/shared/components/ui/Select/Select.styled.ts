@@ -1,5 +1,5 @@
 import { StyledText } from 'shared/styled/StyledText';
-import { Durations, EColors, EFontFamily } from 'shared/styles/style-variables';
+import { BreakPoint, Durations, EColors, EFontFamily } from 'shared/styles/style-variables';
 import { css, styled } from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -24,6 +24,10 @@ export const Button = styled.button`
   &:hover {
     background: ${EColors.Gray3};
   }
+
+  @media (max-width: ${BreakPoint.MobileTop}) {
+    font-size: 12px;
+  }
 `;
 
 export const LabelText = styled(StyledText)<{ $textRight: boolean }>`
@@ -43,6 +47,10 @@ export const LabelText = styled(StyledText)<{ $textRight: boolean }>`
       : css`
           text-align: left;
         `}
+
+  @media (max-width: ${BreakPoint.MobileTop}) {
+    font-size: 12px;
+  }
 `;
 
 export const PlaceholderText = styled(StyledText)`
@@ -53,6 +61,10 @@ export const PlaceholderText = styled(StyledText)`
   line-height: 16px;
   text-align: left;
   color: ${EColors.Black1};
+
+  @media (max-width: ${BreakPoint.MobileTop}) {
+    font-size: 12px;
+  }
 `;
 
 export const IconWrapper = styled.div`
@@ -124,6 +136,10 @@ export const Dropdown = styled.div<{ $isOpen: boolean; $dropDownHeight: number }
 
   &::-webkit-scrollbar-thumb {
     background: ${EColors.Gray3};
+  }
+
+  @media (max-width: ${BreakPoint.MobileTop}) {
+    font-size: 12px;
   }
 `;
 

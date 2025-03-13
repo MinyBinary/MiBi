@@ -1,12 +1,14 @@
-import { ChangeEvent, type FC, useActionState, useState } from 'react';
-import { IdeaBlock } from 'features/CreateBidForm/components/ui/IdeaBlock';
+import { type FC, useActionState } from 'react';
+import { EActiveButton, IdeaBlock } from 'features/CreateBidForm/components/ui/IdeaBlock';
 import { InscriptionBlock } from 'features/CreateBidForm/components/ui/InscriptionBlock';
 import { inputLimits } from 'features/CreateBidForm/constants/input-limits';
 import { usePopup } from 'features/Popup';
 import { EPopupVariant } from 'features/Popup/types/popup-variants';
 import CreateBidButtonIcon from 'shared/assets/icons/links/create-bid.svg?react';
-import { EButtonVariant } from 'shared/components/ui';
-import { formatTextOutput } from 'shared/utils';
+import { EButtonVariant, ISelectOption } from 'shared/components/ui';
+
+import { useIdeaBlockLogic } from './hooks/useIdeaBlockLogic';
+import { useInscriptionBlockLogic } from './hooks/useInscriptionBlockLogic';
 
 import * as S from './CreateBidForm.styled';
 
@@ -25,42 +27,45 @@ interface IFormState {
 export const CreateBidForm: FC = () => {
   const { openPopup, closePopup } = usePopup();
 
-  const [inputsErrorText, setInputsErrorText] = useState({
-    name: '',
-    comment: '',
-  });
-  const [inputLengths, setInputLengths] = useState({
-    name: 0,
-    comment: 0,
-  });
+  const {
+    activeIdeaButton,
+    optionCoin,
+    optionExchange,
+    handleSelectValueCoinChange,
+    handleSelectValueExchangeChange,
+    handleActiveIdeaButtonClick,
+    clearIdeaBlockState,
+  } = useIdeaBlockLogic();
+
+  const {
+    inputsErrorText,
+    inputLengths,
+    handleInputChange,
+    clearInscriptionBlockInputsState,
+    clearInscriptionBlockErrorsState,
+    handleSetInputsErrorText,
+  } = useInscriptionBlockLogic();
+
   const [formState, formAction] = useActionState(submitForm, {
     isSubmitting: false,
     errors: {},
-    formValues: { name: '', comment: '' },
+    formValues: {
+      name: '',
+      comment: '',
+      activeIdeaButton,
+      optionCoin,
+      optionExchange,
+      ideaRate: '',
+    },
   });
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setInputsErrorText((prev) => ({
-      ...prev,
-      [name]: '',
-    }));
-
-    setInputLengths((prev) => ({
-      ...prev,
-      [name]: value.length,
-    }));
-
-    e.target.value = formatTextOutput(e.target.value);
-
-    // if (formState.errors[name as keyof IFormState['errors']]) {
-    //   formAction(new FormData(e.currentTarget.form!));
-    // }
-  };
 
   async function submitForm(prevState: IFormState, formData: FormData) {
     const name = formData.get('name') as string;
     const comment = formData.get('comment') as string;
+    const activeIdeaButton = formData.get('idea-active-button') as EActiveButton;
+    const optionCoin = formData.get('idea-coin') as ISelectOption | null;
+    const optionExchange = formData.get('idea-exchange') as ISelectOption | null;
+    const ideaRate = formData.get('idea-input-rate') as string;
 
     // const errors: IFormState['errors'] = {};
 
@@ -82,8 +87,15 @@ export const CreateBidForm: FC = () => {
     // }
 
     closePopup();
-    setInputLengths({ name: 0, comment: 0 });
-    return { ...prevState, errors: {}, isSubmitting: true, formValues: { name, comment } };
+    clearInscriptionBlockInputsState();
+    clearInscriptionBlockErrorsState();
+    clearIdeaBlockState();
+    return {
+      ...prevState,
+      errors: {},
+      isSubmitting: true,
+      formValues: { name, comment, activeIdeaButton, optionCoin, optionExchange, ideaRate },
+    };
   }
 
   const handlePopupButtonClick = () => {
@@ -92,18 +104,10 @@ export const CreateBidForm: FC = () => {
       inputLengths.name > 0 &&
       inputLengths.comment > 0
     ) {
-      setInputsErrorText({ name: '', comment: '' });
+      clearInscriptionBlockErrorsState();
       openPopup(EPopupVariant.Page);
     } else {
-      setInputsErrorText((prev) => ({
-        ...prev,
-        name:
-          // formState.errors.name ||
-          inputLengths.name <= 0 ? 'Name is required' : '',
-        comment:
-          //  formState.errors.comment ||
-          inputLengths.comment <= 0 ? 'Comment is required' : '',
-      }));
+      handleSetInputsErrorText();
     }
   };
 
@@ -118,7 +122,14 @@ export const CreateBidForm: FC = () => {
             inputLengths={inputLengths}
             inputsErrorText={inputsErrorText}
           />
-          <IdeaBlock />
+          <IdeaBlock
+            activeIdeaButton={activeIdeaButton}
+            handleActiveIdeaButton={handleActiveIdeaButtonClick}
+            optionCoin={optionCoin}
+            optionExchange={optionExchange}
+            handleSelectValueCoinChange={handleSelectValueCoinChange}
+            handleSelectValueExchangeChange={handleSelectValueExchangeChange}
+          />
         </S.FormBlocksWrapper>
       </S.CreateBidForm>
       <S.CreateBidButton

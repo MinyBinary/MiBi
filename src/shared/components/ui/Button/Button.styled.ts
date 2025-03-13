@@ -23,6 +23,10 @@ export const Button = styled.button`
   & svg {
     max-width: 24px;
     max-height: 24px;
+
+    & path {
+      transition: all ${Durations.Fast} ease-in-out;
+    }
   }
 `;
 
