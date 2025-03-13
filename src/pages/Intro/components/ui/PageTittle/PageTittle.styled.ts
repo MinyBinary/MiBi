@@ -16,7 +16,6 @@ export const TittleWrapper = styled.div`
 
 export const TittleGray = styled(StyledText)`
   max-width: 735px;
-  font-weight: 400;
   line-height: 19.6px;
   letter-spacing: -0.28px;
   text-align: center;

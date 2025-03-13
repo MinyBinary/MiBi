@@ -1,3 +1,4 @@
+import { StyledText } from 'shared/styled/StyledText';
 import { scaleInPopup } from 'shared/styles/keyframes/keyframes';
 import { BreakPoint } from 'shared/styles/style-variables/breakpoints';
 import { EColors } from 'shared/styles/style-variables/colors';
@@ -19,7 +20,7 @@ export const Overlay = styled.div`
 
 export const Popup = styled.div`
   position: relative;
-  padding: 48px 24px;
+  padding: 24px;
   border-radius: 4px;
   background: ${EColors.Back2};
   animation: ${scaleInPopup} ${Durations.Fast} ease-out forwards;
@@ -35,15 +36,28 @@ export const Popup = styled.div`
   }
 `;
 
+export const PopupHeader = styled.div`
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  padding: 0 0 24px;
+`;
+
+export const PopupTittle = styled(StyledText)`
+  max-width: 350px;
+  font-size: 24px;
+  line-height: 90%;
+  letter-spacing: -0.48px;
+  text-transform: uppercase;
+  color: ${EColors.White1};
+`;
+
 export const CloseButton = styled.button`
-  position: absolute;
-  top: 16px;
-  right: 14px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
+  justify-content: end;
+  width: 100%;
+  height: 16px;
   margin: 0;
   padding: 0;
   border: none;
