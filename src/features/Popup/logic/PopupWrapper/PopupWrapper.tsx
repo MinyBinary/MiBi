@@ -18,9 +18,11 @@ export const PopupWrapper: FC<PopupProps> = ({ renderTittle, renderContent }) =>
       <S.Popup onClick={(e) => e.stopPropagation()}>
         <S.PopupHeader>
           {renderTittle && <S.PopupTittle>{renderTittle}</S.PopupTittle>}
-          <S.CloseButton onClick={closePopup}>
-            <CloseIcon width={16} height={16} />
-          </S.CloseButton>
+          <S.CloseIconWrapper>
+            <S.CloseButton onClick={closePopup}>
+              <CloseIcon width={16} height={16} />
+            </S.CloseButton>
+          </S.CloseIconWrapper>
         </S.PopupHeader>
         {renderContent}
       </S.Popup>

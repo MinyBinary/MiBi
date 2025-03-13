@@ -52,12 +52,16 @@ export const PopupTittle = styled(StyledText)`
   color: ${EColors.White1};
 `;
 
-export const CloseButton = styled.button`
+export const CloseIconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
   width: 100%;
-  height: 16px;
+`;
+
+export const CloseButton = styled.button`
+  width: max-content;
+  height: max-content;
   margin: 0;
   padding: 0;
   border: none;
