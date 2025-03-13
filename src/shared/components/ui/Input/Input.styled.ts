@@ -1,4 +1,4 @@
-import { Durations, EColors, EFontFamily } from 'shared/styles/style-variables';
+import { BreakPoint, Durations, EColors, EFontFamily } from 'shared/styles/style-variables';
 import styled, { css } from 'styled-components';
 
 export const InputWrapper = styled.div<{ $width?: string | number; $hasValidationError?: boolean }>`
@@ -33,6 +33,15 @@ export const Input = styled.input`
   outline: none;
 
   &::placeholder {
+    text-transform: uppercase;
     color: ${EColors.Black1};
+  }
+
+  @media (max-width: ${BreakPoint.MobileTop}) {
+    font-size: 12px;
+
+    &::placeholder {
+      font-size: 12px;
+    }
   }
 `;

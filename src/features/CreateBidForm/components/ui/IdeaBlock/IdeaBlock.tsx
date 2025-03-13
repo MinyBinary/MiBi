@@ -1,39 +1,78 @@
-import type { FC } from 'react';
+import { type FC } from 'react';
 import { BlockWrapper } from 'features/CreateBidForm/components/styled/StyledBlockWrapper';
 import { BlockDescription } from 'features/CreateBidForm/components/ui/BlockDescription';
-import { EButtonVariant, Input } from 'shared/components/ui';
+import TriangleRedDownIcon from 'shared/assets/icons/arrows/triangle-filled-down.svg?react';
+import TriangleGreenUpIcon from 'shared/assets/icons/arrows/triangle-filled-up.svg?react';
+import { EButtonVariant, Input, ISelectOption } from 'shared/components/ui';
 
 import { ideaCoinsOptions, ideaExchangesOptions } from './constants/select-options';
+import { EActiveButton } from './types/Idea-block-types';
 
 import * as S from './IdeaBlock.styled';
 
 interface IPropsIdeaBlock {
-  children?: React.ReactNode;
+  activeIdeaButton: EActiveButton | null;
+  optionCoin: ISelectOption | null;
+  optionExchange: ISelectOption | null;
+  handleSelectValueCoinChange: (option: ISelectOption) => void;
+  handleSelectValueExchangeChange: (option: ISelectOption) => void;
+  handleActiveIdeaButton: (value: EActiveButton) => void;
 }
 
-export const IdeaBlock: FC<IPropsIdeaBlock> = () => {
+export const IdeaBlock: FC<IPropsIdeaBlock> = ({
+  activeIdeaButton,
+  optionCoin,
+  optionExchange,
+  handleSelectValueCoinChange,
+  handleSelectValueExchangeChange,
+  handleActiveIdeaButton,
+}) => {
   return (
     <BlockWrapper>
       <BlockDescription text="idea" />
       <S.InputsWrapper>
         <S.SelectWrapper>
           <S.IdeaSelect
+            current={optionCoin ? optionCoin : undefined}
             options={ideaCoinsOptions}
-            classNameDropDown="idea-select"
             dropDownHeight={115}
             placeholder="Coin"
+            handleSelect={handleSelectValueCoinChange}
           />
           <S.IdeaSelect
+            current={optionExchange ? optionExchange : undefined}
             options={ideaExchangesOptions}
-            classNameDropDown="idea-select"
+            dropDownHeight={115}
             placeholder="Exchange"
+            handleSelect={handleSelectValueExchangeChange}
           />
         </S.SelectWrapper>
         <S.ButtonsWrapper>
-          <S.RangeButton text="In the range" variant={EButtonVariant.Bordered} $active />
-          <S.DateButton text="On the date" variant={EButtonVariant.Primary} />
+          <S.RangeButton
+            text="Above"
+            variant={EButtonVariant.Bordered}
+            icon={<TriangleGreenUpIcon />}
+            $active={activeIdeaButton === EActiveButton.Above}
+            onClick={(e) => {
+              e.preventDefault();
+              handleActiveIdeaButton(EActiveButton.Above);
+            }}
+          />
+          <S.DateButton
+            text="Below"
+            variant={EButtonVariant.Bordered}
+            icon={<TriangleRedDownIcon />}
+            $active={activeIdeaButton === EActiveButton.Below}
+            onClick={(e) => {
+              e.preventDefault();
+              handleActiveIdeaButton(EActiveButton.Below);
+            }}
+          />
+          <input type="hidden" name="idea-active-button" value={activeIdeaButton || ''} />
+          <input type="hidden" name="idea-coin" value={optionCoin?.value || ''} />
+          <input type="hidden" name="idea-exchange" value={optionExchange?.value || ''} />
         </S.ButtonsWrapper>
-        <Input placeholder="Rate" />
+        <Input placeholder="Rate" name="idea-input-rate" />
       </S.InputsWrapper>
     </BlockWrapper>
   );

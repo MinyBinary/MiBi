@@ -32,6 +32,7 @@ export const enum EColors {
   Red1 = '#E24A4A',
   Red2 = '#E24A4A0D',
   Red3 = '#E24A4A1F',
+  Red4 = '#E24A4ABB',
 
   Yellow1 = '#F3BA2F',
 }

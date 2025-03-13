@@ -1,14 +1,10 @@
-import { FC, ReactElement, useState } from 'react';
+import { FC, useState } from 'react';
 import ArrowDownIcon from 'shared/assets/icons/arrows/arrow-down.svg?react';
 import { useClickOutside } from 'shared/hooks/useClickOutside';
 
-import * as S from './Select.styled';
+import { ISelectOption } from './types/select-option';
 
-export interface ISelectOption {
-  icon?: ReactElement;
-  value: string;
-  label: string;
-}
+import * as S from './Select.styled';
 
 interface IPropsSelect extends React.HTMLAttributes<HTMLDivElement> {
   options: ISelectOption[];
@@ -35,7 +31,12 @@ export const Select: FC<IPropsSelect> = ({
   const PLACEHOLDER_DEFAULT_TEXT = 'Select';
   return (
     <S.Wrapper ref={selectRef} {...props}>
-      <S.Button onClick={() => setIsOpen(!isOpen)}>
+      <S.Button
+        onClick={(e) => {
+          e.preventDefault();
+          setIsOpen(!isOpen);
+        }}
+      >
         {current?.icon && <S.IconWrapper>{current.icon}</S.IconWrapper>}
         {current?.label && <S.LabelText $textRight={textRight}>{current?.label}</S.LabelText>}
         {!current?.label && (
@@ -50,11 +51,18 @@ export const Select: FC<IPropsSelect> = ({
           <S.Option
             key={option.value}
             tabIndex={0}
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               handleSelect?.(option);
               setIsOpen(false);
             }}
-            onKeyDown={(e) => e.key === 'Enter' && (handleSelect?.(option), setIsOpen(false))}
+            onKeyDown={(e) => {
+              e.preventDefault();
+              if (e.key === 'Enter') {
+                handleSelect?.(option);
+                setIsOpen(false);
+              }
+            }}
           >
             <S.OptionContent>
               {option.icon && <S.IconWrapper>{option.icon}</S.IconWrapper>}
