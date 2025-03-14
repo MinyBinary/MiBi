@@ -7,44 +7,40 @@ import * as S from './InscriptionBlock.styled';
 interface IPropsInscriptionBlock {
   inputLimits: { name: number; comment: number };
   inputLengths: { name: number; comment: number };
-  inputsErrorText: { name: string; comment: string };
   handleInputChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
 export const InscriptionBlock: FC<IPropsInscriptionBlock> = ({
   inputLimits,
   inputLengths,
-  inputsErrorText,
   handleInputChange,
 }) => {
   return (
     <BlockWrapper $gridArea="inscription">
       <BlockDescription text="inscription" />
       <S.InputsWrapper>
-        <S.Label>
+        <S.LabelBlock1>
           <S.UserNameInput
             maxLength={inputLimits.name}
             placeholder="name"
             name="name"
-            validationErrorString={inputsErrorText.name}
             onChange={handleInputChange}
           />
           <S.LabelText $isMaxSymbolsCount={inputLengths.name >= inputLimits.name}>
             {inputLengths.name}/{inputLimits.name} symbols
           </S.LabelText>
-        </S.Label>
-        <S.Label>
+        </S.LabelBlock1>
+        <S.LabelBlock2>
           <S.CommentTextArea
             maxLength={inputLimits.comment}
             placeholder="comment"
             name="comment"
             onChange={handleInputChange}
-            validationErrorString={inputsErrorText.comment}
           />
           <S.LabelText $isMaxSymbolsCount={inputLengths.comment >= inputLimits.comment}>
             {inputLengths.comment}/{inputLimits.comment} symbols
           </S.LabelText>
-        </S.Label>
+        </S.LabelBlock2>
       </S.InputsWrapper>
     </BlockWrapper>
   );

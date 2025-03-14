@@ -31,5 +31,5 @@ export const Button: FC<IButtonProps> = ({ text, icon, advancedIcon, reversed, .
     ),
   };
 
-  return renderButton[props.variant || EButtonVariant.Primary]();
+  return renderButton[props.$variant || EButtonVariant.Primary]();
 };

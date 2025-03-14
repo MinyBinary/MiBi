@@ -29,6 +29,9 @@ interface IFormState {
 export const CreateBidForm: FC = () => {
   const { openPopup, closePopup } = usePopup();
 
+  const { inputLengths, handleInputChange, clearInscriptionBlockInputsState } =
+    useInscriptionBlockLogic();
+
   const {
     activeIdeaButton,
     optionCoin,
@@ -38,15 +41,6 @@ export const CreateBidForm: FC = () => {
     handleActiveIdeaButtonClick,
     clearIdeaBlockState,
   } = useIdeaBlockLogic();
-
-  const {
-    inputsErrorText,
-    inputLengths,
-    handleInputChange,
-    clearInscriptionBlockInputsState,
-    clearInscriptionBlockErrorsState,
-    handleSetInputsErrorText,
-  } = useInscriptionBlockLogic();
 
   const [formState, formAction] = useActionState(submitForm, {
     isSubmitting: false,
@@ -90,8 +84,8 @@ export const CreateBidForm: FC = () => {
 
     closePopup();
     clearInscriptionBlockInputsState();
-    clearInscriptionBlockErrorsState();
     clearIdeaBlockState();
+
     return {
       ...prevState,
       errors: {},
@@ -101,15 +95,8 @@ export const CreateBidForm: FC = () => {
   }
 
   const handlePopupButtonClick = () => {
-    if (
-      Object.keys(formState.errors).length === 0 &&
-      inputLengths.name > 0 &&
-      inputLengths.comment > 0
-    ) {
-      clearInscriptionBlockErrorsState();
+    if (Object.keys(formState.errors).length === 0) {
       openPopup(EPopupVariant.Page);
-    } else {
-      handleSetInputsErrorText();
     }
   };
 
@@ -122,7 +109,6 @@ export const CreateBidForm: FC = () => {
             {...formState}
             handleInputChange={handleInputChange}
             inputLengths={inputLengths}
-            inputsErrorText={inputsErrorText}
           />
           <IdeaBlock
             activeIdeaButton={activeIdeaButton}
@@ -139,7 +125,7 @@ export const CreateBidForm: FC = () => {
               e.preventDefault();
               handlePopupButtonClick();
             }}
-            variant={EButtonVariant.Primary}
+            $variant={EButtonVariant.Primary}
             text="Create bid"
             icon={<CreateBidButtonIcon />}
           />
