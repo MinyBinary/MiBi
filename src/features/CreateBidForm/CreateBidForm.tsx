@@ -1,4 +1,6 @@
 import { type FC, useActionState } from 'react';
+import { BidBlock } from 'features/CreateBidForm/components/ui/BidBlock';
+import { DateBlock } from 'features/CreateBidForm/components/ui/DateBlock';
 import { EActiveButton, IdeaBlock } from 'features/CreateBidForm/components/ui/IdeaBlock';
 import { InscriptionBlock } from 'features/CreateBidForm/components/ui/InscriptionBlock';
 import { inputLimits } from 'features/CreateBidForm/constants/input-limits';
@@ -63,8 +65,8 @@ export const CreateBidForm: FC = () => {
     const name = formData.get('name') as string;
     const comment = formData.get('comment') as string;
     const activeIdeaButton = formData.get('idea-active-button') as EActiveButton;
-    const optionCoin = formData.get('idea-coin') as ISelectOption | null;
-    const optionExchange = formData.get('idea-exchange') as ISelectOption | null;
+    const optionCoin = formData.get('idea-coin') as unknown as ISelectOption;
+    const optionExchange = formData.get('idea-exchange') as unknown as ISelectOption;
     const ideaRate = formData.get('idea-input-rate') as string;
 
     // const errors: IFormState['errors'] = {};
@@ -130,29 +132,19 @@ export const CreateBidForm: FC = () => {
             handleSelectValueCoinChange={handleSelectValueCoinChange}
             handleSelectValueExchangeChange={handleSelectValueExchangeChange}
           />
-          <InscriptionBlock
-            inputLimits={inputLimits}
-            {...formState}
-            handleInputChange={handleInputChange}
-            inputLengths={inputLengths}
-            inputsErrorText={inputsErrorText}
-          />
-          <IdeaBlock
-            activeIdeaButton={activeIdeaButton}
-            handleActiveIdeaButton={handleActiveIdeaButtonClick}
-            optionCoin={optionCoin}
-            optionExchange={optionExchange}
-            handleSelectValueCoinChange={handleSelectValueCoinChange}
-            handleSelectValueExchangeChange={handleSelectValueExchangeChange}
+          <DateBlock />
+          <BidBlock />
+          <S.CreateBidButton
+            onClick={(e) => {
+              e.preventDefault();
+              handlePopupButtonClick();
+            }}
+            variant={EButtonVariant.Primary}
+            text="Create bid"
+            icon={<CreateBidButtonIcon />}
           />
         </S.FormBlocksWrapper>
       </S.CreateBidForm>
-      <S.CreateBidButton
-        onClick={handlePopupButtonClick}
-        variant={EButtonVariant.Primary}
-        text="Create bid"
-        icon={<CreateBidButtonIcon />}
-      />
     </S.ContentWrapper>
   );
 };

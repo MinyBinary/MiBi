@@ -5,6 +5,7 @@ import { css, styled } from 'styled-components';
 export const Wrapper = styled.div`
   position: relative;
   display: flex;
+  height: min-content;
   border: 1px solid ${EColors.Black2};
 `;
 
@@ -13,11 +14,16 @@ export const Button = styled.button`
   align-items: center;
   gap: 6px;
   width: 100%;
-  height: 100%;
+  padding: 12px 16px;
   border: none;
   border-radius: inherit;
   background: ${EColors.Back2};
   overflow: hidden;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.28px;
   transition: all ${Durations.Fast} ease;
   cursor: pointer;
 
@@ -35,7 +41,8 @@ export const LabelText = styled(StyledText)<{ $textRight: boolean }>`
   font-family: ${EFontFamily.GeistMono};
   font-size: 14px;
   font-weight: 400;
-  line-height: 16px;
+  line-height: 140%;
+  letter-spacing: -0.28px;
   color: ${EColors.White1};
 
   ${({ $textRight }) =>
@@ -57,8 +64,10 @@ export const PlaceholderText = styled(StyledText)`
   width: 100%;
   font-family: ${EFontFamily.GeistMono};
   font-size: 14px;
+  font-style: normal;
   font-weight: 400;
-  line-height: 16px;
+  line-height: 140%; /* 19.6px */
+  letter-spacing: -0.28px;
   text-align: left;
   color: ${EColors.Black1};
 

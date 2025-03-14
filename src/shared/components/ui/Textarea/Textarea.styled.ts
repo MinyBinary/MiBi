@@ -25,7 +25,7 @@ export const Textarea = styled.textarea`
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 19.6px;
+  line-height: 140%;
   letter-spacing: -0.28px;
   color: ${EColors.White1};
   resize: none;
@@ -56,6 +56,5 @@ export const Textarea = styled.textarea`
 
   @media (max-width: ${BreakPoint.MobileTop}) {
     font-size: 12px;
-    line-height: 18px;
   }
 `;
