@@ -7,22 +7,23 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 12px 24px;
+  padding: 12px 16px;
   border: 1px solid ${EColors.Gray2};
   border-radius: 4px;
   background: ${EColors.Gray2};
   font-family: ${EFontFamily.GeistMono};
   font-size: 14px;
+  font-style: normal;
   font-weight: 400;
-  line-height: 24px;
-  letter-spacing: -0.02em;
+  line-height: 140%;
+  letter-spacing: -0.28px;
   color: ${EColors.White1};
   transition: all ${Durations.Fast} ease-in-out;
   cursor: pointer;
 
   & svg {
-    max-width: 24px;
-    max-height: 24px;
+    max-width: 19px;
+    max-height: 19px;
 
     & path {
       transition: all ${Durations.Fast} ease-in-out;

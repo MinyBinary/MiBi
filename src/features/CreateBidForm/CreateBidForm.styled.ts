@@ -17,13 +17,12 @@ export const CreateBidForm = styled.form`
 `;
 
 export const FormBlocksWrapper = styled.div`
-  --block-width: 285px;
-
   display: grid;
   align-items: start;
   justify-content: center;
-  grid-template-columns: repeat(4, var(--block-width));
-  grid-template-rows: repeat(1, 1fr);
+  grid-template-areas:
+    'inscription idea date bid'
+    'create create create create';
   column-gap: 84px;
   row-gap: 24px;
 
@@ -33,20 +32,26 @@ export const FormBlocksWrapper = styled.div`
 
   @media (width <= 1320px) {
     gap: 16px;
-    grid-template-columns: repeat(2, var(--block-width));
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+      'inscription idea'
+      'date bid'
+      'create create';
   }
 
   @media (width <= 616px) {
     --block-width: 280px;
 
-    grid-template-columns: repeat(1, min(var(--block-width), 100%));
-    grid-template-rows: repeat(4, 1fr);
+    justify-content: stretch;
+    grid-template-areas:
+      'inscription'
+      'idea'
+      'date'
+      'bid'
+      'create';
     padding: 16px;
   }
 
   @media (width <= 450px) {
-    grid-template-columns: repeat(1, min(100vw, 100%));
     padding: 0;
     column-gap: 16px;
     row-gap: 16px;
@@ -54,6 +59,7 @@ export const FormBlocksWrapper = styled.div`
 `;
 
 export const CreateBidButton = styled(Button)`
+  grid-area: create;
   width: 100%;
   padding: 18px;
   text-transform: uppercase;

@@ -12,8 +12,8 @@ import * as S from './IdeaBlock.styled';
 
 interface IPropsIdeaBlock {
   activeIdeaButton: EActiveButton | null;
-  optionCoin: ISelectOption | null;
-  optionExchange: ISelectOption | null;
+  optionCoin: ISelectOption;
+  optionExchange: ISelectOption;
   handleSelectValueCoinChange: (option: ISelectOption) => void;
   handleSelectValueExchangeChange: (option: ISelectOption) => void;
   handleActiveIdeaButton: (value: EActiveButton) => void;
@@ -28,7 +28,7 @@ export const IdeaBlock: FC<IPropsIdeaBlock> = ({
   handleActiveIdeaButton,
 }) => {
   return (
-    <BlockWrapper>
+    <BlockWrapper $gridArea="idea">
       <BlockDescription text="idea" />
       <S.InputsWrapper>
         <S.SelectWrapper>
@@ -43,7 +43,7 @@ export const IdeaBlock: FC<IPropsIdeaBlock> = ({
             current={optionExchange ? optionExchange : undefined}
             options={ideaExchangesOptions}
             dropDownHeight={115}
-            placeholder="Exchange"
+            placeholder="Exch."
             handleSelect={handleSelectValueExchangeChange}
           />
         </S.SelectWrapper>

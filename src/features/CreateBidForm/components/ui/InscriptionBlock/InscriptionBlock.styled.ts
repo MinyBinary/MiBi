@@ -6,16 +6,19 @@ import styled, { css } from 'styled-components';
 export const InputsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 `;
 
 export const Label = styled.label`
+  position: relative;
   display: flex;
   flex-direction: column;
-  text-align: end;
 `;
 
 export const LabelText = styled(StyledText)<{ $isMaxSymbolsCount?: boolean }>`
+  position: absolute;
+  right: 0;
+  bottom: -14px;
   font-size: 10px;
   font-style: normal;
   font-weight: 400;

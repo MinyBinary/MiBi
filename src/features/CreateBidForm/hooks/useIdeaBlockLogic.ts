@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import { EActiveButton } from 'features/CreateBidForm/components/ui/IdeaBlock';
+import {
+  ideaCoinsOptions,
+  ideaExchangesOptions,
+} from 'features/CreateBidForm/components/ui/IdeaBlock/constants/select-options';
 import { ISelectOption } from 'shared/components/ui';
 
 interface IUseIdeaBlockLogicReturn {
   activeIdeaButton: EActiveButton | null;
-  optionCoin: ISelectOption | null;
-  optionExchange: ISelectOption | null;
+  optionCoin: ISelectOption;
+  optionExchange: ISelectOption;
   handleSelectValueCoinChange: (option: ISelectOption) => void;
   handleSelectValueExchangeChange: (option: ISelectOption) => void;
   handleActiveIdeaButtonClick: (value: EActiveButton) => void;
@@ -13,8 +17,8 @@ interface IUseIdeaBlockLogicReturn {
 }
 
 export const useIdeaBlockLogic = (): IUseIdeaBlockLogicReturn => {
-  const [optionCoin, setOptionCoin] = useState<ISelectOption | null>(null);
-  const [optionExchange, setOptionExchange] = useState<ISelectOption | null>(null);
+  const [optionCoin, setOptionCoin] = useState<ISelectOption>(ideaCoinsOptions[0]);
+  const [optionExchange, setOptionExchange] = useState<ISelectOption>(ideaExchangesOptions[0]);
 
   const [activeIdeaButton, setActiveIdeaButton] = useState<EActiveButton | null>(null);
   const handleSelectValueCoinChange = (option: ISelectOption) => {
@@ -31,8 +35,8 @@ export const useIdeaBlockLogic = (): IUseIdeaBlockLogicReturn => {
 
   const clearIdeaBlockState = () => {
     setActiveIdeaButton(null);
-    setOptionCoin(null);
-    setOptionExchange(null);
+    setOptionCoin(ideaCoinsOptions[0]);
+    setOptionExchange(ideaExchangesOptions[0]);
   };
 
   return {

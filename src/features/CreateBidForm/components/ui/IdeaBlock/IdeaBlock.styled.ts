@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 export const InputsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 `;
 
 export const SelectWrapper = styled.div`
@@ -13,7 +13,6 @@ export const SelectWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding-bottom: 16px;
 `;
 
 export const IdeaSelect = styled(Select)`
@@ -22,8 +21,13 @@ export const IdeaSelect = styled(Select)`
   border-radius: 4px;
 
   & > button {
+    width: 100%;
     padding: 12px 16px;
-    text-transform: uppercase;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: -0.28px;
   }
 `;
 
