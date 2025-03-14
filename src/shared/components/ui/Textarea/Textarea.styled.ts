@@ -1,4 +1,4 @@
-import { EColors, EFontFamily } from 'shared/styles/style-variables';
+import { BreakPoint, EColors, EFontFamily } from 'shared/styles/style-variables';
 import styled, { css } from 'styled-components';
 
 export const AreaWrapper = styled.div<{ $hasValidationError?: boolean }>`
@@ -6,6 +6,7 @@ export const AreaWrapper = styled.div<{ $hasValidationError?: boolean }>`
   display: flex;
   flex-direction: column;
   border: 1px solid ${EColors.Gray3};
+  border-radius: 4px;
   background: ${EColors.Back2};
 
   ${({ $hasValidationError }) =>
@@ -51,5 +52,10 @@ export const Textarea = styled.textarea`
 
   &:focus {
     outline: none;
+  }
+
+  @media (max-width: ${BreakPoint.MobileTop}) {
+    font-size: 12px;
+    line-height: 18px;
   }
 `;

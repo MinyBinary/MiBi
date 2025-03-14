@@ -5,14 +5,15 @@ import styled, { css } from 'styled-components';
 export const InputsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
 `;
 
 export const SelectWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 16px;
+  padding-bottom: 16px;
 `;
 
 export const IdeaSelect = styled(Select)`
@@ -30,7 +31,7 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 16px;
 `;
 
 export const RangeButton = styled(Button)<{ $active?: boolean }>`
