@@ -130,6 +130,21 @@ export const CreateBidForm: FC = () => {
             handleSelectValueCoinChange={handleSelectValueCoinChange}
             handleSelectValueExchangeChange={handleSelectValueExchangeChange}
           />
+          <InscriptionBlock
+            inputLimits={inputLimits}
+            {...formState}
+            handleInputChange={handleInputChange}
+            inputLengths={inputLengths}
+            inputsErrorText={inputsErrorText}
+          />
+          <IdeaBlock
+            activeIdeaButton={activeIdeaButton}
+            handleActiveIdeaButton={handleActiveIdeaButtonClick}
+            optionCoin={optionCoin}
+            optionExchange={optionExchange}
+            handleSelectValueCoinChange={handleSelectValueCoinChange}
+            handleSelectValueExchangeChange={handleSelectValueExchangeChange}
+          />
         </S.FormBlocksWrapper>
       </S.CreateBidForm>
       <S.CreateBidButton
