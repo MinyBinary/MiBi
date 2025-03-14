@@ -50,7 +50,7 @@ export const IdeaBlock: FC<IPropsIdeaBlock> = ({
         <S.ButtonsWrapper>
           <S.RangeButton
             text="Above"
-            variant={EButtonVariant.Bordered}
+            $variant={EButtonVariant.Bordered}
             icon={<TriangleGreenUpIcon />}
             $active={activeIdeaButton === EActiveButton.Above}
             onClick={(e) => {
@@ -60,7 +60,7 @@ export const IdeaBlock: FC<IPropsIdeaBlock> = ({
           />
           <S.DateButton
             text="Below"
-            variant={EButtonVariant.Bordered}
+            $variant={EButtonVariant.Bordered}
             icon={<TriangleRedDownIcon />}
             $active={activeIdeaButton === EActiveButton.Below}
             onClick={(e) => {

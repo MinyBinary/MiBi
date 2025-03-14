@@ -15,9 +15,9 @@ export const DateBlock: FC<IPropsDateBlock> = ({ children }) => {
       <BlockDescription text="date" />
       <S.DateBlock>
         {children}
-        <Button variant={EButtonVariant.Secondary} text="Create date"></Button>
-        <Button variant={EButtonVariant.Secondary} text="Create date"></Button>
-        <Button variant={EButtonVariant.Secondary} text="Create date"></Button>
+        <Button $variant={EButtonVariant.Secondary} text="Create date"></Button>
+        <Button $variant={EButtonVariant.Secondary} text="Create date"></Button>
+        <Button $variant={EButtonVariant.Secondary} text="Create date"></Button>
       </S.DateBlock>
     </BlockWrapper>
   );

@@ -1,5 +1,5 @@
-import { removeEmojis } from './remove-emojis';
-
 export const formatTextOutput = (text: string): string => {
-  return removeEmojis(text);
+  if (text.startsWith(' ')) return '';
+
+  return text;
 };

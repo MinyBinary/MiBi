@@ -18,29 +18,30 @@ export const CreateBidForm = styled.form`
 
 export const FormBlocksWrapper = styled.div`
   display: grid;
-  align-items: start;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: space-between;
   grid-template-areas:
     'inscription idea date bid'
     'create create create create';
-  column-gap: 84px;
+  grid-template-rows: 1fr max-content;
   row-gap: 24px;
+  box-sizing: border-box;
 
   @media (max-width: ${BreakPoint.LaptopTop}) {
-    column-gap: 44px;
+    column-gap: 24px;
   }
 
-  @media (width <= 1320px) {
+  @media (width <= 1260px) {
+    justify-content: center;
     gap: 16px;
     grid-template-areas:
       'inscription idea'
       'date bid'
       'create create';
+    grid-template-rows: 1fr 1fr max-content;
   }
 
   @media (width <= 616px) {
-    --block-width: 280px;
-
     justify-content: stretch;
     grid-template-areas:
       'inscription'
@@ -48,11 +49,10 @@ export const FormBlocksWrapper = styled.div`
       'date'
       'bid'
       'create';
-    padding: 16px;
+    grid-template-rows: 1fr 1fr 1fr 1fr max-content;
   }
 
   @media (width <= 450px) {
-    padding: 0;
     column-gap: 16px;
     row-gap: 16px;
   }

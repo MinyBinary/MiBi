@@ -6,13 +6,22 @@ import styled, { css } from 'styled-components';
 export const InputsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   gap: 16px;
+  height: 100%;
 `;
 
-export const Label = styled.label`
+export const LabelBlock1 = styled.label`
   position: relative;
   display: flex;
   flex-direction: column;
+`;
+
+export const LabelBlock2 = styled.label`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 `;
 
 export const LabelText = styled(StyledText)<{ $isMaxSymbolsCount?: boolean }>`
@@ -34,7 +43,7 @@ export const LabelText = styled(StyledText)<{ $isMaxSymbolsCount?: boolean }>`
 `;
 
 export const CommentTextArea = styled(Textarea)`
-  height: 100px;
+  display: flex;
 `;
 
 export const UserNameInput = styled(Input)`

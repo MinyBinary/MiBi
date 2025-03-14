@@ -5,17 +5,11 @@ describe('format-text-output', () => {
     expect(formatTextOutput('abc')).toBe('abc');
   });
 
-  const emojis = '😆😀🥲😊👅🦸👢👨🏻‍⚖️👴🏼🧑🏼‍🦽✋🏽🛌🏽';
-
-  it('format-text-output-with-emoji', () => {
-    expect(formatTextOutput(emojis)).toBe('');
+  it('format-text-output-with-spaces', () => {
+    expect(formatTextOutput(' ')).toBe('');
   });
 
-  it('format-text-output-with-emoji-and-numbers', () => {
-    expect(formatTextOutput(emojis + '123')).toBe('123');
-  });
-
-  it('format-text-output-with-emoji-and-symbols', () => {
-    expect(formatTextOutput(emojis + '123!@#')).toBe('123!@#');
+  it('format-text-output-with-duplicated-spaces', () => {
+    expect(formatTextOutput('abc abc')).toBe('abc abc');
   });
 });

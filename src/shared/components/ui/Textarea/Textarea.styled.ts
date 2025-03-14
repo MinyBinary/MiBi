@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 export const AreaWrapper = styled.div<{ $hasValidationError?: boolean }>`
   position: relative;
   display: flex;
+  flex: 1 0;
   flex-direction: column;
   border: 1px solid ${EColors.Gray3};
   border-radius: 4px;
