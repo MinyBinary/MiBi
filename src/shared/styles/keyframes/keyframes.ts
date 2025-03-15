@@ -9,6 +9,15 @@ export const fadeInBackground = keyframes`
   }
 `;
 
+export const fadeOutBackground = keyframes`
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
+
 export const fadeInStroke = keyframes`
   0% {
     opacity: 0;
