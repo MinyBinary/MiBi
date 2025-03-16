@@ -5,8 +5,10 @@ import styled, { css } from 'styled-components';
 
 export const StyledCalendarWrapper = styled.div`
   position: absolute;
-  top: 110%;
+  top: 115%;
+  left: 0;
   z-index: 9999;
+  width: 100%;
   padding: 16px;
   background: ${EColors.Back2};
 `;
@@ -58,7 +60,7 @@ export const StyledCalendar = styled(Calendar)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  min-width: 100%;
   border-radius: 4px;
   overflow: hidden;
 
@@ -78,6 +80,8 @@ export const StyledCalendar = styled(Calendar)`
   }
 
   .react-calendar__tile {
+    min-width: 33px;
+    max-width: 100%;
     height: 33px;
     border: none;
     background: ${EColors.Back2};
