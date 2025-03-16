@@ -1,3 +1,4 @@
+import { BreakPointsV2 } from 'shared/styles/style-variables/breakpoints';
 import { styled } from 'styled-components';
 
 export const BlockWrapper = styled.div`
@@ -6,7 +7,7 @@ export const BlockWrapper = styled.div`
   width: 285px;
   height: 100%;
 
-  @media (width <= 616px) {
+  @media (max-width: ${BreakPointsV2.MobileMedium}) {
     width: 100%;
   }
 `;

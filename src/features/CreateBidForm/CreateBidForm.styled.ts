@@ -1,5 +1,5 @@
 import { Button } from 'shared/components/ui';
-import { BreakPoint } from 'shared/styles/style-variables';
+import { BreakPointsV2 } from 'shared/styles/style-variables/breakpoints';
 import styled from 'styled-components';
 
 export const ContentWrapper = styled.div`
@@ -20,32 +20,27 @@ export const CreateBidForm = styled.form`
 export const FormBlocksWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
+  width: 100%;
   box-sizing: border-box;
 
-  @media (max-width: ${BreakPoint.LaptopTop}) {
+  @media (max-width: ${BreakPointsV2.Laptop13to15}) {
     gap: 16px;
   }
 
-  @media (width <= 1260px) {
-    justify-content: center;
+  @media (max-width: ${BreakPointsV2.TabletLandscape}) {
     gap: 16px;
     width: 588px;
   }
 
-  @media (width <= 616px) {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  @media (max-width: ${BreakPointsV2.MobileLarge}) {
     gap: 16px;
-    width: 100%;
+    width: 285px;
   }
 
-  @media (width <= 450px) {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  @media (max-width: ${BreakPointsV2.MobileMedium}) {
     gap: 16px;
     width: 100%;
   }
