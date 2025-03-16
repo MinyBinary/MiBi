@@ -44,6 +44,7 @@
     "@typescript-eslint/eslint-plugin": "^8.26.0",
     "@typescript-eslint/parser": "^8.26.0",
     "@vitejs/plugin-react-swc": "^3.8.0",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-eslint-comments": "^3.2.0",
@@ -68,10 +69,18 @@
     "vite": "^6.2.0",
     "vite-plugin-svgr": "^4.3.0"
   },
+
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
   "lint-staged": {
-    "src/**/*.+(js,jsx,ts,tsx,json)": [
-      "prettier -w . && git add -A"
-    ],
+    "src/**/*.+(js,jsx,ts,tsx,json)": ["prettier -w . && git add -A"],
     "src/**/*.{ts,tsx}": [
       "eslint --max-warnings=0 --fix \"**/*.+(ts|tsx)\"",
       "stylelint --fix \"**/*.styled.(ts|tsx)\""
