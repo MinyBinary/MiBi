@@ -58,7 +58,7 @@ export const StyledCalendar = styled(Calendar)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 285px;
+  width: 100%;
   border-radius: 4px;
   overflow: hidden;
 
