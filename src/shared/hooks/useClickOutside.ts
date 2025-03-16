@@ -8,8 +8,6 @@ export const useClickOutside = <T extends HTMLElement>(
   const ref = useRef<T | null>(null);
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      event.preventDefault();
-      event.stopPropagation();
       const isClickOutside =
         ref.current &&
         !ref.current.contains(event.target as Node) &&

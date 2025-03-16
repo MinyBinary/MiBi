@@ -1,41 +1,70 @@
 import Calendar from 'react-calendar';
+import { Button } from 'shared/components/ui';
 import { Durations, EColors, EFontFamily } from 'shared/styles/style-variables';
 import styled, { css } from 'styled-components';
 
-export const StyledCalendar = styled(Calendar)<{ $isOpen?: boolean }>`
+export const StyledCalendarWrapper = styled.div`
   position: absolute;
   top: 110%;
   z-index: 9999;
+  padding: 16px;
+  background: ${EColors.Back2};
+`;
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+`;
+
+export const TimeModeButton = styled(Button)<{ $active: boolean }>`
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.28px;
+  text-transform: uppercase;
+
+  ${({ $active }) =>
+    $active
+      ? css`
+          border-color: ${EColors.Green1};
+          background: ${EColors.Green5};
+          color: ${EColors.Green1};
+
+          &:hover {
+            border-color: ${EColors.Green4};
+          }
+        `
+      : css`
+          border-color: ${EColors.Black4};
+          color: ${EColors.White1};
+
+          &:hover {
+            border-color: ${EColors.Black1};
+          }
+        `}
+
+  @media (width <= 616px) {
+    padding: 8px;
+  }
+`;
+
+export const StyledCalendar = styled(Calendar)`
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   max-width: 285px;
-  padding: 16px;
   border-radius: 4px;
-  background: ${EColors.Back2};
   overflow: hidden;
-
-  ${({ $isOpen }) =>
-    $isOpen
-      ? css`
-          opacity: 1;
-          transition: transform ${Durations.Fast} ease-in-out;
-          transform-origin: top;
-          pointer-events: auto;
-        `
-      : css`
-          opacity: 0;
-          transition: transform ${Durations.Fast} ease-in-out;
-          user-select: none;
-          pointer-events: none;
-          transform-origin: top;
-        `}
 
   @media (width <= 616px) {
     max-width: 100%;
   }
-
-  /* Дни недели */
 
   .react-calendar__month-view__weekdays {
     font-family: ${EFontFamily.GeistMono} !important;
@@ -52,8 +81,6 @@ export const StyledCalendar = styled(Calendar)<{ $isOpen?: boolean }>`
     text-decoration: none !important;
   }
 
-  /* Ячейки дней */
-
   .react-calendar__tile {
     height: 33px;
     border: none;
@@ -69,7 +96,18 @@ export const StyledCalendar = styled(Calendar)<{ $isOpen?: boolean }>`
     }
   }
 
-  /* Активная дата */
+  .hidden-month {
+    display: none;
+  }
+
+  .disabled-date {
+    color: ${EColors.Black1} !important;
+    cursor: default !important;
+
+    &:hover {
+      border: 1px solid ${EColors.Black1};
+    }
+  }
 
   .react-calendar__tile--active {
     color: ${EColors.Red1};
@@ -80,16 +118,12 @@ export const StyledCalendar = styled(Calendar)<{ $isOpen?: boolean }>`
   }
 
   .react-calendar__tile--now {
-    color: ${EColors.Black1};
+    color: ${EColors.Green1};
   }
-
-  /* Подсветка при наведении на диапазон */
 
   .react-calendar__tile--hover {
     background: ${EColors.Black3};
   }
-
-  /* Выбранный диапазон */
 
   .react-calendar__tile--range {
     background: ${EColors.Black3};
@@ -99,8 +133,6 @@ export const StyledCalendar = styled(Calendar)<{ $isOpen?: boolean }>`
       color: ${EColors.Green1};
     }
   }
-
-  /* Начало и конец диапазона */
 
   .react-calendar__tile--rangeStart {
     border: 1px solid ${EColors.Green1};
@@ -120,6 +152,15 @@ export const StyledCalendar = styled(Calendar)<{ $isOpen?: boolean }>`
     }
   }
 
+  .neighboring-past-date {
+
+    &:hover {
+      border: 1px solid ${EColors.Black1};
+      color: ${EColors.Black1};
+      cursor: default;
+    }
+  }
+
   .react-calendar__month-view__days__day--neighboringMonth {
     color: ${EColors.Black1};
   }
@@ -132,7 +173,7 @@ export const StyledCalendar = styled(Calendar)<{ $isOpen?: boolean }>`
     justify-content: start;
     gap: 12px;
     width: 100%;
-    padding: 0 0 16px;
+    margin: 0 0 16px;
   }
 
   .react-calendar__navigation__label {
@@ -161,26 +202,33 @@ export const StyledCalendar = styled(Calendar)<{ $isOpen?: boolean }>`
   }
 
   .react-calendar__navigation button {
-    max-width: max-content;
     border: none;
     background: transparent;
-    font-size: 24px;
     color: ${EColors.White1};
     transition: color 0.3s ease;
     cursor: pointer;
   }
 
   .react-calendar__navigation button:disabled {
-    color: ${EColors.Black1};
     cursor: default;
+
+    & svg path {
+      transition: fill ${Durations.Fast} ease-in-out;
+      fill: ${EColors.Black1};
+    }
   }
 
   .react-calendar__navigation button:hover {
-    color: ${EColors.Black1};
+
+    & svg path {
+      transition: fill ${Durations.Fast} ease-in-out;
+      fill: ${EColors.Black1};
+    }
   }
 
   .react-calendar__navigation__prev-button {
     order: 2;
+    max-width: 16px;
     margin-left: auto;
   }
 
@@ -190,7 +238,8 @@ export const StyledCalendar = styled(Calendar)<{ $isOpen?: boolean }>`
 
   .react-calendar__navigation__next-button {
     order: 3;
-    margin-left: 0;
+    max-width: 16px;
+    margin-right: 2px;
   }
 
   .react-calendar__navigation__next2-button {

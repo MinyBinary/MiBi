@@ -1699,6 +1699,13 @@
     "@swc/counter" "^0.1.3"
     jsonc-parser "^3.2.0"
 
+"@swc/plugin-styled-components@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@swc/plugin-styled-components/-/plugin-styled-components-7.1.0.tgz#da372cb0bc29cfb9199cf46c3a326688ad67119c"
+  integrity sha512-4xOWM1+bqNkZXjJuHSAbg3Wyje+IxOiX9I9lTjuBXxQNHmGcT5oEDIOlC+WzwhptbPU7UF9B571V7ETnMb6l5w==
+  dependencies:
+    "@swc/counter" "^0.1.3"
+
 "@swc/types@^0.1.19":
   version "0.1.19"
   resolved "https://registry.yarnpkg.com/@swc/types/-/types-0.1.19.tgz#65d9fe81e0a1dc7e861ad698dd581abe3703a2d2"

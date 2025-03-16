@@ -13,6 +13,6 @@ export interface IButtonProps
   icon?: ReactElement;
   advancedIcon?: ReactElement;
   reversed?: boolean;
-  $variant?: EButtonVariant;
+  variant?: EButtonVariant;
   hoverBackground?: EColors;
 }

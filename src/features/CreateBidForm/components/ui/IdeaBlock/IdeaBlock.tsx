@@ -48,9 +48,9 @@ export const IdeaBlock: FC<IPropsIdeaBlock> = ({
           />
         </S.SelectWrapper>
         <S.ButtonsWrapper>
-          <S.RangeButton
+          <S.AboveButton
             text="Above"
-            $variant={EButtonVariant.Bordered}
+            variant={EButtonVariant.Bordered}
             icon={<TriangleGreenUpIcon />}
             $active={activeIdeaButton === EActiveButton.Above}
             onClick={(e) => {
@@ -58,9 +58,9 @@ export const IdeaBlock: FC<IPropsIdeaBlock> = ({
               handleActiveIdeaButton(EActiveButton.Above);
             }}
           />
-          <S.DateButton
+          <S.BelowButton
             text="Below"
-            $variant={EButtonVariant.Bordered}
+            variant={EButtonVariant.Bordered}
             icon={<TriangleRedDownIcon />}
             $active={activeIdeaButton === EActiveButton.Below}
             onClick={(e) => {

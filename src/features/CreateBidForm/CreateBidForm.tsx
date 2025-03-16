@@ -125,7 +125,7 @@ export const CreateBidForm: FC = () => {
               e.preventDefault();
               handlePopupButtonClick();
             }}
-            $variant={EButtonVariant.Primary}
+            variant={EButtonVariant.Primary}
             text="Create bid"
             icon={<CreateBidButtonIcon />}
           />

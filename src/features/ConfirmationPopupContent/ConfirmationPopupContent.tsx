@@ -36,7 +36,7 @@ export const ConfirmationPopupContent: FC = () => {
       </S.ConfirmationAgreementWrapper>
       <S.ConfirmationButton
         $isDisabled={!isChecked}
-        $variant={EButtonVariant.Bordered}
+        variant={EButtonVariant.Bordered}
         form="bid-form"
         type="submit"
         text="Confirm"
