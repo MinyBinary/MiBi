@@ -36,12 +36,16 @@ export const FormBlocksWrapper = styled.div`
 
   @media (width <= 616px) {
     flex-direction: column;
+    align-items: center;
     gap: 16px;
     width: 100%;
   }
 
   @media (width <= 450px) {
+    flex-direction: column;
+    align-items: center;
     gap: 16px;
+    width: 100%;
   }
 `;
 
