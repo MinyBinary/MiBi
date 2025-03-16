@@ -16,7 +16,7 @@ export const InscriptionBlock: FC<IPropsInscriptionBlock> = ({
   handleInputChange,
 }) => {
   return (
-    <BlockWrapper $gridArea="inscription">
+    <BlockWrapper>
       <BlockDescription text="inscription" />
       <S.InputsWrapper>
         <S.LabelBlock1>

@@ -11,7 +11,7 @@ interface IPropsBidBlock {
 
 export const BidBlock: FC<IPropsBidBlock> = ({ children }) => {
   return (
-    <BlockWrapper $gridArea="bid">
+    <BlockWrapper>
       <BlockDescription text="bid" />
       <S.BidBlock>
         {children}

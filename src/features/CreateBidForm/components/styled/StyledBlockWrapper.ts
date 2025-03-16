@@ -1,13 +1,12 @@
 import { styled } from 'styled-components';
 
-export const BlockWrapper = styled.div<{ $gridArea?: string }>`
+export const BlockWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  grid-area: ${({ $gridArea }) => $gridArea};
-  min-width: 285px;
+  width: 285px;
   height: 100%;
 
-  @media (width <= 450px) {
-    min-width: 100%;
+  @media (width <= 620px) {
+    width: 100%;
   }
 `;

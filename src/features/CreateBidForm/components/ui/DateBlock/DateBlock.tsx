@@ -19,7 +19,7 @@ export const DateBlock: FC<IPropsDateBlock> = ({ children }) => {
   });
 
   return (
-    <BlockWrapper $gridArea="date">
+    <BlockWrapper>
       <BlockDescription text="date" />
       <S.DateBlock>
         {children}

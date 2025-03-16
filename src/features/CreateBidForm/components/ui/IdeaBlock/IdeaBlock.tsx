@@ -28,7 +28,7 @@ export const IdeaBlock: FC<IPropsIdeaBlock> = ({
   handleActiveIdeaButton,
 }) => {
   return (
-    <BlockWrapper $gridArea="idea">
+    <BlockWrapper>
       <BlockDescription text="idea" />
       <S.InputsWrapper>
         <S.SelectWrapper>
