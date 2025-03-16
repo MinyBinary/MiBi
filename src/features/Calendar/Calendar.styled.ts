@@ -1,6 +1,7 @@
 import Calendar from 'react-calendar';
 import { Button } from 'shared/components/ui';
 import { Durations, EColors, EFontFamily } from 'shared/styles/style-variables';
+import { BreakPointsV2 } from 'shared/styles/style-variables/breakpoints';
 import styled, { css } from 'styled-components';
 
 export const StyledCalendarWrapper = styled.div`
@@ -50,16 +51,16 @@ export const TimeModeButton = styled(Button)<{ $active: boolean }>`
           }
         `}
 
-  @media (width <= 616px) {
+  @media (max-width: ${BreakPointsV2.MobileSmall}) {
     padding: 8px;
   }
 `;
 
 export const StyledCalendar = styled(Calendar)`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
   min-width: 100%;
   border-radius: 4px;
   overflow: hidden;
@@ -79,9 +80,14 @@ export const StyledCalendar = styled(Calendar)`
     text-decoration: none !important;
   }
 
+  .react-calendar__month-view__days {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .react-calendar__tile {
-    min-width: 33px;
-    max-width: 100%;
+    width: 33px;
     height: 33px;
     border: none;
     background: ${EColors.Back2};
