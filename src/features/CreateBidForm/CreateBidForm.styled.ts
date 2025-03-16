@@ -20,7 +20,7 @@ export const CreateBidForm = styled.form`
 export const FormBlocksWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: space-between;
   gap: 24px;
   width: 100%;
@@ -35,7 +35,7 @@ export const FormBlocksWrapper = styled.div`
     width: 588px;
   }
 
-  @media (max-width: ${BreakPointsV2.MobileLarge}) {
+  @media (max-width: ${BreakPointsV2.MobileCustom}) {
     gap: 16px;
     width: 285px;
   }

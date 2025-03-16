@@ -11,6 +11,8 @@ export interface IButtonProps
   extends Partial<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>> {
   text?: string;
   icon?: ReactElement;
+  icon2?: ReactElement;
+  itemsGap?: number;
   advancedIcon?: ReactElement;
   reversed?: boolean;
   variant?: EButtonVariant;

@@ -1,12 +1,12 @@
 import { Durations, EColors, EFontFamily } from 'shared/styles/style-variables';
 import { styled } from 'styled-components';
 
-export const Button = styled.button`
+export const Button = styled.button<{ $itemsGap?: number }>`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: ${({ $itemsGap }) => ($itemsGap ? `${$itemsGap}px` : '6px')};
   padding: 12px 16px;
   border: 1px solid ${EColors.Gray2};
   border-radius: 4px;

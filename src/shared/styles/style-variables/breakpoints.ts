@@ -13,8 +13,12 @@ export enum BreakPointsV2 {
   MobileSmall = '320px', // max-width: 320px
   // Mobile (medium)
   MobileMedium = '480px', // between 321px and 480px
+
+  // Mobile (custom)
+  MobileCustom = '620px', // between 481px and 620px
+
   // Mobile (large)
-  MobileLarge = '767px', // between 481px and 767px
+  MobileLarge = '767px', // between 621px and 767px
 
   // Tablet (portrait)
   TabletPortrait = '1024px', // between 768px and 1024px

@@ -9,6 +9,8 @@ import { EPopupVariant } from 'features/Popup/types/popup-variants';
 import CreateBidButtonIcon from 'shared/assets/icons/links/create-bid.svg?react';
 import { EButtonVariant, ISelectOption } from 'shared/components/ui';
 
+import { EActiveBidButton } from './components/ui/BidBlock/types/bid-block-types';
+import { useBidBlockLogic } from './hooks/useBidBlockLogic';
 import { useIdeaBlockLogic } from './hooks/useIdeaBlockLogic';
 import { useInscriptionBlockLogic } from './hooks/useInscriptionBlockLogic';
 
@@ -42,6 +44,16 @@ export const CreateBidForm: FC = () => {
     clearIdeaBlockState,
   } = useIdeaBlockLogic();
 
+  const {
+    activeBidButton,
+    optionCoin1,
+    optionCoin2,
+    handleSelectBidValueCoin1Change,
+    handleSelectBidValueCoin2Change,
+    handleActiveBidButton,
+    clearBidBlockState,
+  } = useBidBlockLogic();
+
   const [formState, formAction] = useActionState(submitForm, {
     isSubmitting: false,
     errors: {},
@@ -52,6 +64,10 @@ export const CreateBidForm: FC = () => {
       optionCoin,
       optionExchange,
       ideaRate: '',
+      activeBidButton,
+      optionCoin1,
+      optionCoin2,
+      bidAmount: '',
     },
   });
 
@@ -62,6 +78,10 @@ export const CreateBidForm: FC = () => {
     const optionCoin = formData.get('idea-coin') as unknown as ISelectOption;
     const optionExchange = formData.get('idea-exchange') as unknown as ISelectOption;
     const ideaRate = formData.get('idea-input-rate') as string;
+    const activeBidButton = formData.get('bid-active-button') as EActiveBidButton;
+    const optionCoin1 = formData.get('bid-coin1') as unknown as ISelectOption;
+    const optionCoin2 = formData.get('bid-coin2') as unknown as ISelectOption;
+    const bidAmount = formData.get('bid-input-amount') as string;
 
     // const errors: IFormState['errors'] = {};
 
@@ -85,12 +105,25 @@ export const CreateBidForm: FC = () => {
     closePopup();
     clearInscriptionBlockInputsState();
     clearIdeaBlockState();
+    clearBidBlockState();
 
+    //TODO change naming
     return {
       ...prevState,
       errors: {},
       isSubmitting: true,
-      formValues: { name, comment, activeIdeaButton, optionCoin, optionExchange, ideaRate },
+      formValues: {
+        name,
+        comment,
+        activeIdeaButton,
+        optionCoin,
+        optionExchange,
+        ideaRate,
+        activeBidButton,
+        optionCoin1,
+        optionCoin2,
+        bidAmount,
+      },
     };
   }
 
@@ -119,7 +152,14 @@ export const CreateBidForm: FC = () => {
             handleSelectValueExchangeChange={handleSelectValueExchangeChange}
           />
           <DateBlock />
-          <BidBlock />
+          <BidBlock
+            activeBidButton={activeBidButton}
+            handleActiveBidButton={handleActiveBidButton}
+            optionCoin1={optionCoin1}
+            optionCoin2={optionCoin2}
+            handleSelectBidValueCoin1Change={handleSelectBidValueCoin1Change}
+            handleSelectBidValueCoin2Change={handleSelectBidValueCoin2Change}
+          />
           <S.CreateBidButton
             onClick={(e) => {
               e.preventDefault();

@@ -20,7 +20,7 @@ export const DateBlock: FC<IPropsDateBlock> = ({ children }) => {
 
   return (
     <BlockWrapper>
-      <BlockDescription text="date" />
+      <BlockDescription text="date / range" />
       <S.DateBlock>
         {children}
         <S.OpenCalBtn
