@@ -26,7 +26,7 @@ export const GlobalStyles = createGlobalStyle`
         display: flex;
         flex-direction: column;
         align-items: center;
-        min-height: calc(100vh + 1px);
+        min-height: 100vh;
     }
 
 `;
