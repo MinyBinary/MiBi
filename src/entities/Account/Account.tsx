@@ -27,7 +27,7 @@ export const Account: FC = () => {
       <Button
         onClick={!address ? handleConnect : handleDisconnect}
         text={!address ? 'Connect Wallet' : 'Disconnect'}
-        $variant={EButtonVariant.Primary}
+        variant={EButtonVariant.Primary}
       />
     </S.AccountContainer>
   );

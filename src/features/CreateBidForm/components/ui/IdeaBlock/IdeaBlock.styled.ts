@@ -38,7 +38,7 @@ export const ButtonsWrapper = styled.div`
   gap: 16px;
 `;
 
-export const RangeButton = styled(Button)<{ $active?: boolean }>`
+export const AboveButton = styled(Button)<{ $active?: boolean }>`
   width: 100%;
   border-color: ${EColors.Black4};
   border-radius: 4px;
@@ -75,7 +75,7 @@ export const RangeButton = styled(Button)<{ $active?: boolean }>`
     }
   }
 `;
-export const DateButton = styled(Button)<{ $active?: boolean }>`
+export const BelowButton = styled(Button)<{ $active?: boolean }>`
   width: 100%;
   border-color: ${EColors.Black4};
   border-radius: 4px;

@@ -38,7 +38,7 @@ export const FormBlocksWrapper = styled.div`
       'inscription idea'
       'date bid'
       'create create';
-    grid-template-rows: 1fr 1fr max-content;
+    grid-template-rows: 1fr 1fr min-content;
   }
 
   @media (width <= 616px) {
@@ -49,7 +49,7 @@ export const FormBlocksWrapper = styled.div`
       'date'
       'bid'
       'create';
-    grid-template-rows: 1fr 1fr 1fr 1fr max-content;
+    grid-template-rows: 1fr 1fr 1fr 1fr min-content;
   }
 
   @media (width <= 450px) {

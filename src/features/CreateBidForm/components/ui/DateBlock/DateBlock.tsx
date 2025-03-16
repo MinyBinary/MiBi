@@ -11,10 +11,11 @@ interface IPropsDateBlock {
 }
 
 export const DateBlock: FC<IPropsDateBlock> = ({ children }) => {
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef1 = useRef<HTMLButtonElement>(null);
+
   const { CalendarComponent, openCalendar, closeCalendar, isCalendarOpen } = useCalendar({
-    isRange: false,
-    excludedCloseByOuterClickRefs: [buttonRef],
+    minDate: new Date(Date.now()),
+    excludedCloseByOuterClickRefs: [buttonRef1],
   });
 
   return (
@@ -23,8 +24,8 @@ export const DateBlock: FC<IPropsDateBlock> = ({ children }) => {
       <S.DateBlock>
         {children}
         <S.OpenCalBtn
-          ref={buttonRef}
-          $variant={EButtonVariant.Secondary}
+          ref={buttonRef1}
+          variant={EButtonVariant.Secondary}
           text={isCalendarOpen ? 'Close calendar' : 'Open calendar'}
           onClick={(e) => {
             e.preventDefault();
@@ -36,6 +37,7 @@ export const DateBlock: FC<IPropsDateBlock> = ({ children }) => {
             }
           }}
         />
+
         <CalendarComponent />
       </S.DateBlock>
     </BlockWrapper>

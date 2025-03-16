@@ -15,7 +15,7 @@ export const BidBlock: FC<IPropsBidBlock> = ({ children }) => {
       <BlockDescription text="bid" />
       <S.BidBlock>
         {children}
-        <Button $variant={EButtonVariant.Secondary} text="Create bid"></Button>
+        <Button variant={EButtonVariant.Secondary} text="Create bid"></Button>
       </S.BidBlock>
     </BlockWrapper>
   );

@@ -1,4 +1,3 @@
-import { BreakPoint } from 'shared/styles/style-variables';
 import { styled } from 'styled-components';
 
 export const BlockWrapper = styled.div<{ $gridArea?: string }>`
@@ -8,7 +7,7 @@ export const BlockWrapper = styled.div<{ $gridArea?: string }>`
   min-width: 285px;
   height: 100%;
 
-  @media (max-width: ${BreakPoint.MobileTop}) {
-    width: 100%;
+  @media (width <= 450px) {
+    min-width: 100%;
   }
 `;
