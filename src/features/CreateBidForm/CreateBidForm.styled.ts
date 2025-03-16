@@ -40,7 +40,7 @@ export const FormBlocksWrapper = styled.div`
     width: 285px;
   }
 
-  @media (max-width: ${BreakPointsV2.MobileMedium}) {
+  @media (max-width: ${BreakPointsV2.MobileSmall}) {
     gap: 16px;
     width: 100%;
   }

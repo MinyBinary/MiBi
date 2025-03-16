@@ -62,10 +62,6 @@ export const StyledCalendar = styled(Calendar)`
   border-radius: 4px;
   overflow: hidden;
 
-  @media (width <= 616px) {
-    max-width: 100%;
-  }
-
   .react-calendar__month-view__weekdays {
     font-family: ${EFontFamily.GeistMono} !important;
     font-size: 13px;

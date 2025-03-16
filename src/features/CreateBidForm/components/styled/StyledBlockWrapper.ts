@@ -7,7 +7,7 @@ export const BlockWrapper = styled.div`
   width: 285px;
   height: 100%;
 
-  @media (max-width: ${BreakPointsV2.MobileMedium}) {
+  @media (max-width: ${BreakPointsV2.MobileSmall}) {
     width: 100%;
   }
 `;
