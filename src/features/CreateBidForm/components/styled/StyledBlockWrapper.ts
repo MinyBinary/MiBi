@@ -6,7 +6,7 @@ export const BlockWrapper = styled.div`
   width: 285px;
   height: 100%;
 
-  @media (width <= 620px) {
+  @media (width <= 616px) {
     width: 100%;
   }
 `;
