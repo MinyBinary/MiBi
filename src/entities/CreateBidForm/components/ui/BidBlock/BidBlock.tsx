@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import { BlockWrapper } from 'features/CreateBidForm/components/styled/StyledBlockWrapper';
-import { BlockDescription } from 'features/CreateBidForm/components/ui/BlockDescription';
+import { BlockWrapper } from 'entities/CreateBidForm/components/styled/StyledBlockWrapper';
+import { BlockDescription } from 'entities/CreateBidForm/components/ui/BlockDescription';
 import UserSingleIcon from 'shared/assets/icons/users/user-single.svg?react';
 import UsersMultiIcon from 'shared/assets/icons/users/users-multi.svg?react';
 import { EButtonVariant, Input, ISelectOption } from 'shared/components/ui';

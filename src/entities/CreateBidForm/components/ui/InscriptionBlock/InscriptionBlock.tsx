@@ -1,6 +1,6 @@
 import type { ChangeEvent, FC } from 'react';
-import { BlockWrapper } from 'features/CreateBidForm/components/styled/StyledBlockWrapper';
-import { BlockDescription } from 'features/CreateBidForm/components/ui/BlockDescription';
+import { BlockWrapper } from 'entities/CreateBidForm/components/styled/StyledBlockWrapper';
+import { BlockDescription } from 'entities/CreateBidForm/components/ui/BlockDescription';
 
 import * as S from './InscriptionBlock.styled';
 

@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 export default defineConfig({
   base: '/MiBi/',
   plugins: [
-    react(),
+    react({ plugins: [['@swc/plugin-styled-components', {}]] }),
     svgr({
       svgrOptions: {
         svgo: true,

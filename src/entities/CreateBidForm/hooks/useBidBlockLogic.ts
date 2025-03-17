@@ -2,8 +2,8 @@ import { useState } from 'react';
 import {
   bidCoin1Options,
   bidCoin2Options,
-} from 'features/CreateBidForm/components/ui/BidBlock/constants/select-options';
-import { EActiveBidButton } from 'features/CreateBidForm/components/ui/BidBlock/types/bid-block-types';
+} from 'entities/CreateBidForm/components/ui/BidBlock/constants/select-options';
+import { EActiveBidButton } from 'entities/CreateBidForm/components/ui/BidBlock/types/bid-block-types';
 import { ISelectOption } from 'shared/components/ui';
 
 interface IUseBidBlockLogicReturn {

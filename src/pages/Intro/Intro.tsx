@@ -1,5 +1,6 @@
 import { type FC } from 'react';
-import { CreateBidForm } from 'features/CreateBidForm';
+import { BidTable } from 'entities/BidTable';
+import { CreateBidForm } from 'entities/CreateBidForm';
 
 import { PageTittle } from './components/ui/PageTittle/PageTittle';
 
@@ -10,6 +11,7 @@ export const Intro: FC = () => {
     <S.IntroPageContentWrapper>
       <PageTittle />
       <CreateBidForm />
+      <BidTable />
     </S.IntroPageContentWrapper>
   );
 };

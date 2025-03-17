@@ -1,6 +1,6 @@
 import { type FC } from 'react';
-import { BlockWrapper } from 'features/CreateBidForm/components/styled/StyledBlockWrapper';
-import { BlockDescription } from 'features/CreateBidForm/components/ui/BlockDescription';
+import { BlockWrapper } from 'entities/CreateBidForm/components/styled/StyledBlockWrapper';
+import { BlockDescription } from 'entities/CreateBidForm/components/ui/BlockDescription';
 import TriangleRedDownIcon from 'shared/assets/icons/arrows/triangle-filled-down.svg?react';
 import TriangleGreenUpIcon from 'shared/assets/icons/arrows/triangle-filled-up.svg?react';
 import { EButtonVariant, Input, ISelectOption } from 'shared/components/ui';
