@@ -1,7 +1,7 @@
 import { type FC, useRef } from 'react';
+import { BlockWrapper } from 'entities/CreateBidForm/components/styled/StyledBlockWrapper';
+import { BlockDescription } from 'entities/CreateBidForm/components/ui/BlockDescription';
 import { useCalendar } from 'features/Calendar';
-import { BlockWrapper } from 'features/CreateBidForm/components/styled/StyledBlockWrapper';
-import { BlockDescription } from 'features/CreateBidForm/components/ui/BlockDescription';
 import { EButtonVariant } from 'shared/components/ui';
 
 import * as S from './DateBlock.styled';

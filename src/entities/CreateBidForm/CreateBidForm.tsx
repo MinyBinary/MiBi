@@ -1,18 +1,17 @@
 import { type FC, useActionState } from 'react';
-import { BidBlock } from 'features/CreateBidForm/components/ui/BidBlock';
-import { DateBlock } from 'features/CreateBidForm/components/ui/DateBlock';
-import { EActiveButton, IdeaBlock } from 'features/CreateBidForm/components/ui/IdeaBlock';
-import { InscriptionBlock } from 'features/CreateBidForm/components/ui/InscriptionBlock';
-import { inputLimits } from 'features/CreateBidForm/constants/input-limits';
+import { BidBlock } from 'entities/CreateBidForm/components/ui/BidBlock';
+import { EActiveBidButton } from 'entities/CreateBidForm/components/ui/BidBlock/types/bid-block-types';
+import { DateBlock } from 'entities/CreateBidForm/components/ui/DateBlock';
+import { EActiveButton, IdeaBlock } from 'entities/CreateBidForm/components/ui/IdeaBlock';
+import { InscriptionBlock } from 'entities/CreateBidForm/components/ui/InscriptionBlock';
+import { inputLimits } from 'entities/CreateBidForm/constants/input-limits';
+import { useBidBlockLogic } from 'entities/CreateBidForm/hooks/useBidBlockLogic';
+import { useIdeaBlockLogic } from 'entities/CreateBidForm/hooks/useIdeaBlockLogic';
+import { useInscriptionBlockLogic } from 'entities/CreateBidForm/hooks/useInscriptionBlockLogic';
 import { usePopup } from 'features/Popup';
 import { EPopupVariant } from 'features/Popup/types/popup-variants';
 import CreateBidButtonIcon from 'shared/assets/icons/links/create-bid.svg?react';
 import { EButtonVariant, ISelectOption } from 'shared/components/ui';
-
-import { EActiveBidButton } from './components/ui/BidBlock/types/bid-block-types';
-import { useBidBlockLogic } from './hooks/useBidBlockLogic';
-import { useIdeaBlockLogic } from './hooks/useIdeaBlockLogic';
-import { useInscriptionBlockLogic } from './hooks/useInscriptionBlockLogic';
 
 import * as S from './CreateBidForm.styled';
 

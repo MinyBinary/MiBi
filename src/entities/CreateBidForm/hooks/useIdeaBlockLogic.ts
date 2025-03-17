@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { EActiveButton } from 'features/CreateBidForm/components/ui/IdeaBlock';
+import { EActiveButton } from 'entities/CreateBidForm/components/ui/IdeaBlock';
 import {
   ideaCoinsOptions,
   ideaExchangesOptions,
-} from 'features/CreateBidForm/components/ui/IdeaBlock/constants/select-options';
+} from 'entities/CreateBidForm/components/ui/IdeaBlock/constants/select-options';
 import { ISelectOption } from 'shared/components/ui';
 
 interface IUseIdeaBlockLogicReturn {

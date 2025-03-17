@@ -23,9 +23,8 @@
     "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-calendar": "^5.1.0",
-    "react-date-picker": "^11.0.0",
-    "react-datepicker": "^8.2.1",
     "react-dom": "^19.0.0",
+    "react-resizable-panels": "^2.1.7",
     "react-router": "^7.3.0",
     "styled-components": "^6.1.15",
     "viem": "2.x",
@@ -69,13 +68,22 @@
     "vite": "^6.2.0",
     "vite-plugin-svgr": "^4.3.0"
   },
-
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "lint-staged": {
-    "src/**/*.+(js,jsx,ts,tsx,json)": ["prettier -w . && git add -A"],
+    "src/**/*.+(js,jsx,ts,tsx,json)": [
+      "prettier -w . && git add -A"
+    ],
     "src/**/*.{ts,tsx}": [
       "eslint --max-warnings=0 --fix \"**/*.+(ts|tsx)\"",
       "stylelint --fix \"**/*.styled.(ts|tsx)\""
