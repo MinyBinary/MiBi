@@ -1,24 +1,18 @@
-import { PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
-import { Durations, EColors } from 'shared/styles/style-variables';
 import styled from 'styled-components';
 
-export const BidTable = styled.div`
+export const BidTableWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   overflow: auto;
 `;
 
-export const PanelGroupView = styled(PanelGroup)`
+export const BidTable = styled.table`
   width: 100%;
+  border-spacing: 0;
 `;
 
-export const PanelResizeHandleView = styled(PanelResizeHandle)`
-  width: 4px;
-  background: ${EColors.Back3};
-  transition: all ${Durations.Medium} ease;
-
-  &:hover {
-    background: ${EColors.Back2};
-  }
+export const TBody = styled.tbody`
+  border-bottom: 1px solid #808080;
+  color: #808080;
 `;
