@@ -1,12 +1,13 @@
+import { motion } from 'framer-motion';
 import { Durations, EColors } from 'shared/styles/style-variables';
 import { css, styled } from 'styled-components';
 
-export const RowHiddenContentWrapper = styled.div<{ $isSelected: boolean }>`
+export const TableRowHiddenContent = styled.div<{ $isHidden?: boolean }>`
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  max-height: ${({ $isSelected }) => ($isSelected ? '1000px' : '0')};
-  opacity: ${({ $isSelected }) => ($isSelected ? '1' : '0')};
+  max-height: ${({ $isHidden }) => (!$isHidden ? '1000px' : '0')};
+  opacity: ${({ $isHidden }) => (!$isHidden ? '1' : '0')};
   overflow: hidden;
   transition:
     max-height ${Durations.Fast} ease,
@@ -14,7 +15,7 @@ export const RowHiddenContentWrapper = styled.div<{ $isSelected: boolean }>`
   cursor: default;
 `;
 
-export const BidBlockHiddenWrapper = styled.div`
+export const BidBlockHiddenWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: flex-start;

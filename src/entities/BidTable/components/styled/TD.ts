@@ -14,7 +14,7 @@ export const TD = styled.td<{ $isSelected?: boolean; $isHidden?: boolean }>`
   ${({ $isHidden }) =>
     $isHidden &&
     css`
-      padding: 1px 16px;
+      padding: 0 16px;
       pointer-events: none;
     `}
 `;
