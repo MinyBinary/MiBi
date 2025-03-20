@@ -1,9 +1,13 @@
 import type { FC } from 'react';
+import { StyledActiveButton } from 'entities/CreateBidForm/components/styled/StyledActiveButton';
 import { BlockWrapper } from 'entities/CreateBidForm/components/styled/StyledBlockWrapper';
+import { StyledInputsWrapper } from 'entities/CreateBidForm/components/styled/StyledInputsWrapper';
 import { BlockDescription } from 'entities/CreateBidForm/components/ui/BlockDescription';
 import UserSingleIcon from 'shared/assets/icons/users/user-single.svg?react';
 import UsersMultiIcon from 'shared/assets/icons/users/users-multi.svg?react';
 import { EButtonVariant, Input, ISelectOption } from 'shared/components/ui';
+
+import { StyledButtonsWrapper } from '../../styled/StyledButtonsWrapper';
 
 import { bidCoin1Options, bidCoin2Options } from './constants/select-options';
 import { EActiveBidButton } from './types/bid-block-types';
@@ -30,7 +34,7 @@ export const BidBlock: FC<IPropsBidBlock> = ({
   return (
     <BlockWrapper>
       <BlockDescription text="bid" />
-      <S.InputsWrapper>
+      <StyledInputsWrapper>
         <S.SelectWrapper>
           <S.BidSelect
             current={optionCoin1 ? optionCoin1 : undefined}
@@ -47,8 +51,8 @@ export const BidBlock: FC<IPropsBidBlock> = ({
             handleSelect={handleSelectBidValueCoin2Change}
           />
         </S.SelectWrapper>
-        <S.ButtonsWrapper>
-          <S.SideButton
+        <StyledButtonsWrapper>
+          <StyledActiveButton
             text="VS"
             icon={<UserSingleIcon />}
             icon2={<UserSingleIcon />}
@@ -60,7 +64,7 @@ export const BidBlock: FC<IPropsBidBlock> = ({
               handleActiveBidButton(EActiveBidButton.Single);
             }}
           />
-          <S.SideButton
+          <StyledActiveButton
             text="VS"
             icon={<UsersMultiIcon />}
             icon2={<UserSingleIcon />}
@@ -75,9 +79,9 @@ export const BidBlock: FC<IPropsBidBlock> = ({
           <input type="hidden" name="bid-active-button" value={activeBidButton || ''} />
           <input type="hidden" name="bid-coin1" value={optionCoin1?.value || ''} />
           <input type="hidden" name="bid-coin2" value={optionCoin2?.value || ''} />
-        </S.ButtonsWrapper>
+        </StyledButtonsWrapper>
         <Input placeholder="amount" name="bid-input-amount" />
-      </S.InputsWrapper>
+      </StyledInputsWrapper>
     </BlockWrapper>
   );
 };

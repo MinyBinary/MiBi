@@ -2,58 +2,19 @@ import Calendar from 'react-calendar';
 import { Button } from 'shared/components/ui';
 import { Durations, EColors, EFontFamily } from 'shared/styles/style-variables';
 import { BreakPointsV2 } from 'shared/styles/style-variables/breakpoints';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const StyledCalendarWrapper = styled.div`
   position: absolute;
   top: 115%;
   left: 0;
   z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   width: 100%;
   padding: 16px;
   background: ${EColors.Back2};
-`;
-
-export const ButtonsWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-`;
-
-export const TimeModeButton = styled(Button)<{ $active: boolean }>`
-  padding: 12px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
-  letter-spacing: -0.28px;
-  text-transform: uppercase;
-
-  ${({ $active }) =>
-    $active
-      ? css`
-          border-color: ${EColors.Green1};
-          background: ${EColors.Green5};
-          color: ${EColors.Green1};
-
-          &:hover {
-            border-color: ${EColors.Green4};
-          }
-        `
-      : css`
-          border-color: ${EColors.Black4};
-          color: ${EColors.White1};
-
-          &:hover {
-            border-color: ${EColors.Black1};
-          }
-        `}
-
-  @media (max-width: ${BreakPointsV2.MobileSmall}) {
-    padding: 8px;
-  }
 `;
 
 export const StyledCalendar = styled(Calendar)`
@@ -250,5 +211,23 @@ export const StyledCalendar = styled(Calendar)`
 
   .react-calendar__navigation__next2-button {
     display: none;
+  }
+`;
+
+export const CloseCalendar = styled(Button)`
+  border-color: ${EColors.Green4};
+  background: ${EColors.Green2};
+  color: ${EColors.Green1};
+
+  @media (min-width: ${BreakPointsV2.MobileMedium}) {
+    border-color: ${EColors.Black1};
+    background: transparent;
+    color: ${EColors.White1};
+
+    &:hover {
+      border-color: ${EColors.Green4};
+      background: ${EColors.Green2};
+      color: ${EColors.Green1};
+    }
   }
 `;
