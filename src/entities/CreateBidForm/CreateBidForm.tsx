@@ -2,10 +2,12 @@ import { type FC, useActionState } from 'react';
 import { BidBlock } from 'entities/CreateBidForm/components/ui/BidBlock';
 import { EActiveBidButton } from 'entities/CreateBidForm/components/ui/BidBlock/types/bid-block-types';
 import { DateBlock } from 'entities/CreateBidForm/components/ui/DateBlock';
+import { EActiveDateButton } from 'entities/CreateBidForm/components/ui/DateBlock/types/date-block-types';
 import { EActiveButton, IdeaBlock } from 'entities/CreateBidForm/components/ui/IdeaBlock';
 import { InscriptionBlock } from 'entities/CreateBidForm/components/ui/InscriptionBlock';
 import { inputLimits } from 'entities/CreateBidForm/constants/input-limits';
 import { useBidBlockLogic } from 'entities/CreateBidForm/hooks/useBidBlockLogic';
+import { useDateBlockLogic } from 'entities/CreateBidForm/hooks/useDateBlockLogic';
 import { useIdeaBlockLogic } from 'entities/CreateBidForm/hooks/useIdeaBlockLogic';
 import { useInscriptionBlockLogic } from 'entities/CreateBidForm/hooks/useInscriptionBlockLogic';
 import { usePopup } from 'features/Popup';
@@ -43,6 +45,9 @@ export const CreateBidForm: FC = () => {
     clearIdeaBlockState,
   } = useIdeaBlockLogic();
 
+  const { dateValue, activeDateButton, handleActiveDateButton, clearDateBlockState } =
+    useDateBlockLogic();
+
   const {
     activeBidButton,
     optionCoin1,
@@ -67,6 +72,8 @@ export const CreateBidForm: FC = () => {
       optionCoin1,
       optionCoin2,
       bidAmount: '',
+      activeDateButton,
+      dateValue: '',
     },
   });
 
@@ -81,6 +88,8 @@ export const CreateBidForm: FC = () => {
     const optionCoin1 = formData.get('bid-coin1') as unknown as ISelectOption;
     const optionCoin2 = formData.get('bid-coin2') as unknown as ISelectOption;
     const bidAmount = formData.get('bid-input-amount') as string;
+    const activeDateButton = formData.get('date-active-button') as unknown as EActiveDateButton;
+    const dateValue = formData.get('date-input-value') as string;
 
     // const errors: IFormState['errors'] = {};
 
@@ -104,6 +113,7 @@ export const CreateBidForm: FC = () => {
     closePopup();
     clearInscriptionBlockInputsState();
     clearIdeaBlockState();
+    clearDateBlockState();
     clearBidBlockState();
 
     //TODO change naming
@@ -122,6 +132,8 @@ export const CreateBidForm: FC = () => {
         optionCoin1,
         optionCoin2,
         bidAmount,
+        activeDateButton,
+        dateValue,
       },
     };
   }
@@ -138,24 +150,27 @@ export const CreateBidForm: FC = () => {
         <S.FormBlocksWrapper>
           <InscriptionBlock
             inputLimits={inputLimits}
-            {...formState}
-            handleInputChange={handleInputChange}
             inputLengths={inputLengths}
+            handleInputChange={handleInputChange}
           />
           <IdeaBlock
             activeIdeaButton={activeIdeaButton}
-            handleActiveIdeaButton={handleActiveIdeaButtonClick}
             optionCoin={optionCoin}
             optionExchange={optionExchange}
+            handleActiveIdeaButton={handleActiveIdeaButtonClick}
             handleSelectValueCoinChange={handleSelectValueCoinChange}
             handleSelectValueExchangeChange={handleSelectValueExchangeChange}
           />
-          <DateBlock />
+          <DateBlock
+            dateValue={dateValue}
+            activeDateButton={activeDateButton}
+            handleActiveDateButton={handleActiveDateButton}
+          />
           <BidBlock
             activeBidButton={activeBidButton}
-            handleActiveBidButton={handleActiveBidButton}
             optionCoin1={optionCoin1}
             optionCoin2={optionCoin2}
+            handleActiveBidButton={handleActiveBidButton}
             handleSelectBidValueCoin1Change={handleSelectBidValueCoin1Change}
             handleSelectBidValueCoin2Change={handleSelectBidValueCoin2Change}
           />

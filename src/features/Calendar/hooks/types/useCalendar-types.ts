@@ -11,8 +11,11 @@ export interface IUseCalendarReturns {
   activeDate: Date | null;
   CalendarComponent: () => ReactNode | null;
   isCalendarOpen?: boolean;
+  isRangeCalendarOpen?: boolean;
   openCalendar: () => void;
   closeCalendar: () => void;
+  setRangeMode: () => void;
+  setDateMode: () => void;
 }
 
 export type Value = Date | [Date | null, Date | null] | null;

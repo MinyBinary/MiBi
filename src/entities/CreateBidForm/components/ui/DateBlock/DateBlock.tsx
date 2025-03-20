@@ -1,45 +1,98 @@
 import { type FC, useRef } from 'react';
+import { StyledActiveButton } from 'entities/CreateBidForm/components/styled/StyledActiveButton';
 import { BlockWrapper } from 'entities/CreateBidForm/components/styled/StyledBlockWrapper';
+import { StyledButtonsWrapper } from 'entities/CreateBidForm/components/styled/StyledButtonsWrapper';
+import { StyledInputsWrapper } from 'entities/CreateBidForm/components/styled/StyledInputsWrapper';
 import { BlockDescription } from 'entities/CreateBidForm/components/ui/BlockDescription';
+import { InputLocalTime } from 'entities/CreateBidForm/components/ui/InputLocalTime';
 import { useCalendar } from 'features/Calendar';
 import { EButtonVariant } from 'shared/components/ui';
+
+import { EActiveDateButton } from './types/date-block-types';
+import { formatCalendarDate } from './utils/formatCalendarDate';
 
 import * as S from './DateBlock.styled';
 
 interface IPropsDateBlock {
-  children?: React.ReactNode;
+  dateValue: string;
+  activeDateButton: EActiveDateButton | null;
+  handleActiveDateButton: (button: EActiveDateButton) => void;
 }
 
-export const DateBlock: FC<IPropsDateBlock> = ({ children }) => {
+export const DateBlock: FC<IPropsDateBlock> = ({
+  dateValue,
+  activeDateButton,
+  handleActiveDateButton,
+}) => {
   const buttonRef1 = useRef<HTMLButtonElement>(null);
+  const buttonRef2 = useRef<HTMLButtonElement>(null);
 
-  const { CalendarComponent, openCalendar, closeCalendar, isCalendarOpen } = useCalendar({
+  const {
+    activeDate,
+    firstRangeDate,
+    secondRangeDate,
+    CalendarComponent,
+    openCalendar,
+    setRangeMode,
+    setDateMode,
+  } = useCalendar({
     minDate: new Date(Date.now()),
-    excludedCloseByOuterClickRefs: [buttonRef1],
+    excludedCloseByOuterClickRefs: [buttonRef1, buttonRef2],
   });
+
+  const formattedDate = formatCalendarDate({ activeDate, firstRangeDate, secondRangeDate });
 
   return (
     <BlockWrapper>
       <BlockDescription text="date / range" />
-      <S.DateBlock>
-        {children}
-        <S.OpenCalBtn
-          ref={buttonRef1}
-          variant={EButtonVariant.Secondary}
-          text={isCalendarOpen ? 'Close calendar' : 'Open calendar'}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (isCalendarOpen) {
-              closeCalendar();
-            } else {
-              openCalendar();
-            }
-          }}
-        />
+      <StyledInputsWrapper>
+        <InputLocalTime />
+        <StyledButtonsWrapper>
+          <StyledActiveButton
+            ref={buttonRef1}
+            text="In the range"
+            variant={EButtonVariant.Bordered}
+            $active={activeDateButton === EActiveDateButton.Range}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleActiveDateButton(EActiveDateButton.Range);
 
-        <CalendarComponent />
-      </S.DateBlock>
+              openCalendar();
+              setRangeMode();
+            }}
+          />
+          <StyledActiveButton
+            ref={buttonRef2}
+            text="On the date"
+            variant={EButtonVariant.Bordered}
+            $active={activeDateButton === EActiveDateButton.Date}
+            onClick={(e) => {
+              e.preventDefault();
+              handleActiveDateButton(EActiveDateButton.Date);
+
+              openCalendar();
+              setDateMode();
+            }}
+          />
+          <CalendarComponent />
+          <input type="hidden" name="date-active-button" value={activeDateButton || ''} />
+        </StyledButtonsWrapper>
+        <S.DisabledInput
+          placeholder="DD/MM/YY"
+          name="date-input-value"
+          value={formattedDate || dateValue}
+        >
+          <S.StyledTimeAndDateIcon
+            onClick={(e) => {
+              e.preventDefault();
+              setDateMode();
+              handleActiveDateButton(EActiveDateButton.Date);
+              openCalendar();
+            }}
+          />
+        </S.DisabledInput>
+      </StyledInputsWrapper>
     </BlockWrapper>
   );
 };
