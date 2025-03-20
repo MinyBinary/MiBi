@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import React, { useState } from 'react';
+import { HiddenBlock } from 'entities/BidTable/components/ui/HiddenBlock';
 import { AnimatePresence } from 'framer-motion';
 import { Durations } from 'shared/styles/style-variables';
 
@@ -10,9 +10,17 @@ interface IPropsTableRowHiddenContent {
 }
 
 export const TableRowHiddenContent: FC<IPropsTableRowHiddenContent> = ({ isHidden }) => {
-  const [isHiddenContentOpen, setIsHiddenContentOpen] = useState(false);
+  const animationRowProps = {
+    initial: { maxHeight: 0, opacity: 0 },
+    animate: { maxHeight: 1000, opacity: 1 },
+    exit: { maxHeight: 0, opacity: 0 },
+    transition: {
+      maxHeight: { duration: parseFloat(Durations.Fast), ease: 'linear' },
+      opacity: { duration: parseFloat(Durations.Fast), ease: 'linear' },
+    },
+  };
 
-  const animationProps = {
+  const animationBlockProps = {
     initial: { y: -5, opacity: 0 },
     animate: { y: 0, opacity: 1 },
     exit: { y: -100, opacity: 0 },
@@ -23,34 +31,25 @@ export const TableRowHiddenContent: FC<IPropsTableRowHiddenContent> = ({ isHidde
   };
 
   return (
-    <React.Fragment>
-      <S.TableRowHiddenContent $isHidden={isHidden}>
-        <AnimatePresence>
-          {!isHidden && (
-            <>
-              <S.BidBlockHiddenWrapper {...animationProps}>
-                <S.BidBlockHidden
-                  $isHidden={!isHiddenContentOpen}
-                  onClick={() => setIsHiddenContentOpen(!isHiddenContentOpen)}
-                >
-                  As the sun dipped below the horizon, the sky transformed into a canvas of vibrant
-                </S.BidBlockHidden>
-              </S.BidBlockHiddenWrapper>
-              <S.BidBlockHiddenWrapper {...animationProps}>
-                <S.BidBlockHidden $isHidden={!isHiddenContentOpen}>
-                  As the sun dipped below the horizon, the sky made the moment unforgettable.
-                </S.BidBlockHidden>
-                <S.BidBlockHidden $isHidden={!isHiddenContentOpen}>
-                  As the sun dipped below the horizon, the sky
-                </S.BidBlockHidden>
-                <S.BidBlockHidden $isHidden={!isHiddenContentOpen}>
-                  As the sun dipped below the horizon, the sky transformed into a canvas of vibrant
-                </S.BidBlockHidden>
-              </S.BidBlockHiddenWrapper>
-            </>
-          )}
-        </AnimatePresence>
-      </S.TableRowHiddenContent>
-    </React.Fragment>
+    <AnimatePresence>
+      {!isHidden && (
+        <S.TableRowHiddenContent {...animationRowProps}>
+          <S.BidBlockHiddenWrapper {...animationBlockProps}>
+            <HiddenBlock>
+              As the sun dipped below the horizon, the sky transformed into a canvas of vibrant
+            </HiddenBlock>
+          </S.BidBlockHiddenWrapper>
+          <S.BidBlockHiddenWrapper {...animationBlockProps}>
+            <HiddenBlock>
+              As the sun dipped below the horizon, the sky made the moment unforgettable.
+            </HiddenBlock>
+            <HiddenBlock>As the sun dipped below the horizon, the sky</HiddenBlock>
+            <HiddenBlock>
+              As the sun dipped below the horizon, the sky transformed into a canvas of vibrant
+            </HiddenBlock>
+          </S.BidBlockHiddenWrapper>
+        </S.TableRowHiddenContent>
+      )}
+    </AnimatePresence>
   );
 };
