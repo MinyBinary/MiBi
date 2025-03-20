@@ -11,35 +11,35 @@ interface IPropsTableRowHiddenContent {
 
 export const TableRowHiddenContent: FC<IPropsTableRowHiddenContent> = ({ isHidden }) => {
   const animationRowProps = {
-    initial: { maxHeight: 0, opacity: 0 },
-    animate: { maxHeight: 1000, opacity: 1 },
-    exit: { maxHeight: 0, opacity: 0 },
+    initial: { height: 0, opacity: 0 },
+    animate: { height: 'auto', opacity: 1 },
+    exit: { height: 0, opacity: 0 },
     transition: {
-      maxHeight: { duration: parseFloat(Durations.Fast), ease: 'linear' },
-      opacity: { duration: parseFloat(Durations.Fast), ease: 'linear' },
+      height: { duration: parseFloat(Durations.Fast), ease: 'easeOut' },
+      opacity: { duration: parseFloat(Durations.Fast), ease: 'easeOut' },
     },
   };
 
-  const animationBlockProps = {
-    initial: { y: -5, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-    exit: { y: -100, opacity: 0 },
-    transition: {
-      y: { duration: parseFloat(Durations.Fast), ease: 'linear' },
-      opacity: { duration: parseFloat(Durations.Fast), ease: 'linear' },
-    },
-  };
+  // const animationBlockProps = {
+  //   initial: { y: -5, opacity: 0 },
+  //   animate: { y: 0, opacity: 1 },
+  //   exit: { y: -100, opacity: 0 },
+  //   transition: {
+  //     y: { duration: parseFloat(Durations.Fast), ease: 'easeOut' },
+  //     opacity: { duration: parseFloat(Durations.Fast), ease: 'easeOut' },
+  //   },
+  // };
 
   return (
     <AnimatePresence>
       {!isHidden && (
         <S.TableRowHiddenContent {...animationRowProps}>
-          <S.BidBlockHiddenWrapper {...animationBlockProps}>
+          <S.BidBlockHiddenWrapper $side="left">
             <HiddenBlock>
               As the sun dipped below the horizon, the sky transformed into a canvas of vibrant
             </HiddenBlock>
           </S.BidBlockHiddenWrapper>
-          <S.BidBlockHiddenWrapper {...animationBlockProps}>
+          <S.BidBlockHiddenWrapper $side="right">
             <HiddenBlock>
               As the sun dipped below the horizon, the sky made the moment unforgettable.
             </HiddenBlock>

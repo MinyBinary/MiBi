@@ -14,7 +14,9 @@ export const HiddenBlock: FC<IPropsHiddenBlock> = ({ children }) => {
       onClick={() => setIsHiddenContentOpen(!isHiddenContentOpen)}
       $isHidden={!isHiddenContentOpen}
     >
-      {children}
+      <S.HiddenBlockContentWrapper>
+        <S.Content>{children}</S.Content>
+      </S.HiddenBlockContentWrapper>
     </S.HiddenBlock>
   );
 };
