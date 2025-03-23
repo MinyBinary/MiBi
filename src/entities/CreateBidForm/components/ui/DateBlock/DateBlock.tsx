@@ -76,12 +76,12 @@ export const DateBlock: FC<IPropsDateBlock> = ({
             }}
           />
           <CalendarComponent />
-          <input type="hidden" name="date-active-button" value={activeDateButton || ''} />
+          <input type="hidden" name="date-active-button" defaultValue={activeDateButton || ''} />
         </StyledButtonsWrapper>
         <S.DisabledInput
           placeholder="DD/MM/YY"
           name="date-input-value"
-          value={formattedDate || dateValue}
+          defaultValue={formattedDate || dateValue}
         >
           <S.StyledTimeAndDateIcon
             onClick={(e) => {

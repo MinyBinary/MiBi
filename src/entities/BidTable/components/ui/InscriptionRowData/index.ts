@@ -1,0 +1,1 @@
+export { InscriptionRowData } from './InscriptionRowData';

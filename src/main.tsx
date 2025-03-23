@@ -13,9 +13,9 @@ dayjs.extend(timezone);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ResetStyles />
-    <GlobalStyles />
     <AppProviders>
+      <ResetStyles />
+      <GlobalStyles />
       <App />
     </AppProviders>
   </StrictMode>,

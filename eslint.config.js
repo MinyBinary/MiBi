@@ -50,7 +50,6 @@ export default [
       '@typescript-eslint/no-explicit-any': 'error',
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-empty-function': 'warn',
-      'eslint-comments/no-use': 'error',
       'eslint-comments/no-unused-disable': 'warn',
       'no-debugger': 'warn',
       'prefer-const': 'error',

@@ -11,7 +11,7 @@ export const Popup: FC = () => {
 
   const renderPopupComponent: Record<EPopupVariant, JSX.Element> = {
     [EPopupVariant.ConnectWallet]: <PopupWrapper renderContent={<ConnectWallet />} />,
-    [EPopupVariant.Page]: (
+    [EPopupVariant.SubmitBidForm]: (
       <PopupWrapper renderTittle="Confirmation" renderContent={<ConfirmationPopupContent />} />
     ),
   };
