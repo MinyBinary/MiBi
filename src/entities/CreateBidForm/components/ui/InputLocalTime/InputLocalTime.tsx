@@ -1,6 +1,7 @@
 import { type FC, useEffect, useState } from 'react';
-import { Input } from 'shared/components/ui';
 import { getLocalDate } from 'shared/utils/date/getLocalDate';
+
+import * as S from './InputLocalTime.styled';
 
 export const InputLocalTime: FC = () => {
   const [localDateTime, setLocalDateTime] = useState<string>('');
@@ -21,5 +22,11 @@ export const InputLocalTime: FC = () => {
     };
   }, [localDate]);
 
-  return <Input placeholder="DD/MM/YY HH:MM:SS LOCAL " disabled value={localDateTime} />;
+  return (
+    <S.LocalTimeInput
+      placeholder="DD/MM/YY HH:MM:SS LOCAL "
+      defaultValue={localDateTime}
+      name="local-date-input-value"
+    />
+  );
 };

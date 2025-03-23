@@ -1,4 +1,3 @@
-import { EColors } from 'shared/styles/style-variables/colors';
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
@@ -15,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`
         position: relative;
         max-width: 100%;
         margin: 0;
-        background-color: ${EColors.Back1};
+        background-color: ${({ theme }) => theme.global.background.primary};
     }
 
     body * {

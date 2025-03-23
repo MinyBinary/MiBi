@@ -1,5 +1,5 @@
 import { Button, Select } from 'shared/components/ui';
-import { BreakPoint, EColors } from 'shared/styles/style-variables';
+import { BreakPoint } from 'shared/styles/style-variables';
 import styled, { css } from 'styled-components';
 
 export const InputsWrapper = styled.div`
@@ -40,16 +40,15 @@ export const ButtonsWrapper = styled.div`
 
 export const AboveButton = styled(Button)<{ $active?: boolean }>`
   width: 100%;
-  border-color: ${EColors.Black4};
   border-radius: 4px;
   text-transform: uppercase;
-  color: ${EColors.Green1};
+  color: ${({ theme }) => theme.buttons.above.color.inactive};
 
   ${({ $active }) =>
     $active &&
     css`
-      border-color: ${EColors.Green1};
-      background: ${EColors.Green5};
+      border: 1px solid ${({ theme }) => theme.buttons.above.border.active};
+      background: ${({ theme }) => theme.buttons.above.background.active};
     `}
 
   & > svg {
@@ -57,13 +56,16 @@ export const AboveButton = styled(Button)<{ $active?: boolean }>`
   }
 
   @media (min-width: ${BreakPoint.MobileTop}) {
-
-    &:hover {
-      border-color: ${EColors.Green4};
-    }
+    ${({ $active }) =>
+      $active &&
+      css`
+        &:hover {
+          border: 1px solid ${({ theme }) => theme.buttons.above.border.active};
+        }
+      `}
 
     &:active {
-      border-color: ${EColors.Green1};
+      border: 1px solid ${({ theme }) => theme.buttons.above.border.active};
     }
   }
 
@@ -72,21 +74,24 @@ export const AboveButton = styled(Button)<{ $active?: boolean }>`
 
     & > svg {
       max-width: 8px;
+    }
+
+    &:active {
+      border: 1px solid ${({ theme }) => theme.buttons.above.border.active};
     }
   }
 `;
 export const BelowButton = styled(Button)<{ $active?: boolean }>`
   width: 100%;
-  border-color: ${EColors.Black4};
   border-radius: 4px;
   text-transform: uppercase;
-  color: ${EColors.Red1};
+  color: ${({ theme }) => theme.buttons.below.color.inactive};
 
   ${({ $active }) =>
     $active &&
     css`
-      border-color: ${EColors.Red1};
-      background: ${EColors.Red2};
+      border: 1px solid ${({ theme }) => theme.buttons.below.border.active};
+      background: ${({ theme }) => theme.buttons.below.background.active};
     `}
 
   & > svg {
@@ -94,13 +99,16 @@ export const BelowButton = styled(Button)<{ $active?: boolean }>`
   }
 
   @media (min-width: ${BreakPoint.MobileTop}) {
-
-    &:hover {
-      border-color: ${EColors.Red4};
-    }
+    ${({ $active }) =>
+      $active &&
+      css`
+        &:hover {
+          border: 1px solid ${({ theme }) => theme.buttons.below.border.active};
+        }
+      `}
 
     &:active {
-      border-color: ${EColors.Red1};
+      border: 1px solid ${({ theme }) => theme.buttons.below.border.active};
     }
   }
 
@@ -109,6 +117,10 @@ export const BelowButton = styled(Button)<{ $active?: boolean }>`
 
     & > svg {
       max-width: 8px;
+    }
+
+    &:active {
+      border: 1px solid ${({ theme }) => theme.buttons.below.border.active};
     }
   }
 `;

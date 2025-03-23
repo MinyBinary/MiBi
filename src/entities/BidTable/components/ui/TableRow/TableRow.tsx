@@ -1,9 +1,13 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { TD } from 'entities/BidTable/components/styled/TD';
 import { TR } from 'entities/BidTable/components/styled/TR';
+import { DateRowData } from 'entities/BidTable/components/ui/DateRowData';
+import { EXPDateRowData } from 'entities/BidTable/components/ui/EXPDateRowData';
+import { IdeaRowData } from 'entities/BidTable/components/ui/IdeaRowData';
+import { IdRowData } from 'entities/BidTable/components/ui/IdRowData';
+import { InscriptionRowData } from 'entities/BidTable/components/ui/InscriptionRowData';
+import { TableRowHiddenContent } from 'entities/BidTable/components/ui/TableRowHiddenContent';
 import { TColumnWidthsDesktop, TRowProps } from 'entities/BidTable/types/types';
-
-import { TableRowHiddenContent } from '../TableRowHiddenContent';
 
 interface IPropsTableRow {
   row: TRowProps;
@@ -20,8 +24,19 @@ export const TableRow: FC<IPropsTableRow> = ({
 }) => {
   const isSelected = selectedValue === row.id;
 
+  const renderBlockData: Record<keyof TRowProps, () => ReactNode> = {
+    ['id']: () => <IdRowData id={row.id} />,
+    ['inscription1']: () => <InscriptionRowData {...row.inscription1} />,
+    ['idea']: () => <IdeaRowData {...row.idea} />,
+    ['date']: () => <DateRowData {...row.date} />,
+    ['expDate']: () => <EXPDateRowData {...row.expDate} />,
+    ['bid']: () => row.bid.activeBidButton,
+    ['inscription2']: () => row.inscription2,
+    ['status']: () => row.status,
+  };
+
   return (
-    <React.Fragment>
+    <>
       <TR
         onClick={() => {
           if (isSelected) {
@@ -32,9 +47,11 @@ export const TableRow: FC<IPropsTableRow> = ({
         }}
         $isSelected={isSelected}
       >
-        {Object.values(row).map((value, index) => (
+        {Object.entries(row).map(([key, value], index) => (
           <TD key={index} style={{ width: columnWidths[index] }}>
-            {value}
+            {renderBlockData[key as keyof TRowProps]
+              ? renderBlockData[key as keyof TRowProps]()
+              : value}
           </TD>
         ))}
       </TR>
@@ -43,6 +60,6 @@ export const TableRow: FC<IPropsTableRow> = ({
           <TableRowHiddenContent isHidden={!isSelected} />
         </TD>
       </TR>
-    </React.Fragment>
+    </>
   );
 };

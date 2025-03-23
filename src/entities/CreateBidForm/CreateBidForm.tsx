@@ -15,6 +15,8 @@ import { EPopupVariant } from 'features/Popup/types/popup-variants';
 import CreateBidButtonIcon from 'shared/assets/icons/links/create-bid.svg?react';
 import { EButtonVariant, ISelectOption } from 'shared/components/ui';
 
+import { useBidForm } from './hooks/useBidForm';
+
 import * as S from './CreateBidForm.styled';
 
 interface IFormState {
@@ -58,6 +60,8 @@ export const CreateBidForm: FC = () => {
     clearBidBlockState,
   } = useBidBlockLogic();
 
+  const { saveFormValuesToLocalStorage } = useBidForm();
+
   const [formState, formAction] = useActionState(submitForm, {
     isSubmitting: false,
     errors: {},
@@ -74,13 +78,14 @@ export const CreateBidForm: FC = () => {
       bidAmount: '',
       activeDateButton,
       dateValue: '',
+      localDateValue: '',
     },
   });
 
   async function submitForm(prevState: IFormState, formData: FormData) {
     const name = formData.get('name') as string;
     const comment = formData.get('comment') as string;
-    const activeIdeaButton = formData.get('idea-active-button') as EActiveButton;
+    const activeIdeaButton = formData.get('idea-active-button') as unknown as EActiveButton;
     const optionCoin = formData.get('idea-coin') as unknown as ISelectOption;
     const optionExchange = formData.get('idea-exchange') as unknown as ISelectOption;
     const ideaRate = formData.get('idea-input-rate') as string;
@@ -90,6 +95,7 @@ export const CreateBidForm: FC = () => {
     const bidAmount = formData.get('bid-input-amount') as string;
     const activeDateButton = formData.get('date-active-button') as unknown as EActiveDateButton;
     const dateValue = formData.get('date-input-value') as string;
+    const localDateValue = formData.get('local-date-input-value') as string;
 
     // const errors: IFormState['errors'] = {};
 
@@ -115,7 +121,25 @@ export const CreateBidForm: FC = () => {
     clearIdeaBlockState();
     clearDateBlockState();
     clearBidBlockState();
+    //TODO change logic
 
+    saveFormValuesToLocalStorage({
+      formValues: {
+        name,
+        comment,
+        activeIdeaButton,
+        optionCoin,
+        optionExchange,
+        ideaRate,
+        activeBidButton,
+        optionCoin1,
+        optionCoin2,
+        bidAmount,
+        activeDateButton,
+        dateValue,
+        localDateValue,
+      },
+    });
     //TODO change naming
     return {
       ...prevState,
@@ -134,13 +158,14 @@ export const CreateBidForm: FC = () => {
         bidAmount,
         activeDateButton,
         dateValue,
+        localDateValue,
       },
     };
   }
 
   const handlePopupButtonClick = () => {
     if (Object.keys(formState.errors).length === 0) {
-      openPopup(EPopupVariant.Page);
+      openPopup(EPopupVariant.SubmitBidForm);
     }
   };
 
