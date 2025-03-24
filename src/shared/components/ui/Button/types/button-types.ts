@@ -5,6 +5,8 @@ export const enum EButtonVariant {
   Primary = 'primary',
   Secondary = 'secondary',
   Bordered = 'bordered',
+  Green = 'green',
+  Red = 'red',
 }
 
 export interface IButtonProps
@@ -17,4 +19,5 @@ export interface IButtonProps
   reversed?: boolean;
   variant?: EButtonVariant;
   hoverBackground?: EColors;
+  active?: boolean;
 }

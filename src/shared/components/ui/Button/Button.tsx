@@ -11,6 +11,7 @@ export const Button: FC<IButtonProps> = ({
   itemsGap,
   advancedIcon,
   reversed,
+  active,
   ...props
 }) => {
   const buttonContent = (
@@ -44,6 +45,16 @@ export const Button: FC<IButtonProps> = ({
       <S.BorderedButton {...props} $itemsGap={itemsGap}>
         {buttonContent}
       </S.BorderedButton>
+    ),
+    [EButtonVariant.Green]: () => (
+      <S.Green {...props} $itemsGap={itemsGap} $active={active}>
+        {buttonContent}
+      </S.Green>
+    ),
+    [EButtonVariant.Red]: () => (
+      <S.Red {...props} $itemsGap={itemsGap} $active={active}>
+        {buttonContent}
+      </S.Red>
     ),
   };
 

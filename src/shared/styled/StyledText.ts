@@ -1,4 +1,3 @@
-import { EColors } from 'shared/styles/style-variables';
 import { EFontFamily } from 'shared/styles/style-variables/font-family';
 import { styled } from 'styled-components';
 
@@ -8,5 +7,5 @@ export const StyledText = styled.span`
   font-style: normal;
   font-weight: 400;
   line-height: 1px;
-  color: ${EColors.White1};
+  color: ${({ theme }) => theme.global.color.primary};
 `;

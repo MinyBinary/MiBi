@@ -7,7 +7,6 @@ export const Header = styled.header`
   gap: 16px;
   width: 100%;
   height: 140px;
-  background: transparent;
 `;
 
 export const TokenTittleBlock = styled.div`
@@ -16,7 +15,7 @@ export const TokenTittleBlock = styled.div`
   justify-content: center;
   padding: 16px;
   border-radius: 4px;
-  background: ${EColors.Black5};
+  background: ${({ theme }) => theme.tittles.headerTittleTop.background.primary};
   text-align: center;
 `;
 

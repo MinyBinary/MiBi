@@ -57,7 +57,8 @@ export const BidBlock: FC<IPropsBidBlock> = ({
             icon={<UserSingleIcon />}
             icon2={<UserSingleIcon />}
             itemsGap={14}
-            variant={EButtonVariant.Bordered}
+            variant={EButtonVariant.Green}
+            active={activeBidButton === EActiveBidButton.Single}
             $active={activeBidButton === EActiveBidButton.Single}
             onClick={(e) => {
               e.preventDefault();
@@ -69,7 +70,8 @@ export const BidBlock: FC<IPropsBidBlock> = ({
             icon={<UsersMultiIcon />}
             icon2={<UserSingleIcon />}
             itemsGap={14}
-            variant={EButtonVariant.Bordered}
+            variant={EButtonVariant.Green}
+            active={activeBidButton === EActiveBidButton.Multi}
             $active={activeBidButton === EActiveBidButton.Multi}
             onClick={(e) => {
               e.preventDefault();

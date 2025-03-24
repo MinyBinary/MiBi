@@ -1,5 +1,5 @@
 import { StyledText } from 'shared/styled/StyledText';
-import { EColors, EFontFamily } from 'shared/styles/style-variables';
+import { EFontFamily } from 'shared/styles/style-variables';
 import styled from 'styled-components';
 
 export const TextWrapper = styled.div`
@@ -14,14 +14,6 @@ export const TittleWrapper = styled.div`
   gap: 16px;
 `;
 
-export const TittleGray = styled(StyledText)`
-  max-width: 735px;
-  line-height: 19.6px;
-  letter-spacing: -0.28px;
-  text-align: center;
-  color: ${EColors.Black1};
-`;
-
 export const Tittle = styled.h1`
   font-family: ${EFontFamily.SilkScreen};
   font-size: 32px;
@@ -31,5 +23,13 @@ export const Tittle = styled.h1`
   letter-spacing: -0.64px;
   text-align: center;
   text-transform: uppercase;
-  color: ${EColors.White1};
+  color: ${({ theme }) => theme.tittles.mainPageTittle.color.primary};
+`;
+
+export const TittleGray = styled(StyledText)`
+  max-width: 735px;
+  line-height: 19.6px;
+  letter-spacing: -0.28px;
+  text-align: center;
+  color: ${({ theme }) => theme.tittles.mainPageTittle.color.secondary};
 `;

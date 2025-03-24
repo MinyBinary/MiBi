@@ -1,5 +1,5 @@
 import { Durations, EFontFamily } from 'shared/styles/style-variables';
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 export const Button = styled.button<{ $itemsGap?: number }>`
   position: relative;
@@ -21,19 +21,12 @@ export const Button = styled.button<{ $itemsGap?: number }>`
   transition: all ${Durations.Fast} ease-in-out;
   cursor: pointer;
 
-  &:hover {
-    background: ${({ theme }) => theme.buttons.primary.background.hover};
-  }
-
-  &:active {
-    background: ${({ theme }) => theme.buttons.primary.background.active};
-  }
-
   & svg {
-    max-width: 19px;
-    max-height: 19px;
+    width: 19px;
+    height: 19px;
 
     & path {
+      fill: ${({ theme }) => theme.buttons.primary.fill.inactive};
       transition: all ${Durations.Fast} ease-in-out;
     }
   }
@@ -43,32 +36,101 @@ export const SecondaryButton = styled(Button)`
   background: ${({ theme }) => theme.buttons.secondary.background.default};
   color: ${({ theme }) => theme.buttons.secondary.color};
 
-  &:active {
-    background: ${({ theme }) => theme.buttons.secondary.background.disable};
+  &:hover {
+    background: ${({ theme }) => theme.buttons.secondary.background.hover};
+    color: ${({ theme }) => theme.buttons.secondary.color};
   }
 
   &:disabled {
     background: ${({ theme }) => theme.buttons.secondary.background.disable};
-  }
-
-  &:hover {
-    background: ${({ theme }) => theme.buttons.secondary.background.hover};
+    color: ${({ theme }) => theme.buttons.secondary.color};
   }
 `;
 
 export const BorderedButton = styled(Button)`
   padding: 11px 23px;
-  border: 1px solid ${({ theme }) => theme.buttons.primary.border.inactive};
+  border: 1px solid ${({ theme }) => theme.buttons.bordered.border.default};
+  background: transparent;
+  color: ${({ theme }) => theme.buttons.bordered.color.default};
 
   &:hover {
-    border: 1px solid ${({ theme }) => theme.buttons.primary.border.hover};
+    border: 1px solid ${({ theme }) => theme.buttons.bordered.border.hover};
+    color: ${({ theme }) => theme.buttons.bordered.color.hover};
   }
 
-  &:active {
-    border: 1px solid ${({ theme }) => theme.buttons.primary.border.active};
+  &:disabled {
+    border: 1px solid ${({ theme }) => theme.buttons.bordered.border.disable};
   }
+`;
 
+export const Green = styled(Button)<{ $active?: boolean }>`
+  border: 1px solid ${({ theme }) => theme.buttons.green.border.inactive};
   background: transparent;
+  color: ${({ theme }) => theme.buttons.green.color.inactive};
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.buttons.green.border.hover};
+  }
+
+  & svg {
+
+    & path {
+      fill: ${({ theme }) => theme.buttons.green.fill.inactive};
+    }
+  }
+
+  ${({ $active }) =>
+    $active &&
+    css`
+      border: 1px solid ${({ theme }) => theme.buttons.green.border.active};
+      background: ${({ theme }) => theme.buttons.green.background.active};
+
+      &:hover {
+        border: 1px solid ${({ theme }) => theme.buttons.green.border.active};
+      }
+
+      & svg {
+
+        & path {
+          fill: ${({ theme }) => theme.buttons.green.fill.active};
+        }
+      }
+    `}
+`;
+
+export const Red = styled(Button)<{ $active?: boolean }>`
+  border: 1px solid ${({ theme }) => theme.buttons.red.border.inactive};
+  background: transparent;
+  color: ${({ theme }) => theme.buttons.red.color.inactive};
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.buttons.red.border.hover};
+  }
+
+  & svg {
+
+    & path {
+      fill: ${({ theme }) => theme.buttons.red.fill.inactive};
+    }
+  }
+
+  ${({ $active }) =>
+    $active &&
+    css`
+      border: 1px solid ${({ theme }) => theme.buttons.red.border.active};
+      background: ${({ theme }) => theme.buttons.red.background.active};
+
+      &:hover {
+        border: 1px solid ${({ theme }) => theme.buttons.red.border.active};
+      }
+
+      & svg {
+
+        & path {
+          fill: ${({ theme }) => theme.buttons.red.fill.active};
+        }
+      }
+    `}
 `;
 
 export const AdvancedIcon = styled.div`

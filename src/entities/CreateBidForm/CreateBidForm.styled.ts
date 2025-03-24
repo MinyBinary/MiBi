@@ -7,6 +7,13 @@ export const ContentWrapper = styled.div`
   flex-direction: column;
   gap: 16px;
   width: 100%;
+  padding: 16px;
+  border-radius: 4px;
+  background: ${({ theme }) => theme.forms.createBidForm.background.primary};
+
+  @media (max-width: ${BreakPointsV2.MobileMedium}) {
+    padding: 0;
+  }
 `;
 
 export const CreateBidForm = styled.form`
@@ -27,20 +34,16 @@ export const FormBlocksWrapper = styled.div`
   box-sizing: border-box;
 
   @media (max-width: ${BreakPointsV2.Laptop13to15}) {
-    gap: 16px;
+    gap: 24px;
+    width: 664px;
   }
 
-  @media (max-width: ${BreakPointsV2.TabletLandscape}) {
+  @media (max-width: ${BreakPointsV2.MobileLarge}) {
     gap: 16px;
-    width: 588px;
+    width: 316px;
   }
 
-  @media (max-width: ${BreakPointsV2.MobileCustom}) {
-    gap: 16px;
-    width: 285px;
-  }
-
-  @media (max-width: ${BreakPointsV2.MobileSmall}) {
+  @media (max-width: ${BreakPointsV2.MobileMedium}) {
     gap: 16px;
     width: 100%;
   }

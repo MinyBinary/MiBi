@@ -5,9 +5,10 @@ export const BlockWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 285px;
+  width: 316px;
+  min-height: 200px;
 
-  @media (max-width: ${BreakPointsV2.MobileSmall}) {
+  @media (max-width: ${BreakPointsV2.MobileMedium}) {
     width: 100%;
   }
 `;
