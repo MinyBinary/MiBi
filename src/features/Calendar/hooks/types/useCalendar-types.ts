@@ -16,6 +16,7 @@ export interface IUseCalendarReturns {
   closeCalendar: () => void;
   setRangeMode: () => void;
   setDateMode: () => void;
+  calendarRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export type Value = Date | [Date | null, Date | null] | null;

@@ -15,7 +15,7 @@ export const Overlay = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: ${EColors.Back4};
+  background: ${({ theme }) => theme.popups.primary.overlay.primary};
 `;
 
 export const Popup = styled.div`

@@ -1,7 +1,9 @@
 import { buttonsThemeLight } from './buttons/buttons-theme-light';
+import { calendarThemeLight } from './calendar/calendar-theme-light';
 import { formsThemeLight } from './forms/forms-theme-light';
 import { inputsThemeLight } from './inputs/inputs-theme-light';
 import { linksThemeLight } from './links/links-theme-light';
+import { popupsThemeLight } from './popups/popups-theme-light';
 import { selectsThemeLight } from './selects/selects-theme.light';
 import { textAreasThemeLight } from './textareas/textareas-theme-light';
 import { tittlesThemeLight } from './tittles/tittles-theme-light';
@@ -25,4 +27,6 @@ export const lightTheme = {
   inputs: { ...inputsThemeLight },
   textAreas: { ...textAreasThemeLight },
   selects: { ...selectsThemeLight },
+  popups: { ...popupsThemeLight },
+  calendar: { ...calendarThemeLight },
 };

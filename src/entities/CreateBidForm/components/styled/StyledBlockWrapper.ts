@@ -6,7 +6,7 @@ export const BlockWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 316px;
-  min-height: 200px;
+  min-height: 166px;
 
   @media (max-width: ${BreakPointsV2.MobileMedium}) {
     width: 100%;

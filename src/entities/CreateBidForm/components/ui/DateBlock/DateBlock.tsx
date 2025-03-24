@@ -6,6 +6,7 @@ import { StyledInputsWrapper } from 'entities/CreateBidForm/components/styled/St
 import { BlockDescription } from 'entities/CreateBidForm/components/ui/BlockDescription';
 import { InputLocalTime } from 'entities/CreateBidForm/components/ui/InputLocalTime';
 import { useCalendar } from 'features/Calendar';
+import { useOverlay } from 'features/Overlay/logic/hooks/useOverlay';
 import { EButtonVariant } from 'shared/components/ui';
 
 import { EActiveDateButton } from './types/date-block-types';
@@ -28,6 +29,7 @@ export const DateBlock: FC<IPropsDateBlock> = ({
   const buttonRef2 = useRef<HTMLButtonElement>(null);
 
   const {
+    calendarRef,
     activeDate,
     firstRangeDate,
     secondRangeDate,
@@ -39,6 +41,8 @@ export const DateBlock: FC<IPropsDateBlock> = ({
     minDate: new Date(Date.now()),
     excludedCloseByOuterClickRefs: [buttonRef1, buttonRef2],
   });
+
+  const { showOverlay } = useOverlay();
 
   const formattedDate = formatCalendarDate({ activeDate, firstRangeDate, secondRangeDate });
 
@@ -56,9 +60,8 @@ export const DateBlock: FC<IPropsDateBlock> = ({
             $active={activeDateButton === EActiveDateButton.Date}
             onClick={(e) => {
               e.preventDefault();
+              e.stopPropagation();
               handleActiveDateButton(EActiveDateButton.Date);
-
-              openCalendar();
               setDateMode();
             }}
           />
@@ -72,8 +75,6 @@ export const DateBlock: FC<IPropsDateBlock> = ({
               e.preventDefault();
               e.stopPropagation();
               handleActiveDateButton(EActiveDateButton.Range);
-
-              openCalendar();
               setRangeMode();
             }}
           />
@@ -89,8 +90,12 @@ export const DateBlock: FC<IPropsDateBlock> = ({
           <S.StyledTimeAndDateIcon
             onClick={(e) => {
               e.preventDefault();
-              setDateMode();
-              handleActiveDateButton(EActiveDateButton.Date);
+              if (activeDateButton) {
+                handleActiveDateButton(activeDateButton);
+              } else {
+                handleActiveDateButton(EActiveDateButton.Date);
+              }
+              showOverlay(calendarRef.current?.id || '', calendarRef);
               openCalendar();
             }}
           />
