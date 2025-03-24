@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   position: relative;
   display: flex;
   height: min-content;
-  border: 1px solid ${EColors.Black2};
 `;
 
 export const Button = styled.button`
@@ -15,9 +14,9 @@ export const Button = styled.button`
   gap: 6px;
   width: 100%;
   padding: 12px 16px;
-  border: none;
+  border: 1px solid ${({ theme }) => theme.selects.primary.border.primary};
   border-radius: inherit;
-  background: ${EColors.Back2};
+  background: ${({ theme }) => theme.selects.primary.background.primary};
   overflow: hidden;
   font-size: 14px;
   font-style: normal;
@@ -26,10 +25,6 @@ export const Button = styled.button`
   letter-spacing: -0.28px;
   transition: all ${Durations.Fast} ease;
   cursor: pointer;
-
-  &:hover {
-    background: ${EColors.Gray3};
-  }
 
   @media (max-width: ${BreakPoint.MobileTop}) {
     font-size: 12px;
@@ -43,7 +38,7 @@ export const LabelText = styled(StyledText)<{ $textRight: boolean }>`
   font-weight: 400;
   line-height: 140%;
   letter-spacing: -0.28px;
-  color: ${EColors.White1};
+  color: ${({ theme }) => theme.selects.primary.color.primary};
 
   ${({ $textRight }) =>
     $textRight
@@ -69,7 +64,7 @@ export const PlaceholderText = styled(StyledText)`
   line-height: 140%; /* 19.6px */
   letter-spacing: -0.28px;
   text-align: left;
-  color: ${EColors.Black1};
+  color: ${({ theme }) => theme.selects.primary.color.secondary};
 
   @media (max-width: ${BreakPoint.MobileTop}) {
     font-size: 12px;
@@ -114,13 +109,13 @@ export const ArrowWrapper = styled.div<{ $isOpen: boolean }>`
 export const Dropdown = styled.div<{ $isOpen: boolean; $dropDownHeight: number }>`
   position: absolute;
   top: 115%;
-  right: -1px;
+  right: 0;
   z-index: 10;
-  width: calc(100% + 2px);
+  width: 100%;
   max-height: ${({ $isOpen, $dropDownHeight }) => ($isOpen ? `${$dropDownHeight}px ` : '0')};
-  border: 1px solid ${EColors.Black4};
+  border: 1px solid ${({ theme }) => theme.selects.primary.border.primary};
   border-radius: 4px;
-  background: ${EColors.Back2};
+  background: ${({ theme }) => theme.selects.primary.background.primary};
   opacity: ${({ $isOpen }) => ($isOpen ? '1' : '0')};
   overflow: hidden;
   overflow-y: auto;
@@ -128,23 +123,17 @@ export const Dropdown = styled.div<{ $isOpen: boolean; $dropDownHeight: number }
   font-size: 14px;
   font-weight: 400;
   line-height: 16px;
-  color: ${EColors.White1};
+  color: ${({ theme }) => theme.selects.primary.color.primary};
   transition:
     max-height ${Durations.Fast} ease,
     opacity ${Durations.Fast} ease,
     transform ${Durations.Fast} ease;
-  transform: scaleY(${({ $isOpen }) => ($isOpen ? '1' : '0')});
+  transform: translateY(${({ $isOpen }) => ($isOpen ? '0' : '-30%')});
   transform-origin: top;
-  scrollbar-width: thin;
-  scrollbar-color: ${EColors.Gray3} transparent;
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
-    width: 4px;
-    background: ${EColors.Back2};
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: ${EColors.Gray3};
+    width: 0;
   }
 
   @media (max-width: ${BreakPoint.MobileTop}) {
@@ -158,7 +147,7 @@ export const Option = styled.div`
   cursor: pointer;
 
   &:hover {
-    background: ${EColors.Gray3};
+    background: ${({ theme }) => theme.selects.primary.background.secondary};
   }
 `;
 

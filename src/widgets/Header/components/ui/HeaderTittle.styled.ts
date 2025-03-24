@@ -1,5 +1,4 @@
 import { StyledText } from 'shared/styled/StyledText';
-import { EColors } from 'shared/styles/style-variables';
 import styled from 'styled-components';
 
 export const TittleText = styled(StyledText)`
@@ -8,9 +7,9 @@ export const TittleText = styled(StyledText)`
   font-weight: 400;
   line-height: 16.8px;
   text-transform: capitalize;
-  color: ${EColors.White1};
+  color: ${({ theme }) => theme.tittles.headerTittleTop.color.primary};
 `;
 
-export const TittleWithColor = styled(TittleText)<{ $color?: string }>`
-  ${({ $color }) => $color && `color: ${$color}; `};
+export const TittleWithColor = styled(TittleText)`
+  color: ${({ theme }) => theme.tittles.headerTittleTop.color.secondary};
 `;

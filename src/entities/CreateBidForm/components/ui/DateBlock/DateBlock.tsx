@@ -49,9 +49,24 @@ export const DateBlock: FC<IPropsDateBlock> = ({
         <InputLocalTime />
         <StyledButtonsWrapper>
           <StyledActiveButton
+            ref={buttonRef2}
+            text="On the date"
+            variant={EButtonVariant.Green}
+            active={activeDateButton === EActiveDateButton.Date}
+            $active={activeDateButton === EActiveDateButton.Date}
+            onClick={(e) => {
+              e.preventDefault();
+              handleActiveDateButton(EActiveDateButton.Date);
+
+              openCalendar();
+              setDateMode();
+            }}
+          />
+          <StyledActiveButton
             ref={buttonRef1}
             text="In the range"
-            variant={EButtonVariant.Bordered}
+            variant={EButtonVariant.Green}
+            active={activeDateButton === EActiveDateButton.Range}
             $active={activeDateButton === EActiveDateButton.Range}
             onClick={(e) => {
               e.preventDefault();
@@ -62,19 +77,7 @@ export const DateBlock: FC<IPropsDateBlock> = ({
               setRangeMode();
             }}
           />
-          <StyledActiveButton
-            ref={buttonRef2}
-            text="On the date"
-            variant={EButtonVariant.Bordered}
-            $active={activeDateButton === EActiveDateButton.Date}
-            onClick={(e) => {
-              e.preventDefault();
-              handleActiveDateButton(EActiveDateButton.Date);
 
-              openCalendar();
-              setDateMode();
-            }}
-          />
           <CalendarComponent />
           <input type="hidden" name="date-active-button" defaultValue={activeDateButton || ''} />
         </StyledButtonsWrapper>

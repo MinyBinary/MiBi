@@ -50,9 +50,9 @@ export const IdeaBlock: FC<IPropsIdeaBlock> = ({
         <S.ButtonsWrapper>
           <S.AboveButton
             text="Above"
-            variant={EButtonVariant.Bordered}
+            variant={EButtonVariant.Green}
             icon={<TriangleGreenUpIcon />}
-            $active={activeIdeaButton === EActiveButton.Above}
+            active={activeIdeaButton === EActiveButton.Above}
             onClick={(e) => {
               e.preventDefault();
               handleActiveIdeaButton(EActiveButton.Above);
@@ -60,9 +60,9 @@ export const IdeaBlock: FC<IPropsIdeaBlock> = ({
           />
           <S.BelowButton
             text="Below"
-            variant={EButtonVariant.Bordered}
+            variant={EButtonVariant.Red}
             icon={<TriangleRedDownIcon />}
-            $active={activeIdeaButton === EActiveButton.Below}
+            active={activeIdeaButton === EActiveButton.Below}
             onClick={(e) => {
               e.preventDefault();
               handleActiveIdeaButton(EActiveButton.Below);
