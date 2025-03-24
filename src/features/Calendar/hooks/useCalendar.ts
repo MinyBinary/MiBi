@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Calendar } from 'features/Calendar';
+import { useOverlay } from 'features/Overlay/logic/hooks/useOverlay';
 import { EButtonVariant } from 'shared/components/ui';
-import { useClickOutside } from 'shared/hooks/useClickOutside';
 
 import { IUseCalendarProps, IUseCalendarReturns, Value } from './types/useCalendar-types';
 
 import { CloseCalendar, StyledCalendarWrapper } from 'features/Calendar/Calendar.styled';
 
-export const useCalendar = ({
-  minDate,
-  excludedCloseByOuterClickRefs,
-}: IUseCalendarProps): IUseCalendarReturns => {
+export const useCalendar = ({ minDate }: IUseCalendarProps): IUseCalendarReturns => {
   const [value, setValue] = useState<Value>(null);
   const [isRangeCalendarOpen, setIsRangeCalendarOpen] = useState(false);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const calendarRef = useClickOutside<HTMLDivElement>(
-    () => setIsCalendarOpen(false),
-    excludedCloseByOuterClickRefs,
-  );
+
+  const [activeButton, setActiveButton] = useState<'confirm' | 'cancel' | ''>('');
+
+  const calendarRef = useRef<HTMLDivElement>(null);
+
+  // const calendarRef = useClickOutside<HTMLDivElement>(
+  //   () => setIsCalendarOpen(false),
+  //   excludedCloseByOuterClickRefs,
+  // );
 
   const handleDateRangeChange = (newValue: Date | [Date, Date]) => {
     if (Array.isArray(newValue)) {
@@ -26,6 +28,16 @@ export const useCalendar = ({
       setValue(newValue);
     }
   };
+
+  const handleChangeActiveButton = (button: 'confirm' | 'cancel' | '') => setActiveButton(button);
+
+  const { hideOverlay } = useOverlay();
+
+  useEffect(() => {
+    return () => {
+      setActiveButton('');
+    };
+  }, [isCalendarOpen]);
 
   useEffect(() => {
     setValue(null);
@@ -50,17 +62,43 @@ export const useCalendar = ({
             isOpen: true,
             minDate: minDate,
           }),
-          React.createElement(CloseCalendar, {
-            key: 'calendar-close',
-            text: 'Submit',
-            variant: EButtonVariant.Bordered,
-            onClick: (e) => {
-              e.stopPropagation();
-              e.preventDefault();
-
-              setIsCalendarOpen(false);
+          React.createElement(
+            'div',
+            {
+              key: 'calendar-buttons',
+              style: { display: 'flex', gap: '16px' },
             },
-          }),
+            [
+              React.createElement(CloseCalendar, {
+                key: 'calendar-confirm',
+                text: 'confirm',
+                variant: EButtonVariant.Green,
+                $active: activeButton === 'confirm',
+                active: activeButton === 'confirm',
+                onClick: (e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  hideOverlay();
+                  setIsCalendarOpen(false);
+                  handleChangeActiveButton('confirm');
+                },
+              }),
+              React.createElement(CloseCalendar, {
+                key: 'calendar-cancel',
+                text: 'cancel',
+                variant: EButtonVariant.Green,
+                $active: activeButton === 'cancel',
+                active: activeButton === 'cancel',
+                onClick: (e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  hideOverlay();
+                  setIsCalendarOpen(false);
+                  handleChangeActiveButton('cancel');
+                },
+              }),
+            ],
+          ),
         ],
       );
     },
@@ -73,5 +111,6 @@ export const useCalendar = ({
     closeCalendar: () => setIsCalendarOpen(false),
     setRangeMode: () => setIsRangeCalendarOpen(true),
     setDateMode: () => setIsRangeCalendarOpen(false),
+    calendarRef,
   };
 };

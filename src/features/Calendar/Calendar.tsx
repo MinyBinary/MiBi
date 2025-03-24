@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { View } from 'react-calendar/dist/cjs/shared/types';
 import NextCalendarIcon from 'shared/assets/icons/arrows/next-calendar.svg?react';
 import PrevCalendarIcon from 'shared/assets/icons/arrows/prev-calendar.svg?react';
@@ -10,6 +10,7 @@ interface IPropsCalendar {
   value?: [Date | null, Date | null] | Date | null;
   isOpen?: boolean;
   minDate?: Date;
+
   onValueChange: (newValue: Date | [Date, Date]) => void;
 }
 
@@ -49,21 +50,27 @@ export const Calendar = forwardRef<HTMLDivElement, IPropsCalendar>(
         return 'neighboring-past-date';
       }
 
+      if (date > today && view === 'month' && date.getMonth() !== activeStartDate.getMonth()) {
+        return 'neighboring-future-date';
+      }
+
       return '';
     };
 
     return (
-      <S.StyledCalendar
-        inputRef={ref}
-        onChange={(newValue) => onValueChange(newValue as Date | [Date, Date])}
-        selectRange={isRange}
-        value={value ?? new Date(Date.now())}
-        minDate={minDate}
-        locale="en-EN"
-        prevLabel={<PrevCalendarIcon />}
-        nextLabel={<NextCalendarIcon />}
-        tileClassName={addTittleClassName}
-      />
+      <div id="calendar">
+        <S.StyledCalendar
+          inputRef={ref}
+          onChange={(newValue) => onValueChange(newValue as Date | [Date, Date])}
+          selectRange={isRange}
+          value={value ?? new Date(Date.now())}
+          minDate={minDate}
+          locale="en-EN"
+          prevLabel={<PrevCalendarIcon />}
+          nextLabel={<NextCalendarIcon />}
+          tileClassName={addTittleClassName}
+        />
+      </div>
     );
   },
 );

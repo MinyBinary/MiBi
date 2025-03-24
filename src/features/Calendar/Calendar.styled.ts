@@ -1,8 +1,7 @@
 import Calendar from 'react-calendar';
 import { Button } from 'shared/components/ui';
-import { Durations, EColors, EFontFamily } from 'shared/styles/style-variables';
-import { BreakPointsV2 } from 'shared/styles/style-variables/breakpoints';
-import styled from 'styled-components';
+import { Durations, EFontFamily } from 'shared/styles/style-variables';
+import styled, { css } from 'styled-components';
 
 export const StyledCalendarWrapper = styled.div`
   position: absolute;
@@ -14,7 +13,8 @@ export const StyledCalendarWrapper = styled.div`
   gap: 16px;
   width: 100%;
   padding: 16px;
-  background: ${EColors.Back2};
+  background: ${({ theme }) => theme.calendar.primary.background.primary};
+  pointer-events: all;
 `;
 
 export const StyledCalendar = styled(Calendar)`
@@ -34,7 +34,7 @@ export const StyledCalendar = styled(Calendar)`
     line-height: normal;
     text-align: center;
     text-transform: uppercase;
-    color: ${EColors.White1};
+    color: ${({ theme }) => theme.calendar.primary.color.primary};
   }
 
   .react-calendar__month-view__weekdays__weekday abbr[title] {
@@ -51,14 +51,14 @@ export const StyledCalendar = styled(Calendar)`
     width: 33px;
     height: 33px;
     border: none;
-    background: ${EColors.Back2};
+    background: ${({ theme }) => theme.calendar.primary.background.primary};
     text-align: center;
-    color: ${EColors.White1};
+    color: ${({ theme }) => theme.calendar.primary.color.primary} !important;
     transition: all ${Durations.Fast} ease-in-out;
 
     &:hover {
-      border: 1px solid ${EColors.Green1};
-      color: ${EColors.Green1};
+      border: 1px solid ${({ theme }) => theme.calendar.primary.color.hover};
+      color: ${({ theme }) => theme.calendar.primary.color.hover};
       cursor: pointer;
     }
   }
@@ -68,68 +68,101 @@ export const StyledCalendar = styled(Calendar)`
   }
 
   .disabled-date {
-    color: ${EColors.Black1} !important;
+    color: ${({ theme }) => theme.calendar.primary.color.hoverDisabled} !important;
     cursor: default !important;
 
     &:hover {
-      border: 1px solid ${EColors.Black1};
-    }
-  }
-
-  .react-calendar__tile--active {
-    color: ${EColors.Red1};
-
-    &:hover {
-      color: ${EColors.Green1};
+      border: 1px solid ${({ theme }) => theme.calendar.primary.color.hoverDisabled};
     }
   }
 
   .react-calendar__tile--now {
-    color: ${EColors.Green1};
+    color: ${({ theme }) => theme.calendar.primary.color.active};
   }
 
   .react-calendar__tile--hover {
-    background: ${EColors.Black3};
+    color: ${({ theme }) => theme.calendar.primary.color.primary} !important;
   }
 
   .react-calendar__tile--range {
-    background: ${EColors.Black3};
-    color: ${EColors.White1};
+    background: ${({ theme }) => theme.calendar.primary.background.secondary};
+    color: ${({ theme }) => theme.calendar.primary.color.primary} !important;
 
     &:hover {
-      color: ${EColors.Green1};
+      color: ${({ theme }) => theme.calendar.primary.color.primary} !important;
     }
   }
 
   .react-calendar__tile--rangeStart {
-    border: 1px solid ${EColors.Green1};
+    border: 1px solid ${({ theme }) => theme.calendar.primary.color.active};
     border-radius: 1px;
-    background: ${EColors.Back2};
-    color: ${EColors.Green1};
+    background: transparent;
+    color: ${({ theme }) => theme.calendar.primary.color.active};
   }
 
   .react-calendar__tile--rangeEnd {
     border-radius: 1px;
-    background: #14b48b;
+    background: ${({ theme }) => theme.calendar.primary.background.active};
     font-weight: bold;
-    color: ${EColors.Back2};
-
-    &:hover {
-      color: ${EColors.Back2};
-    }
+    color: ${({ theme }) => theme.calendar.primary.color.secondary}!important;
   }
 
   .neighboring-past-date {
+    color: ${({ theme }) => theme.calendar.primary.color.hoverDisabled} !important;
 
     &:hover {
-      border: 1px solid ${EColors.Black1};
-      color: ${EColors.Black1};
-      cursor: default;
+      border: 1px solid ${({ theme }) => theme.calendar.primary.color.hoverDisabled} !important;
+      color: ${({ theme }) => theme.calendar.primary.color.hoverDisabled} !important;
+      cursor: default !important;
     }
   }
 
+  .neighboring-future-date {
+
+    &:hover {
+      border: 1px solid ${({ theme }) => theme.calendar.primary.color.hover} !important;
+      color: ${({ theme }) => theme.calendar.primary.color.primary} !important;
+    }
+  }
+
+  .neighboring-future-date:not(.react-calendar__tile--range, .react-calendar__tile--hover) {
+    color: ${({ theme }) => theme.calendar.primary.color.hoverDisabled} !important;
+  }
+
   .react-calendar__month-view__days__day--neighboringMonth {
-    color: ${EColors.Black1};
+    color: ${({ theme }) => theme.calendar.primary.color.hoverDisabled};
+
+    &:hover {
+      border: 1px solid ${({ theme }) => theme.calendar.primary.color.hover};
+    }
+  }
+
+  .react-calendar__tile--hover + .disabled-date {
+    background: transparent !important;
+    color: ${({ theme }) => theme.calendar.primary.color.hoverDisabled} !important;
+  }
+
+  .react-calendar__tile--hover + .neighboring-past-date {
+    background: ${({ theme }) => theme.calendar.primary.background.primary} !important;
+    color: ${({ theme }) => theme.calendar.primary.color.hoverDisabled} !important;
+  }
+
+  .disabled-date + .react-calendar__tile--hover {
+
+    &:hover {
+      color: ${({ theme }) => theme.calendar.primary.color.hoverDisabled} !important;
+    }
+  }
+
+  .react-calendar__tile--hover:not(.disabled-date, .neighboring-past-date, .react-calendar__tile--rangeStart, .react-calendar__tile--rangeEnd) {
+    background: ${({ theme }) => theme.calendar.primary.background.secondary};
+  }
+
+  .neighboring-future-date + .react-calendar__tile--rangeEnd {
+
+    &:hover {
+      color: ${({ theme }) => theme.calendar.primary.color.secondary} !important;
+    }
   }
 
   .react-calendar__navigation {
@@ -160,20 +193,25 @@ export const StyledCalendar = styled(Calendar)`
     line-height: 140%;
     letter-spacing: -0.32px;
     text-transform: uppercase;
-    color: ${EColors.White1};
-    transition: opacity 0.3s ease;
+    color: ${({ theme }) => theme.calendar.primary.color.primary};
+    transition: color 0.3s ease;
 
     &:hover {
-      color: ${EColors.Black1};
+      color: ${({ theme }) => theme.calendar.primary.color.hoverDisabled};
     }
   }
 
   .react-calendar__navigation button {
     border: none;
     background: transparent;
-    color: ${EColors.White1};
+    color: ${({ theme }) => theme.calendar.primary.color.primary};
     transition: color 0.3s ease;
     cursor: pointer;
+
+    & svg path {
+      transition: fill ${Durations.Fast} ease-in-out;
+      fill: ${({ theme }) => theme.calendar.primary.color.primary};
+    }
   }
 
   .react-calendar__navigation button:disabled {
@@ -181,7 +219,7 @@ export const StyledCalendar = styled(Calendar)`
 
     & svg path {
       transition: fill ${Durations.Fast} ease-in-out;
-      fill: ${EColors.Black1};
+      fill: ${({ theme }) => theme.calendar.primary.color.hoverDisabled};
     }
   }
 
@@ -189,7 +227,7 @@ export const StyledCalendar = styled(Calendar)`
 
     & svg path {
       transition: fill ${Durations.Fast} ease-in-out;
-      fill: ${EColors.Black1};
+      fill: ${({ theme }) => theme.calendar.primary.color.hoverDisabled};
     }
   }
 
@@ -214,20 +252,14 @@ export const StyledCalendar = styled(Calendar)`
   }
 `;
 
-export const CloseCalendar = styled(Button)`
-  border-color: ${EColors.Green4};
-  background: ${EColors.Green2};
-  color: ${EColors.Green1};
+export const CloseCalendar = styled(Button)<{ $active?: boolean }>`
+  width: 100%;
+  padding: 12px;
+  text-transform: uppercase;
 
-  @media (min-width: ${BreakPointsV2.MobileMedium}) {
-    border-color: ${EColors.Black1};
-    background: transparent;
-    color: ${EColors.White1};
-
-    &:hover {
-      border-color: ${EColors.Green4};
-      background: ${EColors.Green2};
-      color: ${EColors.Green1};
-    }
-  }
+  ${({ $active, theme }) =>
+    $active &&
+    css`
+      color: ${theme.buttons.green.color.active};
+    `}
 `;
