@@ -9,7 +9,10 @@ export const ContentWrapper = styled.div`
   width: 100%;
   padding: 16px;
   border-radius: 4px;
-  background: ${({ theme }) => theme.forms.createBidForm.background.primary};
+
+  @media (min-width: ${BreakPointsV2.MobileMedium}) {
+    background: ${({ theme }) => theme.forms.createBidForm.background.primary};
+  }
 
   @media (max-width: ${BreakPointsV2.MobileMedium}) {
     padding: 0;
