@@ -31,8 +31,6 @@ export const useCalendar = ({ minDate }: IUseCalendarProps): IUseCalendarReturns
     if ((isCalendarOpen && isMobile) || (isRangeCalendarOpen && isMobile)) {
       calendarRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-
-    setValue(null);
   }, [isRangeCalendarOpen, isCalendarOpen, isMobile]);
 
   return {
@@ -72,6 +70,7 @@ export const useCalendar = ({ minDate }: IUseCalendarProps): IUseCalendarReturns
                   if (!value) {
                     setValue(dayjs().toDate());
                   }
+
                   hideOverlay();
                   setIsCalendarOpen(false);
                 },
