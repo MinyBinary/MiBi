@@ -147,15 +147,20 @@ export const StyledCalendar = styled(Calendar)`
     color: ${({ theme }) => theme.calendar.primary.color.hoverDisabled} !important;
   }
 
+  .react-calendar__tile--hover:not(
+      .disabled-date,
+      .neighboring-past-date,
+      .react-calendar__tile--rangeStart,
+      .react-calendar__tile--rangeEnd
+    ) {
+    background: ${({ theme }) => theme.calendar.primary.background.secondary};
+  }
+
   .disabled-date + .react-calendar__tile--hover {
 
     &:hover {
       color: ${({ theme }) => theme.calendar.primary.color.hoverDisabled} !important;
     }
-  }
-
-  .react-calendar__tile--hover:not(.disabled-date, .neighboring-past-date, .react-calendar__tile--rangeStart, .react-calendar__tile--rangeEnd) {
-    background: ${({ theme }) => theme.calendar.primary.background.secondary};
   }
 
   .neighboring-future-date + .react-calendar__tile--rangeEnd {

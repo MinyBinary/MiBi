@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
+import dayjs from 'dayjs';
 import { Calendar } from 'features/Calendar';
 import { useOverlay } from 'features/Overlay/logic/hooks/useOverlay';
 import { EButtonVariant } from 'shared/components/ui';
+import { BreakPointsV2 } from 'shared/styles/style-variables/breakpoints';
 
 import { IUseCalendarProps, IUseCalendarReturns, Value } from './types/useCalendar-types';
 
@@ -12,14 +14,10 @@ export const useCalendar = ({ minDate }: IUseCalendarProps): IUseCalendarReturns
   const [isRangeCalendarOpen, setIsRangeCalendarOpen] = useState(false);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
-  const [activeButton, setActiveButton] = useState<'confirm' | 'cancel' | ''>('');
+  const isMobile = document.body.clientWidth <= parseInt(BreakPointsV2.MobileLarge);
 
   const calendarRef = useRef<HTMLDivElement>(null);
-
-  // const calendarRef = useClickOutside<HTMLDivElement>(
-  //   () => setIsCalendarOpen(false),
-  //   excludedCloseByOuterClickRefs,
-  // );
+  const { hideOverlay } = useOverlay();
 
   const handleDateRangeChange = (newValue: Date | [Date, Date]) => {
     if (Array.isArray(newValue)) {
@@ -29,19 +27,13 @@ export const useCalendar = ({ minDate }: IUseCalendarProps): IUseCalendarReturns
     }
   };
 
-  const handleChangeActiveButton = (button: 'confirm' | 'cancel' | '') => setActiveButton(button);
-
-  const { hideOverlay } = useOverlay();
-
   useEffect(() => {
-    return () => {
-      setActiveButton('');
-    };
-  }, [isCalendarOpen]);
+    if ((isCalendarOpen && isMobile) || (isRangeCalendarOpen && isMobile)) {
+      calendarRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 
-  useEffect(() => {
     setValue(null);
-  }, [isRangeCalendarOpen]);
+  }, [isRangeCalendarOpen, isCalendarOpen, isMobile]);
 
   return {
     CalendarComponent: () => {
@@ -73,28 +65,27 @@ export const useCalendar = ({ minDate }: IUseCalendarProps): IUseCalendarReturns
                 key: 'calendar-confirm',
                 text: 'confirm',
                 variant: EButtonVariant.Green,
-                $active: activeButton === 'confirm',
-                active: activeButton === 'confirm',
                 onClick: (e) => {
                   e.stopPropagation();
                   e.preventDefault();
+
+                  if (!value) {
+                    setValue(dayjs().toDate());
+                  }
                   hideOverlay();
                   setIsCalendarOpen(false);
-                  handleChangeActiveButton('confirm');
                 },
               }),
               React.createElement(CloseCalendar, {
                 key: 'calendar-cancel',
                 text: 'cancel',
                 variant: EButtonVariant.Green,
-                $active: activeButton === 'cancel',
-                active: activeButton === 'cancel',
                 onClick: (e) => {
                   e.stopPropagation();
                   e.preventDefault();
-                  hideOverlay();
+                  setValue(null);
                   setIsCalendarOpen(false);
-                  handleChangeActiveButton('cancel');
+                  hideOverlay();
                 },
               }),
             ],

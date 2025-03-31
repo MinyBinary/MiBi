@@ -47,8 +47,7 @@ export const CreateBidForm: FC = () => {
     clearIdeaBlockState,
   } = useIdeaBlockLogic();
 
-  const { dateValue, activeDateButton, handleActiveDateButton, clearDateBlockState } =
-    useDateBlockLogic();
+  const { activeDateButton, handleActiveDateButton, clearDateBlockState } = useDateBlockLogic();
 
   const {
     activeBidButton,
@@ -187,7 +186,6 @@ export const CreateBidForm: FC = () => {
             handleSelectValueExchangeChange={handleSelectValueExchangeChange}
           />
           <DateBlock
-            dateValue={dateValue}
             activeDateButton={activeDateButton}
             handleActiveDateButton={handleActiveDateButton}
           />

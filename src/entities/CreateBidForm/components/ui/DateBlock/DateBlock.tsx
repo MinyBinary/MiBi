@@ -1,4 +1,4 @@
-import { type FC, useRef } from 'react';
+import { type FC } from 'react';
 import { StyledActiveButton } from 'entities/CreateBidForm/components/styled/StyledActiveButton';
 import { BlockWrapper } from 'entities/CreateBidForm/components/styled/StyledBlockWrapper';
 import { StyledButtonsWrapper } from 'entities/CreateBidForm/components/styled/StyledButtonsWrapper';
@@ -15,19 +15,11 @@ import { formatCalendarDate } from './utils/formatCalendarDate';
 import * as S from './DateBlock.styled';
 
 interface IPropsDateBlock {
-  dateValue: string;
   activeDateButton: EActiveDateButton | null;
   handleActiveDateButton: (button: EActiveDateButton) => void;
 }
 
-export const DateBlock: FC<IPropsDateBlock> = ({
-  dateValue,
-  activeDateButton,
-  handleActiveDateButton,
-}) => {
-  const buttonRef1 = useRef<HTMLButtonElement>(null);
-  const buttonRef2 = useRef<HTMLButtonElement>(null);
-
+export const DateBlock: FC<IPropsDateBlock> = ({ activeDateButton, handleActiveDateButton }) => {
   const {
     calendarRef,
     activeDate,
@@ -39,7 +31,6 @@ export const DateBlock: FC<IPropsDateBlock> = ({
     setDateMode,
   } = useCalendar({
     minDate: new Date(Date.now()),
-    excludedCloseByOuterClickRefs: [buttonRef1, buttonRef2],
   });
 
   const { showOverlay } = useOverlay();
@@ -53,7 +44,6 @@ export const DateBlock: FC<IPropsDateBlock> = ({
         <InputLocalTime />
         <StyledButtonsWrapper>
           <StyledActiveButton
-            ref={buttonRef2}
             text="On the date"
             variant={EButtonVariant.Green}
             active={activeDateButton === EActiveDateButton.Date}
@@ -66,7 +56,6 @@ export const DateBlock: FC<IPropsDateBlock> = ({
             }}
           />
           <StyledActiveButton
-            ref={buttonRef1}
             text="In the range"
             variant={EButtonVariant.Green}
             active={activeDateButton === EActiveDateButton.Range}
@@ -79,13 +68,12 @@ export const DateBlock: FC<IPropsDateBlock> = ({
             }}
           />
 
-          <CalendarComponent />
           <input type="hidden" name="date-active-button" defaultValue={activeDateButton || ''} />
         </StyledButtonsWrapper>
         <S.DisabledInput
           placeholder="DD/MM/YY"
           name="date-input-value"
-          defaultValue={formattedDate || dateValue}
+          defaultValue={formattedDate ?? undefined}
         >
           <S.StyledTimeAndDateIcon
             onClick={(e) => {
@@ -99,6 +87,7 @@ export const DateBlock: FC<IPropsDateBlock> = ({
               openCalendar();
             }}
           />
+          <CalendarComponent />
         </S.DisabledInput>
       </StyledInputsWrapper>
     </BlockWrapper>

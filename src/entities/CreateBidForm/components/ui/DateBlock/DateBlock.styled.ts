@@ -8,6 +8,7 @@ export const DateBlock = styled.div`
 `;
 
 export const DisabledInput = styled(Input)`
+  position: relative;
   pointer-events: none;
 `;
 

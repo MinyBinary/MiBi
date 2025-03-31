@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
-import { BreakPointsV2 } from 'shared/styles/style-variables/breakpoints';
 
+// import { BreakPointsV2 } from 'shared/styles/style-variables/breakpoints';
 import { OverlayContext } from './OverlayProviderContext';
 
 import { Overlay } from 'features/Overlay/Overlay.styled';
@@ -26,35 +26,28 @@ export const OverlayProvider: FC<IPropsAppProviders> = ({ children }) => {
 
   useEffect(() => {
     if (overlayVisible) {
-      const isMobile = window.innerWidth <= parseInt(BreakPointsV2.MobileLarge);
-
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflowY = 'scroll';
       document.body.style.pointerEvents = 'none';
       const preventDefault = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' || e.key === 'Enter' || e.key === 'Tab') {
+          setOverlayVisible(false);
+        }
         e.preventDefault();
       };
 
       window.addEventListener('keydown', preventDefault, true);
 
-      if (isMobile) {
-        document.body.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-          inline: 'nearest',
-        });
-      }
-
       return () => {
-        document.body.style.overflow = 'auto';
+        document.body.style.overflowY = 'auto';
         document.body.style.pointerEvents = 'auto';
         window.removeEventListener('keydown', preventDefault, true);
       };
     }
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflowY = 'auto';
       document.body.style.pointerEvents = 'auto';
     };
-  }, [overlayVisible]);
+  }, [overlayVisible, overlayPosition]);
 
   const showOverlay = <T extends HTMLElement | null>(
     elementId: string,
@@ -70,12 +63,6 @@ export const OverlayProvider: FC<IPropsAppProviders> = ({ children }) => {
           width: rect.width,
           height: rect.height,
         });
-
-        elementRef.current.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-          inline: 'nearest',
-        });
       }
       setOverlayVisible(true);
     }
@@ -90,7 +77,6 @@ export const OverlayProvider: FC<IPropsAppProviders> = ({ children }) => {
     <OverlayContext.Provider
       value={{ showOverlay, hideOverlay, overlayVisible, activeElementId, overlayPosition }}
     >
-      {children}
       <Overlay
         $visible={overlayVisible}
         top={overlayPosition.top}
@@ -99,6 +85,7 @@ export const OverlayProvider: FC<IPropsAppProviders> = ({ children }) => {
         height={overlayPosition.height}
         $activeElementId={activeElementId}
       />
+      {children}
     </OverlayContext.Provider>
   );
 };
