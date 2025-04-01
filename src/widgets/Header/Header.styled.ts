@@ -8,7 +8,7 @@ export const Header = styled.header<{ $isMobile?: boolean }>`
   z-index: 999;
   width: 100%;
   height: max-content;
-  padding: 16px;
+  padding: 16px 0;
   background: ${({ theme }) => theme.global.background.alter};
 `;
 
