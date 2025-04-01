@@ -17,6 +17,7 @@ export const lightTheme = {
     background: {
       primary: '#D7D7D74D',
       secondary: '#EBEBEB',
+      alter: '#F3F3F3',
     },
   },
 

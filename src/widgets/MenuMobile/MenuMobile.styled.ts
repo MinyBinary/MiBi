@@ -3,12 +3,11 @@ import { StyledText } from 'shared/styled/StyledText';
 import { EFontFamily } from 'shared/styles/style-variables';
 import styled, { css } from 'styled-components';
 
-export const MenuMobileOverlay = styled.div<{ $isOpen: boolean }>`
+export const MenuMobileOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
-  ${({ $isOpen }) => ($isOpen ? 'width: 100%;' : 'width: 0;')};
   height: 100vh;
   background: ${({ theme }) => theme.popups.primary.overlay.primary};
 `;

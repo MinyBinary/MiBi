@@ -1,12 +1,25 @@
 import { BreakPoint, Durations, EColors } from 'shared/styles/style-variables';
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 
-export const Header = styled.header`
+export const Header = styled.header<{ $isMobile?: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
   height: 140px;
+
+  ${({ $isMobile }) =>
+    $isMobile &&
+    css`
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      width: 100%;
+      height: max-content;
+      padding: 16px;
+      background: ${({ theme }) => theme.global.background.alter};
+    `}
 `;
 
 export const TokenTittleBlock = styled.div`

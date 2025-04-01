@@ -1,4 +1,5 @@
 import { BreakPoint } from 'shared/styles/style-variables';
+import { BreakPointsV2 } from 'shared/styles/style-variables/breakpoints';
 import { styled } from 'styled-components';
 
 export const AppLayout = styled.div`
@@ -13,7 +14,8 @@ export const AppLayout = styled.div`
     max-width: ${BreakPoint.DesktopLow};
   }
 
-  @media (max-width: ${BreakPoint.MobileTop}) {
+  @media (max-width: ${BreakPointsV2.MobileLarge}) {
     padding: 16px;
+    padding-top: 180px;
   }
 `;
