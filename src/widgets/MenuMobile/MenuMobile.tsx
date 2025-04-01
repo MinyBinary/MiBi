@@ -1,9 +1,9 @@
-import { type FC, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { AnimatePresence } from 'framer-motion';
 import { Button } from 'shared/components/ui';
 import { useClickOutside } from 'shared/hooks/useClickOutside';
-import { useDisableScroll } from 'shared/hooks/useDisableScroll';
+import { useScroll } from 'shared/hooks/useScroll';
 import { AppRoutes } from 'shared/routes/app-routes';
 import { Durations } from 'shared/styles/style-variables';
 
@@ -14,9 +14,12 @@ import * as S from './MenuMobile.styled';
 export const MenuMobile: FC = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  useDisableScroll();
+  const { handleDisableScroll, handleEnableScroll } = useScroll();
 
-  const menuRef = useClickOutside<HTMLDivElement>(() => setIsMenuOpen(false));
+  const menuRef = useClickOutside<HTMLDivElement>(() => {
+    handleEnableScroll();
+    setIsMenuOpen(false);
+  });
 
   const animateProps = {
     initial: { width: '0%' },
@@ -30,9 +33,17 @@ export const MenuMobile: FC = () => {
     },
   };
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      handleDisableScroll();
+    } else {
+      handleEnableScroll();
+    }
+  }, [isMenuOpen, handleDisableScroll, handleEnableScroll]);
+
   return (
     <>
-      <S.MenuMobileOverlay $isOpen={isMenuOpen}>
+      <S.MenuMobileOverlay>
         <AnimatePresence>
           <S.MenuMobileWrapper {...animateProps} ref={menuRef}>
             <Button onClick={() => setIsMenuOpen(false)} style={{ background: 'gray' }} />

@@ -17,6 +17,7 @@ export const darkTheme = {
     background: {
       primary: '#070708',
       secondary: '#1414174D',
+      alter: '#070708',
     },
   },
 

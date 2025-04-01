@@ -18,7 +18,7 @@ export const Header: FC = () => {
   const { isMobile, isTablet, isDesktop } = useInnerWidth();
 
   return (
-    <S.Header>
+    <S.Header $isMobile={isMobile}>
       <S.TokenTittleBlock>
         <HeaderTittle />
       </S.TokenTittleBlock>
