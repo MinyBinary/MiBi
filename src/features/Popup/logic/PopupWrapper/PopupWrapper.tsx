@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { usePopup } from 'features/Popup';
 import CloseIcon from 'shared/assets/icons/close/close-x.svg?react';
+import { useDisableScroll } from 'shared/hooks/useDisableScroll';
 
 import * as S from './PopupWrapper.styled';
 
@@ -11,6 +12,8 @@ interface PopupProps {
 
 export const PopupWrapper: FC<PopupProps> = ({ renderTittle, renderContent }) => {
   const { isPopupOpen, closePopup } = usePopup();
+
+  useDisableScroll();
 
   if (!isPopupOpen) return null;
   return (
