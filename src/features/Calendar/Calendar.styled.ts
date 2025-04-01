@@ -1,9 +1,10 @@
 import Calendar from 'react-calendar';
+import { motion } from 'framer-motion';
 import { Button } from 'shared/components/ui';
 import { Durations, EFontFamily } from 'shared/styles/style-variables';
 import styled, { css } from 'styled-components';
 
-export const StyledCalendarWrapper = styled.div`
+export const StyledCalendarWrapper = styled(motion.div)`
   position: absolute;
   top: 115%;
   left: 0;
@@ -15,6 +16,8 @@ export const StyledCalendarWrapper = styled.div`
   padding: 16px;
   background: ${({ theme }) => theme.calendar.primary.background.primary};
   pointer-events: all;
+  will-change: transform, opacity;
+  transform-origin: top;
 `;
 
 export const StyledCalendar = styled(Calendar)`
@@ -257,7 +260,13 @@ export const StyledCalendar = styled(Calendar)`
   }
 `;
 
-export const CloseCalendar = styled(Button)<{ $active?: boolean }>`
+export const CalendarButtonsWrapper = styled.div`
+  display: flex;
+  padding: 16px 0 0;
+  border-top: 2px solid ${({ theme }) => theme.calendar.primary.color.secondary};
+`;
+
+export const CalendarButton = styled(Button)<{ $active?: boolean }>`
   width: 100%;
   padding: 12px;
   text-transform: uppercase;

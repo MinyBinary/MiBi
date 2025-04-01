@@ -16,6 +16,10 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background: ${({ theme }) => theme.popups.primary.overlay.primary};
+
+  @media (max-width: ${BreakPoint.MobileTop}) {
+    padding: 16px;
+  }
 `;
 
 export const Popup = styled.div`
@@ -32,7 +36,6 @@ export const Popup = styled.div`
 
   @media (max-width: ${BreakPoint.MobileTop}) {
     width: 100%;
-    height: 100%;
   }
 `;
 
