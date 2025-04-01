@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import dayjs from 'dayjs';
-import { Calendar } from 'features/Calendar';
+import { Calendar } from 'features/Calendar/Calendar';
 import { useOverlay } from 'features/Overlay/logic/hooks/useOverlay';
 import { AnimatePresence } from 'framer-motion';
 import { EButtonVariant } from 'shared/components/ui';

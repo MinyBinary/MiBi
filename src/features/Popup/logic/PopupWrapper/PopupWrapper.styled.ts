@@ -26,7 +26,7 @@ export const Popup = styled.div`
   position: relative;
   padding: 24px;
   border-radius: 4px;
-  background: ${EColors.Back2};
+  background: ${({ theme }) => theme.popups.primary.background.primary};
   animation: ${scaleInPopup} ${Durations.Fast} ease-out forwards;
   box-sizing: border-box;
 
