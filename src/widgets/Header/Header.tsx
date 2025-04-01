@@ -8,8 +8,6 @@ import { AppRoutes } from 'shared/routes/app-routes';
 import { Menu } from 'widgets/Menu';
 import { MenuMobile } from 'widgets/MenuMobile';
 
-import { HeaderTittle } from './components/ui';
-
 import * as S from './Header.styled';
 
 export const Header: FC = () => {
@@ -19,9 +17,6 @@ export const Header: FC = () => {
 
   return (
     <S.Header $isMobile={isMobile}>
-      <S.TokenTittleBlock>
-        <HeaderTittle />
-      </S.TokenTittleBlock>
       <S.HeaderContent>
         <S.MibiLogoWrapper>
           <MibiLogo onClick={() => navigate(AppRoutes.Home())} />
