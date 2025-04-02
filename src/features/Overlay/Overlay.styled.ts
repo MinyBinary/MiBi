@@ -15,7 +15,7 @@ export const Overlay = styled.div<{
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 999;
+  z-index: 9999;
   display: ${({ $visible }) => ($visible ? 'block' : 'none')};
   background: ${({ theme }) => theme.popups.primary.overlay.primary};
   overflow: hidden;
