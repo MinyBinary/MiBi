@@ -16,6 +16,15 @@ export const AppLayout = styled.div`
 
   @media (max-width: ${BreakPointsV2.MobileLarge}) {
     padding: 16px;
-    padding-top: 180px;
   }
+`;
+
+export const TokenTittleBlock = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border-radius: 4px;
+  background: ${({ theme }) => theme.tittles.headerTittleTop.background.primary};
+  text-align: center;
 `;
