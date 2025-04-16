@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { EFontFamily } from 'shared/styles/style-variables';
 import styled, { css } from 'styled-components';
 
@@ -29,7 +30,7 @@ export const SelectContainerContent = styled.div`
   }
 `;
 
-export const SelectOptions = styled.div<{ $right?: boolean }>`
+export const SelectOptions = styled(motion.div)<{ $right?: boolean }>`
   position: absolute;
   top: 110%;
   z-index: 10;

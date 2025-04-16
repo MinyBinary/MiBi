@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { StyledText } from 'shared/styled/StyledText';
 import { css, styled } from 'styled-components';
 
 export const ThemeSwitcherWrapper = styled.div`
@@ -42,4 +43,11 @@ export const ThemeOptionWrapper = styled.div`
   justify-content: start;
   gap: 4px;
   width: 100%;
+`;
+
+export const ThemeLabelText = styled(StyledText)`
+  line-height: 140%;
+  letter-spacing: -0.28px;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.links.headerNavigationLinks.color.primary};
 `;

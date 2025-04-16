@@ -47,7 +47,7 @@ export const ThemeSwitcher: FC = () => {
                 <S.IconWrapperSun $svgSize={16}>
                   <SunIcon />
                 </S.IconWrapperSun>
-                <span>Light</span>
+                <S.ThemeLabelText>Light</S.ThemeLabelText>
               </S.ThemeOptionWrapper>
             ),
           },
@@ -58,7 +58,7 @@ export const ThemeSwitcher: FC = () => {
                 <S.IconWrapperMoon $svgSize={16}>
                   <MoonHalfIcon />
                 </S.IconWrapperMoon>
-                <span>Dark</span>
+                <S.ThemeLabelText>Dark</S.ThemeLabelText>
               </S.ThemeOptionWrapper>
             ),
           },
@@ -69,6 +69,7 @@ export const ThemeSwitcher: FC = () => {
           if (!isDarkMode && value === 'Light') return;
           toggleTheme();
         }}
+        toggleExpand={() => setIsExpanded(!isExpanded)}
       />
     </>
   );
