@@ -34,7 +34,7 @@ export const SelectV2: FC<IPropsSelectV2> = ({
     },
   };
 
-  const clickOutsideRef = useClickOutside<HTMLDivElement>(toggleExpand);
+  const clickOutsideRef = useClickOutside<HTMLDivElement>(() => isExpanded && toggleExpand());
 
   return (
     <S.SelectContainer {...props} ref={clickOutsideRef}>
