@@ -3,6 +3,7 @@ import { calendarThemeLight } from './calendar/calendar-theme-light';
 import { formsThemeLight } from './forms/forms-theme-light';
 import { inputsThemeLight } from './inputs/inputs-theme-light';
 import { linksThemeLight } from './links/links-theme-light';
+import { menuThemeLight } from './menu/menu-theme.light';
 import { popupsThemeLight } from './popups/popups-theme-light';
 import { selectsThemeLight } from './selects/selects-theme.light';
 import { textAreasThemeLight } from './textareas/textareas-theme-light';
@@ -18,6 +19,7 @@ export const lightTheme = {
       primary: '#D7D7D74D',
       secondary: '#EBEBEB',
       alter: '#F3F3F3',
+      default: '#FFFFFF',
     },
   },
 
@@ -30,4 +32,9 @@ export const lightTheme = {
   selects: { ...selectsThemeLight },
   popups: { ...popupsThemeLight },
   calendar: { ...calendarThemeLight },
+  menu: { ...menuThemeLight },
+
+  boxShadows: {
+    primary: '0px 7px 29px 0px rgba(100, 100, 111, 0.3)',
+  },
 };

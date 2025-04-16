@@ -1,7 +1,6 @@
 import { Durations } from 'shared/styles/style-variables';
 import styled from 'styled-components';
 
-// Styled компонент для оверлея
 export const Overlay = styled.div<{
   $visible: boolean;
   top: number;

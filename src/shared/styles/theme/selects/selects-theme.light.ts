@@ -7,7 +7,10 @@ export const selectsThemeLight = {
     },
     background: {
       primary: '#F3F2F2',
+      alterPrimary: '#FFFFFF',
       secondary: '#EBEBEB',
+      hover: '#F0F0F0FF',
+      alterHover: '#E6E6E6',
     },
     border: {
       primary: '#CACACACC',
