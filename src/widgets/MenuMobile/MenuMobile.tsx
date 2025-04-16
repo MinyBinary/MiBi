@@ -1,7 +1,7 @@
-import { type FC, useEffect, useState } from 'react';
+import { type FC, useEffect } from 'react';
 import { Link, useLocation } from 'react-router';
+import { ThemeSwitcher } from 'features/ThemeSwitcher';
 import { AnimatePresence } from 'framer-motion';
-import { Button } from 'shared/components/ui';
 import { useClickOutside } from 'shared/hooks/useClickOutside';
 import { useScroll } from 'shared/hooks/useScroll';
 import { AppRoutes } from 'shared/routes/app-routes';
@@ -11,14 +11,18 @@ import { menuItems } from './constants/menu-items';
 
 import * as S from './MenuMobile.styled';
 
-export const MenuMobile: FC = () => {
+interface IPropsMenuMobileProps {
+  isMenuOpen: boolean;
+  offsetTop: number;
+  setIsMenuOpen: (value: boolean) => void;
+}
+
+export const MenuMobile: FC<IPropsMenuMobileProps> = ({ isMenuOpen, offsetTop, setIsMenuOpen }) => {
   const location = useLocation();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { handleDisableScroll, handleEnableScroll } = useScroll();
 
   const menuRef = useClickOutside<HTMLDivElement>(() => {
     handleEnableScroll();
-    setIsMenuOpen(false);
   });
 
   const animateProps = {
@@ -45,26 +49,29 @@ export const MenuMobile: FC = () => {
     <>
       <S.MenuMobileOverlay>
         <AnimatePresence>
-          <S.MenuMobileWrapper {...animateProps} ref={menuRef}>
-            <Button onClick={() => setIsMenuOpen(false)} style={{ background: 'gray' }} />
-            <S.LinksWrapper>
-              {menuItems.map((item) => {
-                const isCurrentPath = item.path === location.pathname;
-                const isWp = item.path === AppRoutes.WP();
+          <S.MenuMobileWrapper {...animateProps} ref={menuRef} $offsetTop={offsetTop}>
+            <S.MobileMenuContent>
+              <S.ContentTop>
+                <ThemeSwitcher />
+              </S.ContentTop>
+              <S.LinksWrapper>
+                {menuItems.map((item) => {
+                  const isCurrentPath = item.path === location.pathname;
+                  const isWp = item.path === AppRoutes.WP();
 
-                return (
-                  <Link key={item.title} to={item.path} onClick={() => setIsMenuOpen(false)}>
-                    <S.LinkItem $active={isCurrentPath} $wordSpace={isWp ? -3 : undefined}>
-                      {item.title}
-                    </S.LinkItem>
-                  </Link>
-                );
-              })}
-            </S.LinksWrapper>
+                  return (
+                    <Link key={item.path} to={item.path} onClick={() => setIsMenuOpen(false)}>
+                      <S.LinkItem $active={isCurrentPath} $wordSpace={isWp ? -3 : undefined}>
+                        {item.title}
+                      </S.LinkItem>
+                    </Link>
+                  );
+                })}
+              </S.LinksWrapper>
+            </S.MobileMenuContent>
           </S.MenuMobileWrapper>
         </AnimatePresence>
       </S.MenuMobileOverlay>
-      <Button onClick={() => setIsMenuOpen(true)} />
     </>
   );
 };

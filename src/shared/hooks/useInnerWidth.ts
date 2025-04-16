@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { BreakPointsV2 } from 'shared/styles/style-variables/breakpoints';
 
 export const useInnerWidth = (): {
+  innerWidth: number;
   isMobile?: boolean;
   isTablet?: boolean;
   isDesktop?: boolean;
@@ -21,6 +22,7 @@ export const useInnerWidth = (): {
   }, []);
 
   return {
+    innerWidth,
     isMobile: innerWidth <= parseInt(BreakPointsV2.MobileLarge),
     isTablet:
       innerWidth <= parseInt(BreakPointsV2.Laptop13to15) &&

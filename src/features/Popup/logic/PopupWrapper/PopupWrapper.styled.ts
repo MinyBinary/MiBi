@@ -1,5 +1,6 @@
 import { StyledText } from 'shared/styled/StyledText';
 import { scaleInPopup } from 'shared/styles/keyframes/keyframes';
+import { EZIndex } from 'shared/styles/style-variables';
 import { BreakPoint } from 'shared/styles/style-variables/breakpoints';
 import { EColors } from 'shared/styles/style-variables/colors';
 import { Durations } from 'shared/styles/style-variables/durations';
@@ -9,7 +10,7 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 80;
+  z-index: ${EZIndex.Popup};
   display: flex;
   align-items: center;
   justify-content: center;

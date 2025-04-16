@@ -7,7 +7,10 @@ export const selectsThemeDark = {
     },
     background: {
       primary: '#141417',
+      alterPrimary: '#141417',
       secondary: '#2C2C3766',
+      hover: '#141417',
+      alterHover: '#1D1D22',
     },
     border: {
       primary: '#141417',

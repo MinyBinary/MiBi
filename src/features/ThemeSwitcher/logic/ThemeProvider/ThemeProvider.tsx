@@ -13,6 +13,8 @@ export const ThemeProviderComponent: FC<IThemeProviderProps> = ({
 }: IThemeProviderProps) => {
   const [theme, setTheme] = useState(darkTheme);
 
+  const isDarkMode = theme === darkTheme;
+
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
@@ -27,7 +29,7 @@ export const ThemeProviderComponent: FC<IThemeProviderProps> = ({
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, isDarkMode }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ThemeContext.Provider>
   );
