@@ -13,7 +13,7 @@ export const Burger: FC<IPropsBurger> = ({ isClicked, ...props }) => {
     animate: {
       transform: isClicked
         ? 'translate(-50%, -50%) rotate(45deg)'
-        : 'translate(-50%, -8px) rotate(0deg)',
+        : 'translate(-50%, -7px) rotate(0deg)',
     },
     transition: { duration: parseFloat(Durations.Fast) },
   };
