@@ -4,7 +4,7 @@ import { ConnectWallet } from 'features/ConnectWallet';
 import { PopupWrapper } from 'features/Popup/logic/PopupWrapper';
 import { EPopupVariant } from 'features/Popup/types/popup-variants';
 
-import { usePopup } from './logic/hooks/usePopup';
+import { usePopup } from './hooks/usePopup';
 
 export const Popup: FC = () => {
   const { variant } = usePopup();

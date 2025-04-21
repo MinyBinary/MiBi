@@ -1,6 +1,6 @@
 import { Button } from 'shared/components/ui';
 import { StyledText } from 'shared/styled/StyledText';
-import { BreakPoint, EColors } from 'shared/styles/style-variables';
+import { BreakPointsV2 } from 'shared/styles/style-variables';
 import styled, { css } from 'styled-components';
 
 export const ConfirmationPopupContent = styled.div`
@@ -13,9 +13,9 @@ export const ConfirmationText = styled(StyledText)`
   font-size: 14px;
   line-height: 19.6px;
   letter-spacing: -0.28px;
-  color: ${EColors.Black1};
+  color: ${({ theme }) => theme.popups.confirmation.color.primary};
 
-  @media (max-width: ${BreakPoint.MobileTop}) {
+  @media (max-width: ${BreakPointsV2.MobileLarge}) {
     font-size: 12px;
     line-height: 16.8px;
   }
@@ -29,32 +29,40 @@ export const ConfirmationAgreementWrapper = styled.div`
 `;
 
 export const ConfirmationTextWhite = styled(ConfirmationText)`
-  color: ${EColors.White1};
+  color: ${({ theme }) => theme.popups.confirmation.color.secondary};
 `;
 
 export const ConfirmationButton = styled(Button)<{ $isDisabled?: boolean }>`
-  border: 1px solid ${EColors.Green1};
-  background: ${EColors.Green5};
+  border: 1px solid ${({ theme }) => theme.buttons.confirm.border.default};
+  background: ${({ theme }) => theme.buttons.confirm.background.default};
   text-transform: uppercase;
-  color: ${EColors.Green1};
+  color: ${({ theme }) => theme.buttons.confirm.color.default};
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.buttons.confirm.border.default};
+    background: ${({ theme }) => theme.buttons.confirm.background.default};
+    text-transform: uppercase;
+    color: ${({ theme }) => theme.buttons.confirm.color.default};
+  }
+
+  &:disabled {
+    border: 1px solid ${({ theme }) => theme.buttons.confirm.border.disable};
+  }
 
   ${({ $isDisabled }) =>
     $isDisabled &&
     css`
-      border: 1px solid ${EColors.Black1};
-      background: transparent;
-      color: ${EColors.Black1};
-      pointer-events: none;
+      border: 1px solid ${({ theme }) => theme.buttons.confirm.border.default};
+      background: ${({ theme }) => theme.buttons.confirm.background.default};
+      text-transform: uppercase;
+      color: ${({ theme }) => theme.buttons.confirm.color.default};
+
+      &:hover {
+        border: 1px solid transparent;
+      }
     `}
 
-  @media (min-width: ${BreakPoint.MobileTop}) {
-
-    &:hover {
-      border: 1px solid ${EColors.Green4};
-    }
-  }
-
-  @media (max-width: ${BreakPoint.MobileTop}) {
+  @media (max-width: ${BreakPointsV2.MobileLarge}) {
     font-size: 12px;
     line-height: 16.8px;
   }

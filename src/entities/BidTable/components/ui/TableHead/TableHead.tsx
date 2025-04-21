@@ -16,7 +16,7 @@ export const TableHead: FC<ITableHeadProps> = ({ tableData, columnWidths }) => {
       <TR>
         {Object.keys(tableData[0]).map((key, index) => (
           <TH key={index} style={{ width: columnWidths[index] }}>
-            {key}
+            {key.includes('inscription') ? 'inscription' : key}
           </TH>
         ))}
       </TR>

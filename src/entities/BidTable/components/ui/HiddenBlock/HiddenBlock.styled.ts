@@ -1,4 +1,3 @@
-import { EColors } from 'shared/styles/style-variables';
 import { css, styled } from 'styled-components';
 
 export const HiddenBlock = styled.div<{ $isHidden?: boolean }>`
@@ -23,7 +22,7 @@ export const HiddenBlockContentWrapper = styled.div`
 export const Content = styled.div`
   height: 250px;
   padding: 16px;
-  background: ${EColors.Back2};
+  background: ${({ theme }) => theme.bidTable.row.entry.background.secondary};
   word-break: break-all;
-  color: ${EColors.White1};
+  color: ${({ theme }) => theme.bidTable.row.entry.color.primary};
 `;

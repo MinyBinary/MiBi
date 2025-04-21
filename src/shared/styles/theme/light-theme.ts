@@ -1,3 +1,4 @@
+import { bidTableThemeLight } from './bidTable/bidTable-theme.light';
 import { buttonsThemeLight } from './buttons/buttons-theme-light';
 import { calendarThemeLight } from './calendar/calendar-theme-light';
 import { formsThemeLight } from './forms/forms-theme-light';
@@ -16,9 +17,9 @@ export const lightTheme = {
       secondary: '#777777',
     },
     background: {
-      primary: '#D7D7D74D',
-      secondary: '#EBEBEB',
-      alter: '#F3F3F3',
+      primary: '#FFFFFFFF',
+      secondary: '#F6F6F6',
+      alter: '#FFFFFF',
       default: '#FFFFFF',
     },
   },
@@ -33,6 +34,7 @@ export const lightTheme = {
   popups: { ...popupsThemeLight },
   calendar: { ...calendarThemeLight },
   menu: { ...menuThemeLight },
+  bidTable: { ...bidTableThemeLight },
 
   boxShadows: {
     primary: '0px 7px 29px 0px rgba(100, 100, 111, 0.3)',

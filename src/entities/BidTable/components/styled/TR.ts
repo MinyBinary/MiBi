@@ -1,4 +1,4 @@
-import { Durations, EColors, EFontFamily } from 'shared/styles/style-variables';
+import { Durations, EFontFamily } from 'shared/styles/style-variables';
 import { css, styled } from 'styled-components';
 
 export const TR = styled.tr<{ $isSelected?: boolean; $isHidden?: boolean }>`
@@ -7,7 +7,6 @@ export const TR = styled.tr<{ $isSelected?: boolean; $isHidden?: boolean }>`
   font-weight: 400;
   line-height: 140%;
   letter-spacing: -0.28px;
-  color: ${EColors.White1};
   ${({ $isHidden }) =>
     $isHidden &&
     css`
@@ -16,12 +15,12 @@ export const TR = styled.tr<{ $isSelected?: boolean; $isHidden?: boolean }>`
   ${({ $isSelected }) =>
     $isSelected &&
     css`
-      background: ${EColors.Back3};
+      background: ${({ theme }) => theme.bidTable.row.hover.primary};
     `}
   transition: background ${Durations.Fast} ease-in-out;
 
   &:hover {
-    background: ${EColors.Back3};
+    background: ${({ theme }) => theme.bidTable.row.hover.primary};
     cursor: pointer;
   }
 `;

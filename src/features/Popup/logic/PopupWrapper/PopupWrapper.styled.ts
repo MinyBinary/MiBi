@@ -53,7 +53,7 @@ export const PopupTittle = styled(StyledText)`
   line-height: 90%;
   letter-spacing: -0.48px;
   text-transform: uppercase;
-  color: ${EColors.White1};
+  color: ${({ theme }) => theme.popups.primary.color.primary};
 `;
 
 export const CloseIconWrapper = styled.div`
