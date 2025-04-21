@@ -1,3 +1,4 @@
+import { bidTableThemeDark } from './bidTable/bidTable-theme.dark';
 import { buttonsThemeDark } from './buttons/buttons-theme-dark';
 import { calendarThemeDark } from './calendar/calendar-theme-dark';
 import { formsThemeDark } from './forms/forms-theme-dark';
@@ -33,6 +34,7 @@ export const darkTheme = {
   popups: { ...popupsThemeDark },
   calendar: { ...calendarThemeDark },
   menu: { ...menuThemeDark },
+  bidTable: { ...bidTableThemeDark },
 
   boxShadows: {
     primary: '0px',

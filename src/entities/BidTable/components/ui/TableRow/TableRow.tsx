@@ -31,7 +31,7 @@ export const TableRow: FC<IPropsTableRow> = ({
     ['date']: () => <DateRowData {...row.date} />,
     ['expDate']: () => <EXPDateRowData {...row.expDate} />,
     ['bid']: () => row.bid.activeBidButton,
-    ['inscription2']: () => row.inscription2,
+    ['inscription2']: () => <InscriptionRowData name="" comment="" />,
     ['status']: () => row.status,
   };
 

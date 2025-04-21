@@ -84,18 +84,18 @@ export const buttonsThemeLight = {
   },
   confirm: {
     color: {
-      default: '#27C191',
+      default: '#FFF',
       disable: '#535363',
       hover: '#27C191',
     },
     background: {
-      default: '#23E77B0D',
-      disable: '#E4E4E4',
+      default: '#18A579',
+      disable: '#18A579',
       hover: '#23E77B26',
     },
     border: {
-      default: '#27C191',
-      disable: '#E4E4E4',
+      default: '#18A579',
+      disable: '#18A579',
       hover: '#27C191',
     },
   },

@@ -1,4 +1,4 @@
-import { EColors, EFontFamily } from 'shared/styles/style-variables';
+import { EFontFamily } from 'shared/styles/style-variables';
 import { styled } from 'styled-components';
 
 export const TH = styled.th`
@@ -10,5 +10,5 @@ export const TH = styled.th`
   letter-spacing: -0.28px;
   text-align: left;
   text-transform: uppercase;
-  color: ${EColors.Black1};
+  color: ${({ theme }) => theme.bidTable.header.color.primary};
 `;
